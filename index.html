@@ -95,22 +95,28 @@
         .timeline-node::before {
             content: '';
             position: absolute;
-            top: 20px;
-            left: -32px;
-            width: 16px;
-            height: 16px;
+            top: 26px;
+            left: -33px;
+            transform: translate(-50%, -50%);
+            width: 14px;
+            height: 14px;
             border-radius: 9999px;
             background-color: #FFFFFF;
             border: 3px solid #94A3B8;
-            transition: all 0.25s ease;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
             z-index: 10;
+        }
+
+        .timeline-node:hover::before {
+            border-color: #3B82F6;
+            background-color: #EFF6FF;
         }
 
         .timeline-node.active::before {
             background-color: #2563EB;
             border-color: #BFDBFE;
-            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.2);
-            transform: scale(1.15);
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.25);
+            transform: translate(-50%, -50%) scale(1.25);
         }
 
         .badge-pill {
@@ -279,7 +285,7 @@
         <section id="sobre" class="py-12 md:py-20 text-center relative">
             <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200/70 text-blue-700 text-xs font-semibold mb-6 anim-hero shadow-sm">
                 <span class="w-2 h-2 rounded-full bg-blue-600 animate-ping"></span>
-                <span data-lang-key="hero_badge">Certificado Google Cloud & 20+ Anos em Tecnologia</span>
+                <span data-lang-key="hero_badge">Certificado Google Workspace Administrator & 20+ Anos em Tecnologia</span>
             </div>
 
             <h1 class="text-3xl sm:text-5xl md:text-6xl font-extrabold text-slate-900 tracking-tight mb-5 anim-hero max-w-4xl mx-auto leading-tight">
@@ -307,7 +313,7 @@
                     <span>LinkedIn</span>
                 </a>
 
-                <a href="mailto:lucasladeiraloes@gmail.com" class="inline-flex items-center gap-2 bg-slate-900 hover:bg-slate-800 text-white font-semibold py-3 px-6 rounded-xl shadow-lg shadow-slate-900/10 hover:shadow-slate-900/20 transition-all hover:-translate-y-0.5">
+                <a href="mailto:lucasladeiraloes@gmail.com" target="_blank" class="inline-flex items-center gap-2 bg-slate-900 hover:bg-slate-800 text-white font-semibold py-3 px-6 rounded-xl shadow-lg shadow-slate-900/10 hover:shadow-slate-900/20 transition-all hover:-translate-y-0.5">
                     <svg class="w-5 h-5 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                     </svg>
@@ -336,8 +342,8 @@
             <div class="max-w-5xl mx-auto">
                 <div class="md:grid md:grid-cols-5 md:gap-8 items-start">
                     <!-- Left Timeline Column -->
-                    <div class="md:col-span-2 relative border-l-2 border-slate-200 ml-5 md:ml-6 pl-6 sm:pl-8 space-y-6">
-                        <div id="timeline-container">
+                    <div class="md:col-span-2 relative ml-4 sm:ml-6">
+                        <div id="timeline-container" class="relative pl-8 border-l-2 border-slate-300">
                             <!-- Populated dynamically by JS -->
                         </div>
                     </div>
@@ -463,13 +469,7 @@
                     <!-- Quick Command Chips -->
                     <div class="bg-slate-950 px-4 py-2.5 border-t border-slate-800 flex flex-wrap items-center gap-2 text-xs">
                         <span class="text-slate-400 font-mono text-[11px]" data-lang-key="terminal_chips_label">Atalhos rápidos:</span>
-                        <button class="term-chip font-mono bg-slate-800 hover:bg-slate-700 text-emerald-400 px-2.5 py-1 rounded text-xs transition-colors" data-cmd="ajuda">ajuda</button>
-                        <button class="term-chip font-mono bg-slate-800 hover:bg-slate-700 text-sky-300 px-2.5 py-1 rounded text-xs transition-colors" data-cmd="wh1">wh1</button>
-                        <button class="term-chip font-mono bg-slate-800 hover:bg-slate-700 text-sky-300 px-2.5 py-1 rounded text-xs transition-colors" data-cmd="google">google</button>
-                        <button class="term-chip font-mono bg-slate-800 hover:bg-slate-700 text-sky-300 px-2.5 py-1 rounded text-xs transition-colors" data-cmd="skills">skills</button>
-                        <button class="term-chip font-mono bg-slate-800 hover:bg-slate-700 text-sky-300 px-2.5 py-1 rounded text-xs transition-colors" data-cmd="experiencia">experiencia</button>
-                        <button class="term-chip font-mono bg-slate-800 hover:bg-slate-700 text-sky-300 px-2.5 py-1 rounded text-xs transition-colors" data-cmd="contato">contato</button>
-                        <button class="term-chip font-mono bg-slate-800 hover:bg-slate-700 text-slate-400 px-2.5 py-1 rounded text-xs transition-colors" data-cmd="limpar">limpar</button>
+                        <div id="terminal-chips-list" class="flex flex-wrap items-center gap-2"></div>
                     </div>
                 </div>
             </div>
@@ -560,7 +560,7 @@
                 </div>
 
                 <div class="flex flex-wrap items-center justify-center gap-4 text-xs text-slate-600 font-medium">
-                    <a href="mailto:lucasladeiraloes@gmail.com" class="hover:text-blue-600 transition-colors flex items-center gap-1.5">
+                    <a href="mailto:lucasladeiraloes@gmail.com" target="_blank" class="hover:text-blue-600 transition-colors flex items-center gap-1.5">
                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                         lucasladeiraloes@gmail.com
                     </a>
@@ -574,11 +574,8 @@
                 </div>
             </div>
 
-            <div class="mt-8 pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-2">
+            <div class="mt-8 pt-6 border-t border-slate-100 text-center text-xs text-slate-400">
                 <p data-lang-key="footer_copy">&copy; 2026 Lucas Ladeira Loes. Todos os direitos reservados.</p>
-                <p class="flex items-center gap-1">
-                    <span data-lang-key="footer_built">Desenvolvido com foco em alta performance e design moderno</span>
-                </p>
             </div>
         </div>
     </footer>
@@ -617,7 +614,7 @@
                     nav_terminal: "Terminal",
                     nav_education: "Formação",
                     print_cv: "PDF / Imprimir",
-                    hero_badge: "Certificado Google Cloud & 20+ Anos em Tecnologia",
+                    hero_badge: "Certificado Google Workspace Administrator & 20+ Anos em Tecnologia",
                     hero_title_prefix: "Analista de TI Sênior &",
                     hero_title_highlight: "Administrador Google Workspace",
                     hero_subtitle: "Profissional com mais de 20 anos de experiência sólida em infraestrutura corporativa, redes, segurança da informação, suporte avançado N1/N2/N3 e administração do ecossistema Google Workspace. Histórico comprovado de liderança técnica, implementação de projetos críticos, governança e conformidade tecnológica.",
@@ -667,7 +664,6 @@
                     view_diploma: "Ver Diploma",
                     view_credential: "Ver Credencial Oficial",
                     footer_copy: "&copy; 2026 Lucas Ladeira Loes. Todos os direitos reservados.",
-                    footer_built: "Desenvolvido com foco em alta performance e design moderno",
 
                     experienceData: [
                         {
@@ -929,7 +925,7 @@
                     nav_terminal: "Terminal",
                     nav_education: "Education",
                     print_cv: "PDF / Print",
-                    hero_badge: "Google Cloud Certified & 20+ Years in Tech",
+                    hero_badge: "Google Workspace Administrator Certified & 20+ Years in Tech",
                     hero_title_prefix: "Senior IT Analyst &",
                     hero_title_highlight: "Google Workspace Administrator",
                     hero_subtitle: "Professional with over 20 years of solid experience in enterprise infrastructure, networks, information security, L1/L2/L3 support, and the Google Workspace ecosystem. Proven track record of technical leadership, critical project implementation, governance, and technology compliance.",
@@ -979,7 +975,6 @@
                     view_diploma: "View Diploma",
                     view_credential: "View Official Credential",
                     footer_copy: "&copy; 2026 Lucas Ladeira Loes. All rights reserved.",
-                    footer_built: "Built with high performance and modern web design standards",
 
                     experienceData: [
                         {
@@ -1558,6 +1553,10 @@
                 renderTimeline(lang);
                 renderSkills(lang, currentCategory, skillSearch.value.trim());
                 renderEducation(lang);
+                renderTerminalChips(lang);
+                if (terminalOutput) {
+                    terminalOutput.innerHTML = `<p class="text-slate-400">${translations[lang].terminal_welcome}</p>`;
+                }
 
                 // Set active timeline item
                 const activeTimelineItem = document.querySelector('.timeline-node.active');
@@ -1693,7 +1692,7 @@
                     skills: () => translations.pt.skillsData.map(s => `&bull; <span class="text-cyan-300">${s.name}</span> (${s.level})`).join('<br>'),
                     experiencia: () => translations.pt.experienceData.map(exp => `&bull; <span class="text-amber-400">${exp.role}</span> @ ${exp.company} <span class="text-slate-400">(${exp.period})</span>`).join('<br>'),
                     formacao: () => translations.pt.educationData.map(edu => `&bull; <span class="text-sky-300">${edu.title}</span> - ${edu.institution} <span class="text-slate-400">(${edu.year})</span>`).join('<br>'),
-                    contato: () => `E-mail: <a href="mailto:lucasladeiraloes@gmail.com" class="text-blue-400">lucasladeiraloes@gmail.com</a><br>WhatsApp: (31) 99164-3134<br>LinkedIn: linkedin.com/in/lucas-ladeira-loes/`,
+                    contato: () => `E-mail: <a href="mailto:lucasladeiraloes@gmail.com" target="_blank" class="text-blue-400 underline">lucasladeiraloes@gmail.com</a><br>WhatsApp: <a href="https://wa.me/5531991643134" target="_blank" class="text-emerald-400 underline">(31) 99164-3134</a><br>LinkedIn: <a href="https://www.linkedin.com/in/lucas-ladeira-loes/" target="_blank" class="text-sky-400 underline">linkedin.com/in/lucas-ladeira-loes/</a>`,
                     limpar: () => { terminalOutput.innerHTML = ''; return ''; }
                 },
                 en: {
@@ -1720,10 +1719,42 @@
                     skills: () => translations.en.skillsData.map(s => `&bull; <span class="text-cyan-300">${s.name}</span> (${s.level})`).join('<br>'),
                     experience: () => translations.en.experienceData.map(exp => `&bull; <span class="text-amber-400">${exp.role}</span> @ ${exp.company} <span class="text-slate-400">(${exp.period})</span>`).join('<br>'),
                     education: () => translations.en.educationData.map(edu => `&bull; <span class="text-sky-300">${edu.title}</span> - ${edu.institution} <span class="text-slate-400">(${edu.year})</span>`).join('<br>'),
-                    contact: () => `Email: lucasladeiraloes@gmail.com<br>Phone: +55 (31) 99164-3134<br>LinkedIn: linkedin.com/in/lucas-ladeira-loes/`,
+                    contact: () => `Email: <a href="mailto:lucasladeiraloes@gmail.com" target="_blank" class="text-blue-400 underline">lucasladeiraloes@gmail.com</a><br>WhatsApp: <a href="https://wa.me/5531991643134" target="_blank" class="text-emerald-400 underline">+55 (31) 99164-3134</a><br>LinkedIn: <a href="https://www.linkedin.com/in/lucas-ladeira-loes/" target="_blank" class="text-sky-400 underline">linkedin.com/in/lucas-ladeira-loes/</a>`,
                     clear: () => { terminalOutput.innerHTML = ''; return ''; }
                 }
             };
+
+            const chipDefinitions = {
+                pt: [
+                    { cmd: 'ajuda', label: 'ajuda', color: 'text-emerald-400' },
+                    { cmd: 'wh1', label: 'wh1', color: 'text-sky-300' },
+                    { cmd: 'google', label: 'google', color: 'text-sky-300' },
+                    { cmd: 'skills', label: 'skills', color: 'text-sky-300' },
+                    { cmd: 'experiencia', label: 'experiencia', color: 'text-sky-300' },
+                    { cmd: 'formacao', label: 'formacao', color: 'text-sky-300' },
+                    { cmd: 'contato', label: 'contato', color: 'text-sky-300' },
+                    { cmd: 'limpar', label: 'limpar', color: 'text-slate-400' }
+                ],
+                en: [
+                    { cmd: 'help', label: 'help', color: 'text-emerald-400' },
+                    { cmd: 'wh1', label: 'wh1', color: 'text-sky-300' },
+                    { cmd: 'google', label: 'google', color: 'text-sky-300' },
+                    { cmd: 'skills', label: 'skills', color: 'text-sky-300' },
+                    { cmd: 'experience', label: 'experience', color: 'text-sky-300' },
+                    { cmd: 'education', label: 'education', color: 'text-sky-300' },
+                    { cmd: 'contact', label: 'contact', color: 'text-sky-300' },
+                    { cmd: 'clear', label: 'clear', color: 'text-slate-400' }
+                ]
+            };
+
+            function renderTerminalChips(lang) {
+                const chipsContainer = document.getElementById('terminal-chips-list');
+                if (!chipsContainer) return;
+                const chips = chipDefinitions[lang] || chipDefinitions.pt;
+                chipsContainer.innerHTML = chips.map(c => `
+                    <button class="term-chip font-mono bg-slate-800 hover:bg-slate-700 ${c.color} px-2.5 py-1 rounded text-xs transition-colors" data-cmd="${c.cmd}">${c.label}</button>
+                `).join('');
+            }
 
             function executeCommand(command) {
                 const trimmed = command.trim().toLowerCase();
@@ -1736,9 +1767,23 @@
                 const responseLine = document.createElement('div');
                 responseLine.classList.add('mb-3', 'text-slate-300', 'leading-relaxed');
 
-                const availableCommands = currentLang === 'pt' 
-                    ? { ...terminalCommands.pt, help: terminalCommands.pt.ajuda, clear: terminalCommands.pt.limpar } 
-                    : { ...terminalCommands.en, ajuda: terminalCommands.en.help, limpar: terminalCommands.en.clear, ...terminalCommands.pt };
+                const availableCommands = currentLang === 'pt' ? {
+                    ...terminalCommands.pt,
+                    help: terminalCommands.pt.ajuda,
+                    about: terminalCommands.pt.sobre,
+                    experience: terminalCommands.pt.experiencia,
+                    education: terminalCommands.pt.formacao,
+                    contact: terminalCommands.pt.contato,
+                    clear: terminalCommands.pt.limpar
+                } : {
+                    ...terminalCommands.en,
+                    ajuda: terminalCommands.en.help,
+                    sobre: terminalCommands.en.about,
+                    experiencia: terminalCommands.en.experience,
+                    formacao: terminalCommands.en.education,
+                    contato: terminalCommands.en.contact,
+                    limpar: terminalCommands.en.clear
+                };
 
                 if (availableCommands[trimmed]) {
                     responseLine.innerHTML = availableCommands[trimmed]();
@@ -1762,13 +1807,17 @@
                 }
             });
 
-            // Quick terminal chips
-            document.querySelectorAll('.term-chip').forEach(chip => {
-                chip.addEventListener('click', () => {
-                    executeCommand(chip.dataset.cmd);
-                    terminalInput.focus();
+            // Quick terminal chips click delegation
+            const chipsList = document.getElementById('terminal-chips-list');
+            if (chipsList) {
+                chipsList.addEventListener('click', (e) => {
+                    const chip = e.target.closest('.term-chip');
+                    if (chip) {
+                        executeCommand(chip.dataset.cmd);
+                        terminalInput.focus();
+                    }
                 });
-            });
+            }
 
             // GSAP Animations Setup
             gsap.registerPlugin(ScrollTrigger);
