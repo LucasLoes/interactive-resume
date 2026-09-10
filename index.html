@@ -171,35 +171,266 @@
             background-color: rgba(15, 23, 42, 0.95);
         }
 
-        /* Print Styles for clean PDF export */
+        /* Print Styles for clean, professional PDF export */
         @media print {
-            header, footer, #terminal, .no-print, #skill-filter-tabs, #skill-search-container, .carousel-btn {
+            /* Hide web navigation, terminal, modals and interactive UI */
+            header, footer, #terminal, .no-print, #skill-filter-tabs, #skill-search-container, .carousel-btn, #image-modal, #carousel-modal {
                 display: none !important;
             }
-            body {
+
+            @page {
+                size: A4;
+                margin: 10mm 12mm 10mm 12mm;
+            }
+
+            html, body {
                 background: #FFFFFF !important;
                 color: #0F172A !important;
-                font-size: 11pt;
+                font-size: 9pt !important;
+                line-height: 1.35 !important;
+                overflow: visible !important;
+                overflow-x: visible !important;
+                height: auto !important;
             }
+
             main {
                 padding: 0 !important;
                 margin: 0 !important;
                 max-width: 100% !important;
             }
-            .card-modern, .glass-panel {
-                border: 1px solid #CBD5E1 !important;
-                box-shadow: none !important;
+
+            /* Show print-only header */
+            .print-header {
+                display: block !important;
+            }
+
+            /* Compact section paddings to eliminate huge blank spaces */
+            section {
+                padding-top: 10px !important;
+                padding-bottom: 12px !important;
+                margin: 0 !important;
+                border-top: 1px solid #E2E8F0 !important;
+            }
+
+            #sobre {
+                border-top: none !important;
+                padding-top: 0 !important;
+                padding-bottom: 6px !important;
+            }
+
+            #sobre .anim-hero {
+                opacity: 1 !important;
+                transform: none !important;
+                margin-bottom: 6px !important;
+            }
+
+            #sobre h1 {
+                font-size: 18pt !important;
+                margin-bottom: 6px !important;
+                line-height: 1.2 !important;
+            }
+
+            #sobre p {
+                font-size: 8.5pt !important;
+                line-height: 1.35 !important;
+                margin-bottom: 6px !important;
+            }
+
+            /* Section headers */
+            .anim-section-title {
+                margin-bottom: 10px !important;
+                opacity: 1 !important;
+                transform: none !important;
+                break-inside: avoid;
                 page-break-inside: avoid;
             }
+
+            .anim-section-title h2 {
+                font-size: 14pt !important;
+                margin-top: 2px !important;
+            }
+
+            .anim-section-title p {
+                font-size: 8pt !important;
+                margin-top: 2px !important;
+                max-width: 100% !important;
+            }
+
+            /* Quick Scan Recruiter Box */
+            .bg-white.border.border-slate-200.rounded-2xl.p-4,
+            .bg-white.border.border-slate-200.rounded-2xl.p-4\.sm\:p-5 {
+                padding: 6px 10px !important;
+                margin-bottom: 10px !important;
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+
+            /* Skills Matrix Grid: 2-column compact layout in print */
+            #competencias {
+                page-break-before: auto;
+            }
+
+            #skills-grid {
+                display: grid !important;
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 8px !important;
+                page-break-inside: auto !important;
+            }
+
+            #skills-grid .card-modern {
+                break-inside: avoid !important;
+                page-break-inside: avoid !important;
+                padding: 8px 10px !important;
+                margin: 0 !important;
+                border: 1px solid #CBD5E1 !important;
+                box-shadow: none !important;
+                border-radius: 8px !important;
+                background: #FFFFFF !important;
+            }
+
+            #skills-grid .card-modern h3 {
+                font-size: 9.5pt !important;
+                font-weight: 700 !important;
+                margin-bottom: 2px !important;
+            }
+
+            #skills-grid .card-modern p {
+                font-size: 7.5pt !important;
+                line-height: 1.25 !important;
+                margin-bottom: 4px !important;
+                color: #475569 !important;
+            }
+
+            #skills-grid .card-modern .badge-pill {
+                font-size: 7pt !important;
+                padding: 1px 5px !important;
+            }
+
+            #skills-grid .card-modern svg {
+                width: 13px !important;
+                height: 13px !important;
+            }
+
+            /* Career Section in Print */
+            #carreira {
+                page-break-inside: auto;
+            }
+
+            .timeline-node {
+                break-inside: avoid !important;
+                page-break-inside: avoid !important;
+                padding-bottom: 6px !important;
+            }
+
             .timeline-node::before {
                 display: none !important;
             }
+
+            .timeline-node .summary {
+                padding: 6px 8px !important;
+                box-shadow: none !important;
+                border: 1px solid #CBD5E1 !important;
+                border-radius: 8px !important;
+            }
+
+            .timeline-node .summary h3 {
+                font-size: 9.5pt !important;
+            }
+
+            .timeline-node .summary p {
+                font-size: 8pt !important;
+            }
+
             #experience-details {
                 position: static !important;
-                border: none !important;
+                border: 1px solid #CBD5E1 !important;
                 box-shadow: none !important;
-                padding: 0 !important;
+                padding: 10px 12px !important;
+                break-inside: avoid;
+                page-break-inside: avoid;
             }
+
+            #experience-details h3 {
+                font-size: 13pt !important;
+            }
+
+            #experience-details p, #experience-details li {
+                font-size: 8pt !important;
+                line-height: 1.3 !important;
+            }
+
+            /* Stats / Highlights in Print */
+            #destaques .grid {
+                display: grid !important;
+                grid-template-columns: repeat(4, 1fr) !important;
+                gap: 6px !important;
+            }
+
+            .anim-stat-card {
+                padding: 6px 8px !important;
+                box-shadow: none !important;
+                border: 1px solid #CBD5E1 !important;
+                break-inside: avoid;
+                page-break-inside: avoid;
+                opacity: 1 !important;
+                transform: none !important;
+            }
+
+            .anim-stat-card .w-12 {
+                display: none !important;
+            }
+
+            .anim-stat-card .stat-number {
+                font-size: 15pt !important;
+            }
+
+            .anim-stat-card p {
+                font-size: 7.5pt !important;
+                margin-top: 1px !important;
+            }
+
+            /* Education & Certifications in Print */
+            #formacao {
+                page-break-inside: auto;
+            }
+
+            #education-container {
+                display: grid !important;
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 6px !important;
+            }
+
+            #education-container .card-modern {
+                break-inside: avoid !important;
+                page-break-inside: avoid !important;
+                padding: 6px 8px !important;
+                box-shadow: none !important;
+                border: 1px solid #CBD5E1 !important;
+                opacity: 1 !important;
+                transform: none !important;
+            }
+
+            #education-container .card-modern h3 {
+                font-size: 8.5pt !important;
+                margin-bottom: 2px !important;
+            }
+
+            #education-container .card-modern p {
+                font-size: 7pt !important;
+            }
+
+            #education-container .card-modern .badge-pill {
+                font-size: 6.5pt !important;
+                padding: 1px 4px !important;
+            }
+
+            /* Hide buttons inside cards in print */
+            #education-container .diploma-btn,
+            #education-container .carousel-btn-trigger,
+            #education-container a[target="_blank"] {
+                display: none !important;
+            }
+
             .print-break {
                 page-break-before: always;
             }
@@ -240,7 +471,7 @@
                 <!-- Right: Actions (Language, Print & Mobile Menu) -->
                 <div class="flex items-center space-x-3">
                     <!-- Print / PDF Button -->
-                    <button onclick="window.print()" title="Imprimir ou Salvar em PDF" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 border border-slate-200 rounded-lg transition-colors">
+                    <button onclick="triggerPrint()" title="Imprimir ou Salvar em PDF" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 border border-slate-200 rounded-lg transition-colors">
                         <svg class="w-4 h-4 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path>
                         </svg>
@@ -270,7 +501,7 @@
             <a href="#competencias" class="nav-link-mobile block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-100" data-lang-key="nav_skills">Competências</a>
             <a href="#terminal" class="nav-link-mobile block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-100" data-lang-key="nav_terminal">Terminal</a>
             <a href="#formacao" class="nav-link-mobile block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-100" data-lang-key="nav_education">Formação</a>
-            <button onclick="window.print()" class="w-full text-left flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-semibold text-blue-600 hover:bg-blue-50">
+            <button onclick="triggerPrint()" class="w-full text-left flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-semibold text-blue-600 hover:bg-blue-50">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path>
                 </svg>
@@ -281,6 +512,21 @@
 
     <main class="container mx-auto px-4 sm:px-6 py-6 md:py-10 max-w-6xl">
         
+        <!-- Print-only Executive Header -->
+        <div class="print-header hidden mb-3 pb-2 border-b-2 border-blue-600 text-left">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h1 class="text-xl font-extrabold text-slate-900 tracking-tight leading-tight">Lucas Ladeira Loes</h1>
+                    <p class="text-xs font-bold text-blue-600" data-lang-key="print_title">Analista de TI Sênior &bull; Administrador Google Workspace</p>
+                </div>
+                <div class="text-right text-[8.5pt] text-slate-600 leading-tight">
+                    <p data-lang-key="print_location">Belo Horizonte, MG &bull; Brasil</p>
+                    <p>WhatsApp / Tel: (31) 99164-3134</p>
+                    <p>lucasladeiraloes@gmail.com &bull; linkedin.com/in/lucas-ladeira-loes</p>
+                </div>
+            </div>
+        </div>
+
         <!-- Hero Section -->
         <section id="sobre" class="py-12 md:py-20 text-center relative">
             <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200/70 text-blue-700 text-xs font-semibold mb-6 anim-hero shadow-sm">
@@ -320,7 +566,7 @@
                     <span data-lang-key="email_btn">E-mail</span>
                 </a>
 
-                <button onclick="window.print()" class="inline-flex items-center gap-2 bg-white hover:bg-slate-50 text-slate-700 border border-slate-300 font-semibold py-3 px-5 rounded-xl shadow-sm transition-all hover:-translate-y-0.5">
+                <button onclick="triggerPrint()" class="inline-flex items-center gap-2 bg-white hover:bg-slate-50 text-slate-700 border border-slate-300 font-semibold py-3 px-5 rounded-xl shadow-sm transition-all hover:-translate-y-0.5">
                     <svg class="w-5 h-5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                     </svg>
@@ -614,6 +860,8 @@
                     nav_terminal: "Terminal",
                     nav_education: "Formação",
                     print_cv: "PDF / Imprimir",
+                    print_title: "Analista de TI Sênior &bull; Administrador Google Workspace",
+                    print_location: "Belo Horizonte, MG &bull; Brasil",
                     hero_badge: "Certificado Google Workspace Administrator & 20+ Anos em Tecnologia",
                     hero_title_prefix: "Analista de TI Sênior &",
                     hero_title_highlight: "Administrador Google Workspace",
@@ -937,6 +1185,8 @@
                     nav_terminal: "Terminal",
                     nav_education: "Education",
                     print_cv: "PDF / Print",
+                    print_title: "Senior IT Analyst &bull; Google Workspace Administrator",
+                    print_location: "Belo Horizonte, MG &bull; Brazil",
                     hero_badge: "Google Workspace Administrator Certified & 20+ Years in Tech",
                     hero_title_prefix: "Senior IT Analyst &",
                     hero_title_highlight: "Google Workspace Administrator",
@@ -1888,6 +2138,47 @@
                     },
                 });
             });
+
+            // Print Preparation & Restoration Handlers
+            let prePrintCategory = 'all';
+            let prePrintSearch = '';
+
+            function preparePrint() {
+                // 1. Save user's current interactive filter and search
+                prePrintCategory = currentCategory;
+                prePrintSearch = skillSearch ? skillSearch.value : '';
+
+                // 2. Render ALL 12 skills for print
+                renderSkills(currentLang, 'all', '');
+
+                // 3. Fill in stat counters with their final numbers so they don't print as 0
+                document.querySelectorAll('.anim-stat-card .stat-number').forEach(span => {
+                    const target = span.dataset.target || '';
+                    const suffixKey = span.dataset.suffixKey;
+                    const suffix = (translations[currentLang] && translations[currentLang][suffixKey]) || '';
+                    span.innerText = target + suffix;
+                });
+
+                // 4. Force GSAP animated elements to be fully visible with no offset
+                document.querySelectorAll('.anim-hero, .anim-section-title, .anim-stat-card, .anim-education-card').forEach(el => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'none';
+                });
+            }
+
+            function restoreAfterPrint() {
+                // Restore the user's category filter and search
+                renderSkills(currentLang, prePrintCategory, prePrintSearch);
+            }
+
+            function triggerPrint() {
+                preparePrint();
+                window.print();
+            }
+            window.triggerPrint = triggerPrint;
+
+            window.addEventListener('beforeprint', preparePrint);
+            window.addEventListener('afterprint', restoreAfterPrint);
 
             // Initialize Application
             switchLanguage(currentLang);
