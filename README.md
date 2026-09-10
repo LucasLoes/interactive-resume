@@ -1,18 +1,26 @@
 # Currículo Interativo - Lucas Ladeira Loes
 
-Um currículo web dinâmico para um Analista de TI Sênior, desenvolvido como uma SPA (Single Page Application).
+Currículo web interativo de alto impacto visual para **Analista de TI Sênior & Administrador Google Workspace**, desenvolvido como Single Page Application (SPA) moderna, responsiva e bilíngue (Português / Inglês).
 
-## ✨ Destaques
+🔗 **Acesse online:** [https://lucasloes.github.io/interactive-resume/](https://lucasloes.github.io/interactive-resume/)
 
-* **Nuvem de Competências 3D:** Uma nuvem de palavras interativa que exibe minhas habilidades.
-* **Linha do Tempo de Carreira:** Uma jornada visual e interativa pela minha experiência profissional.
-* **Terminal de Comando:** Um terminal simulado para explorar o currículo de uma forma criativa.
-* **Design Responsivo e Bilíngue:** Totalmente funcional em desktops e celulares, com suporte para Português e Inglês.
+---
 
-## 🛠️ Tecnologias Utilizadas
+## ✨ Principais Destaques
 
-* HTML5
-* Tailwind CSS
-* JavaScript (Vanilla)
-* GSAP (para animações)
-* TagCanvas (para a nuvem de palavras)
+* **Matriz Interativa de Competências:** Substitui nuvens de palavras antigas por uma estrutura moderna, categorizada (*Cloud & SaaS*, *Infra & Redes*, *Suporte & Hardware*, *Segurança & LGPD*, *Sistemas & Automação*), com busca em tempo real, níveis de proficiência e contexto de atuação.
+* **Linha do Tempo de Carreira Detalhada:** Trajetória profissional completa com mais de 20 anos de experiência, incluindo a atuação recente na **Wh1 Cloud (Outubro 2025 – Setembro 2026)** com administração de Google Workspace e suporte corporativo.
+* **Certificações Oficiais em Destaque:** Badges e links oficiais verificáveis (ex: **Associate Google Workspace Administrator Certification** via Credly) e visualizador modal para diplomas e certificados.
+* **Terminal Interativo CLI:** Console simulado no estilo Unix/Bash com suporte a comandos interativos (`ajuda`, `wh1`, `google`, `skills`, `experiencia`, `contato`) e atalhos rápidos por clique.
+* **Suporte Bilíngue Nativo:** Alternância instantânea entre Português (PT-BR) e Inglês (EN) sem recarregar a página.
+* **Exportação Pronta para PDF / Impressão:** Estilos `@media print` otimizados para salvar em PDF ou imprimir um currículo limpo e executivo diretamente pelo navegador.
+
+---
+
+## 🛠️ Tecnologias e Bibliotecas
+
+* **HTML5 Semântico**
+* **Tailwind CSS** (Design system limpo, glassmorphism e responsividade)
+* **Vanilla JavaScript** (Arquitetura reativa leve e modular)
+* **GSAP & ScrollTrigger** (Animações suaves e contadores numéricos dinâmicos)
+* **Google Fonts** (*Plus Jakarta Sans*, *Inter* e *Fira Code*)

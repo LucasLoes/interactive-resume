@@ -3,360 +3,1269 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Currículo Interativo | Lucas Ladeira Loes</title>
+    <title>Lucas Ladeira Loes | Analista de TI Sênior & Administrador Google Workspace</title>
+    <meta name="description" content="Currículo Interativo de Lucas Ladeira Loes. Analista de TI Sênior com mais de 20 anos de experiência em infraestrutura, redes, segurança, suporte avançado e administração Google Workspace.">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://www.goat1000.com/tagcanvas.min.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet">
-    <!-- Chosen Palette: Warm Neutrals & Muted Blue -->
-    <!-- Application Structure Plan: A single-page application with vertical scrolling and a fixed top navigation bar for smooth section transitions. The structure is thematic: Hero, About, Interactive Timeline for Career, Visual Skills Showcase, Key Achievements, and Education/Certifications. This narrative flow was chosen to guide the recruiter through a compelling story of career progression. GSAP with ScrollTrigger is used for professional entrance animations. -->
-    <!-- Visualization & Content Choices: 
-        - Career History -> Goal: Show progression & longevity -> Viz: Interactive vertical timeline (HTML/CSS/JS) -> Interaction: Click to expand details.
-        - Skills -> Goal: Quickly convey breadth & depth -> Viz: Interactive Word Cloud (TagCanvas) -> Interaction: Mouse move/drag to rotate.
-        - Key Achievements -> Goal: Highlight impactful numbers -> Viz: Large "Stat Cards" (HTML/CSS) -> Interaction: Static visual.
-        Library/Method: Tailwind CSS for layout, TagCanvas for skill visualization, Vanilla JS for interactions, and GSAP for animations. -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #2563EB;
+            --primary-dark: #1D4ED8;
+            --accent: #0EA5E9;
+            --dark: #0F172A;
+            --surface: #F8FAFC;
+            --card-bg: #FFFFFF;
+            --border: #E2E8F0;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #F8F7F4;
-            color: #3D405B;
+            background-color: var(--surface);
+            color: #334155;
         }
+
+        h1, h2, h3, h4, .font-heading {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .font-mono {
+            font-family: 'Fira Code', monospace;
+        }
+
         body.modal-open main,
         body.modal-open header,
         body.modal-open footer {
             filter: blur(4px);
         }
+
         .nav-link {
-            transition: color 0.3s, border-bottom-color 0.3s;
-            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            position: relative;
         }
-        .nav-link:hover, .nav-link.active {
-            color: #3A86FF;
-            border-bottom-color: #3A86FF;
-        }
-        .lang-btn {
-            transition: background-color 0.3s, color 0.3s;
-        }
-        .lang-btn.active {
-            background-color: #3A86FF;
-            color: white;
-        }
-        .timeline-item::before {
+
+        .nav-link::after {
             content: '';
             position: absolute;
-            top: 8px;
-            left: calc(-2rem - 2px); 
+            bottom: -4px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: #2563EB;
+            transition: all 0.25s ease;
             transform: translateX(-50%);
-            width: 1.25rem; 
-            height: 1.25rem; 
             border-radius: 9999px;
-            background-color: #F8F7F4;
-            border: 3px solid #A0AEC0; 
-            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-link.active {
+            color: #2563EB;
+            font-weight: 600;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+
+        .card-modern {
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+        }
+
+        .card-modern:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 30px -10px rgba(15, 23, 42, 0.08);
+            border-color: #CBD5E1;
+        }
+
+        .timeline-node {
+            position: relative;
+        }
+
+        .timeline-node::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: -32px;
+            width: 16px;
+            height: 16px;
+            border-radius: 9999px;
+            background-color: #FFFFFF;
+            border: 3px solid #94A3B8;
+            transition: all 0.25s ease;
             z-index: 10;
         }
-        .timeline-item.active::before {
-            background-color: #3A86FF;
-            border-color: #3A86FF;
-            transform: translateX(-50%) scale(1.15); 
-            box-shadow: 0 0 15px rgba(58, 134, 255, 0.7); 
+
+        .timeline-node.active::before {
+            background-color: #2563EB;
+            border-color: #BFDBFE;
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.2);
+            transform: scale(1.15);
         }
-        .card-effect {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        .badge-pill {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.65rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
         }
-        .card-effect:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+        .terminal-container {
+            background-color: #0F172A;
+            border: 1px solid #1E293B;
+            box-shadow: 0 20px 35px -10px rgba(15, 23, 42, 0.3);
         }
+
+        .terminal-input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #38BDF8;
+            width: 100%;
+            caret-color: #38BDF8;
+        }
+
+        .mobile-details-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
         .carousel-btn {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(15, 23, 42, 0.7);
             color: white;
             border: none;
             border-radius: 50%;
             width: 3rem;
             height: 3rem;
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: background-color 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             z-index: 10;
         }
         .carousel-btn:hover {
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: rgba(15, 23, 42, 0.95);
         }
-        .terminal, #skillCanvas, #tags a {
-            font-family: 'Source Code Pro', monospace !important;
-        }
-        .terminal-input {
-            background: transparent;
-            border: none;
-            outline: none;
-            color: #E0E0E0;
-            width: 100%;
-            caret-color: #E0E0E0;
-        }
-        .mobile-details-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease-in-out;
+
+        /* Print Styles for clean PDF export */
+        @media print {
+            header, footer, #terminal, .no-print, #skill-filter-tabs, #skill-search-container, .carousel-btn {
+                display: none !important;
+            }
+            body {
+                background: #FFFFFF !important;
+                color: #0F172A !important;
+                font-size: 11pt;
+            }
+            main {
+                padding: 0 !important;
+                margin: 0 !important;
+                max-width: 100% !important;
+            }
+            .card-modern, .glass-panel {
+                border: 1px solid #CBD5E1 !important;
+                box-shadow: none !important;
+                page-break-inside: avoid;
+            }
+            .timeline-node::before {
+                display: none !important;
+            }
+            #experience-details {
+                position: static !important;
+                border: none !important;
+                box-shadow: none !important;
+                padding: 0 !important;
+            }
+            .print-break {
+                page-break-before: always;
+            }
         }
     </style>
 </head>
-<body class="antialiased overflow-x-hidden">
+<body class="antialiased overflow-x-hidden selection:bg-blue-600 selection:text-white">
 
-    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm transition-all duration-300">
+    <!-- Fixed Header -->
+    <header class="glass-panel sticky top-0 z-40 shadow-sm transition-all duration-300">
         <div class="container mx-auto px-4 sm:px-6">
             <nav class="relative flex items-center justify-between h-20">
-                <!-- Left: Name -->
-                <div class="flex-1 flex items-center justify-start">
-                    <h1 class="text-xl font-bold text-[#3D405B]">Lucas Ladeira Loes</h1>
+                <!-- Left: Name & Role Badge -->
+                <div class="flex items-center space-x-3">
+                    <a href="#sobre" class="flex items-center space-x-2 group">
+                        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white font-bold text-lg shadow-md group-hover:shadow-blue-500/20 transition-all">
+                            LL
+                        </div>
+                        <div>
+                            <span class="text-base sm:text-lg font-bold text-slate-900 tracking-tight block leading-tight">Lucas Ladeira Loes</span>
+                            <span class="text-xs font-medium text-slate-500 flex items-center gap-1.5">
+                                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                                <span data-lang-key="nav_role_tag">Analista de TI & Google Workspace</span>
+                            </span>
+                        </div>
+                    </a>
                 </div>
 
                 <!-- Center: Desktop Menu -->
-                <div class="hidden md:flex flex-1 items-center justify-center space-x-8">
-                    <a href="#sobre" class="nav-link font-medium pb-1" data-lang-key="nav_about">Sobre</a>
-                    <a href="#carreira" class="nav-link font-medium pb-1" data-lang-key="nav_career">Carreira</a>
-                    <a href="#competencias" class="nav-link font-medium pb-1" data-lang-key="nav_skills">Competências</a>
-                    <a href="#terminal" class="nav-link font-medium pb-1" data-lang-key="nav_terminal">Terminal</a>
-                    <a href="#formacao" class="nav-link font-medium pb-1" data-lang-key="nav_education">Formação</a>
+                <div class="hidden lg:flex items-center space-x-7 text-sm">
+                    <a href="#sobre" class="nav-link font-medium text-slate-600 hover:text-blue-600 py-1" data-lang-key="nav_about">Sobre</a>
+                    <a href="#carreira" class="nav-link font-medium text-slate-600 hover:text-blue-600 py-1" data-lang-key="nav_career">Carreira</a>
+                    <a href="#competencias" class="nav-link font-medium text-slate-600 hover:text-blue-600 py-1" data-lang-key="nav_skills">Competências</a>
+                    <a href="#terminal" class="nav-link font-medium text-slate-600 hover:text-blue-600 py-1" data-lang-key="nav_terminal">Terminal</a>
+                    <a href="#formacao" class="nav-link font-medium text-slate-600 hover:text-blue-600 py-1" data-lang-key="nav_education">Formação</a>
                 </div>
 
-                <!-- Right: Actions -->
-                <div class="flex-1 flex items-center justify-end">
-                     <div class="flex items-center space-x-4">
-                        <div class="flex items-center border border-gray-300 rounded-full">
-                            <button id="lang-pt" class="lang-btn text-xs font-semibold px-2 py-0.5 rounded-l-full">PT-BR</button>
-                            <button id="lang-en" class="lang-btn text-xs font-semibold px-2 py-0.5 rounded-r-full">EN</button>
-                        </div>
-                        <!-- Mobile Menu Button (Hamburger) -->
-                        <div class="md:hidden">
-                            <button id="mobile-menu-button" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:bg-gray-200 focus:outline-none">
-                                <span class="sr-only">Open main menu</span>
-                                <div class="space-y-1.5">
-                                    <div class="w-6 h-0.5 bg-gray-600"></div>
-                                    <div class="w-6 h-0.5 bg-gray-600"></div>
-                                    <div class="w-6 h-0.5 bg-gray-600"></div>
-                                </div>
-                            </button>
-                        </div>
+                <!-- Right: Actions (Language, Print & Mobile Menu) -->
+                <div class="flex items-center space-x-3">
+                    <!-- Print / PDF Button -->
+                    <button onclick="window.print()" title="Imprimir ou Salvar em PDF" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 border border-slate-200 rounded-lg transition-colors">
+                        <svg class="w-4 h-4 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path>
+                        </svg>
+                        <span data-lang-key="print_cv">PDF / Imprimir</span>
+                    </button>
+
+                    <!-- Language Switcher -->
+                    <div class="inline-flex items-center p-0.5 bg-slate-100 border border-slate-200 rounded-lg">
+                        <button id="lang-pt" class="lang-btn text-xs font-bold px-2.5 py-1 rounded-md transition-all text-slate-700">PT</button>
+                        <button id="lang-en" class="lang-btn text-xs font-bold px-2.5 py-1 rounded-md transition-all text-slate-700">EN</button>
                     </div>
+
+                    <!-- Mobile Hamburger -->
+                    <button id="mobile-menu-button" type="button" class="lg:hidden p-2 rounded-lg text-slate-600 hover:bg-slate-100 focus:outline-none" aria-label="Abrir Menu">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
                 </div>
             </nav>
         </div>
 
-        <!-- Mobile Menu (Dropdown) -->
-        <div id="mobile-menu" class="hidden md:hidden">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#sobre" class="nav-link-mobile block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-200" data-lang-key="nav_about">Sobre</a>
-                <a href="#carreira" class="nav-link-mobile block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-200" data-lang-key="nav_career">Carreira</a>
-                <a href="#competencias" class="nav-link-mobile block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-200" data-lang-key="nav_skills">Competências</a>
-                <a href="#terminal" class="nav-link-mobile block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-200" data-lang-key="nav_terminal">Terminal</a>
-                <a href="#formacao" class="nav-link-mobile block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-200" data-lang-key="nav_education">Formação</a>
-            </div>
+        <!-- Mobile Dropdown -->
+        <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-200 bg-white/95 px-4 py-3 space-y-2">
+            <a href="#sobre" class="nav-link-mobile block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-100" data-lang-key="nav_about">Sobre</a>
+            <a href="#carreira" class="nav-link-mobile block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-100" data-lang-key="nav_career">Carreira</a>
+            <a href="#competencias" class="nav-link-mobile block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-100" data-lang-key="nav_skills">Competências</a>
+            <a href="#terminal" class="nav-link-mobile block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-100" data-lang-key="nav_terminal">Terminal</a>
+            <a href="#formacao" class="nav-link-mobile block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-100" data-lang-key="nav_education">Formação</a>
+            <button onclick="window.print()" class="w-full text-left flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-semibold text-blue-600 hover:bg-blue-50">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path>
+                </svg>
+                <span data-lang-key="print_cv">Imprimir ou Salvar em PDF</span>
+            </button>
         </div>
     </header>
 
-    <main class="container mx-auto px-4 sm:px-6 py-12 transition-all duration-300">
+    <main class="container mx-auto px-4 sm:px-6 py-6 md:py-10 max-w-6xl">
         
-        <section id="sobre" class="text-center py-16 md:py-24" style="padding-top: 2rem;padding-bottom: 5rem;">
-            <h2 class="text-4xl md:text-5xl font-bold text-[#3D405B] mb-4 anim-hero" data-lang-key="hero_title">Analista de TI Sênior</h2>
-            <p class="max-w-3xl mx-auto text-lg text-gray-600 mb-8 anim-hero" data-lang-key="hero_subtitle">
-                Profissional com mais de 20 anos de experiência, especialista em infraestrutura, redes, segurança e suporte avançado. Com uma carreira sólida, liderando a TI em um ambiente dinâmico, busco aplicar minha expertise para impulsionar a eficiência e a inovação tecnológica.
+        <!-- Hero Section -->
+        <section id="sobre" class="py-12 md:py-20 text-center relative">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200/70 text-blue-700 text-xs font-semibold mb-6 anim-hero shadow-sm">
+                <span class="w-2 h-2 rounded-full bg-blue-600 animate-ping"></span>
+                <span data-lang-key="hero_badge">Certificado Google Cloud & 20+ Anos em Tecnologia</span>
+            </div>
+
+            <h1 class="text-3xl sm:text-5xl md:text-6xl font-extrabold text-slate-900 tracking-tight mb-5 anim-hero max-w-4xl mx-auto leading-tight">
+                <span data-lang-key="hero_title_prefix">Analista de TI Sênior &</span> <br class="hidden sm:inline">
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-indigo-600 to-sky-500" data-lang-key="hero_title_highlight">Administrador Google Workspace</span>
+            </h1>
+
+            <p class="max-w-3xl mx-auto text-base sm:text-lg text-slate-600 mb-8 leading-relaxed anim-hero" data-lang-key="hero_subtitle">
+                Profissional com mais de 20 anos de experiência sólida em infraestrutura corporativa, redes, segurança da informação, suporte avançado N1/N2/N3 e administração do ecossistema Google Workspace. Histórico comprovado de liderança técnica, implementação de projetos críticos, governança e conformidade tecnológica.
             </p>
-            <div class="flex justify-center space-x-4 anim-hero">
-                <a href="https://wa.me/553191643134" class="bg-[#3A86FF] text-white font-bold py-3 px-6 rounded-lg hover:bg-green-600 transition-colors" data-lang-key="phone_btn">Whatsapp</a>
-                <a href="https://www.linkedin.com/in/lucas-ladeira-loes/" target="_blank" class="bg-[#3A86FF] text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-600 transition-colors">LinkedIn</a>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-4 anim-hero no-print">
+                <a href="https://wa.me/5531991643134?text=Ol%C3%A1%20Lucas,%20vi%20seu%20curr%C3%ADculo%20interativo!" target="_blank" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 px-6 rounded-xl shadow-lg shadow-emerald-600/20 hover:shadow-emerald-600/30 transition-all hover:-translate-y-0.5">
+                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                    </svg>
+                    <span data-lang-key="whatsapp_btn">WhatsApp</span>
+                </a>
+
+                <a href="https://www.linkedin.com/in/lucas-ladeira-loes/" target="_blank" class="inline-flex items-center gap-2 bg-[#0A66C2] hover:bg-[#084e96] text-white font-semibold py-3 px-6 rounded-xl shadow-lg shadow-blue-600/20 hover:shadow-blue-600/30 transition-all hover:-translate-y-0.5">
+                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                        <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76c-.92 0-1.66-.74-1.66-1.66 0-.91.74-1.66 1.66-1.66.92 0 1.66.75 1.66 1.66 0 .92-.74 1.66-1.66 1.66m1.39 9.74v-8.37H5.07v8.37h2.78z"/>
+                    </svg>
+                    <span>LinkedIn</span>
+                </a>
+
+                <a href="mailto:lucasladeiraloes@gmail.com" class="inline-flex items-center gap-2 bg-slate-900 hover:bg-slate-800 text-white font-semibold py-3 px-6 rounded-xl shadow-lg shadow-slate-900/10 hover:shadow-slate-900/20 transition-all hover:-translate-y-0.5">
+                    <svg class="w-5 h-5 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                    </svg>
+                    <span data-lang-key="email_btn">E-mail</span>
+                </a>
+
+                <button onclick="window.print()" class="inline-flex items-center gap-2 bg-white hover:bg-slate-50 text-slate-700 border border-slate-300 font-semibold py-3 px-5 rounded-xl shadow-sm transition-all hover:-translate-y-0.5">
+                    <svg class="w-5 h-5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                    <span data-lang-key="download_cv_btn">Salvar / Imprimir PDF</span>
+                </button>
             </div>
         </section>
 
-        <section id="carreira" class="py-16 md:py-24">
+        <!-- Career Timeline Section -->
+        <section id="carreira" class="py-12 md:py-20 border-t border-slate-200">
             <div class="text-center mb-12 anim-section-title">
-                <h3 class="text-3xl font-bold text-[#3D405B]" data-lang-key="career_title">Jornada Profissional</h3>
-                <p class="text-md text-gray-600 mt-2" data-lang-key="career_subtitle">Explore minha trajetória de carreira. Clique em uma função para ver os detalhes e as conquistas.</p>
+                <span class="text-xs font-bold uppercase tracking-wider text-blue-600" data-lang-key="career_eyebrow">Trajetória e Impacto</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-1" data-lang-key="career_title">Jornada Profissional</h2>
+                <p class="text-sm sm:text-base text-slate-600 mt-2 max-w-2xl mx-auto" data-lang-key="career_subtitle">
+                    Evolução contínua de carreira técnica e executiva. Clique em uma posição para inspecionar os detalhes e entregas estratégicas.
+                </p>
             </div>
+
             <div class="max-w-5xl mx-auto">
-                <div class="md:grid md:grid-cols-5 md:gap-12 items-start">
-                    <div class="md:col-span-2 relative border-l-4 border-gray-300 ml-4 md:ml-0">
-                        <div id="timeline-container" class="pl-8">
+                <div class="md:grid md:grid-cols-5 md:gap-8 items-start">
+                    <!-- Left Timeline Column -->
+                    <div class="md:col-span-2 relative border-l-2 border-slate-200 ml-5 md:ml-6 pl-6 sm:pl-8 space-y-6">
+                        <div id="timeline-container">
+                            <!-- Populated dynamically by JS -->
                         </div>
                     </div>
+
+                    <!-- Right Sticky Details Column (Desktop) -->
                     <div class="md:col-span-3 hidden md:block">
-                        <div id="experience-details" class="p-8 bg-white rounded-xl shadow-lg sticky top-28 card-effect">
-                            <p class="text-gray-500 text-center" data-lang-key="career_placeholder">Selecione um cargo na linha do tempo para ver os detalhes.</p>
+                        <div id="experience-details" class="card-modern p-8 rounded-2xl sticky top-28 shadow-sm">
+                            <p class="text-slate-400 text-center" data-lang-key="career_placeholder">Selecione um cargo na linha do tempo para ver os detalhes.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="competencias" class="py-16 md:py-24" style="padding-top: 2rem;padding-bottom: 5rem;">
-            <div class="text-center mb-12 anim-section-title">
-                <h3 class="text-3xl font-bold text-[#3D405B]" data-lang-key="skills_title">Principais Competências</h3>
-                <p class="text-md text-gray-600 mt-2" data-lang-key="skills_subtitle">Uma visão geral das minhas habilidades técnicas.<br>Clique e segure ou toque e segure na nuvem de habilidades para interagir com ela.</p>
+        <!-- Modern Skills Matrix Section (Replaces Word Cloud) -->
+        <section id="competencias" class="py-12 md:py-20 border-t border-slate-200">
+            <div class="text-center mb-8 anim-section-title">
+                <span class="text-xs font-bold uppercase tracking-wider text-blue-600" data-lang-key="skills_eyebrow">Domínio Técnico & Ferramentas</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-1" data-lang-key="skills_title">Matriz de Competências</h2>
+                <p class="text-sm sm:text-base text-slate-600 mt-2 max-w-2xl mx-auto" data-lang-key="skills_subtitle">
+                    Estrutura organizada de conhecimentos técnicos, categorizados por área de atuação com indicação de proficiência e contexto prático.
+                </p>
             </div>
-            <div id="skill-cloud-container" class="w-full h-[400px] md:h-[500px] max-w-2xl mx-auto anim-chart">
-                <canvas id="skillCanvas" width="800" height="800" class="w-full h-full">
-                    <!-- Fallback content -->
-                    <p data-lang-key="skills_fallback">Seu navegador não suporta o canvas para a nuvem de palavras.</p>
-                </canvas>
+
+            <!-- Top Recruiter Quick-Scan Badges -->
+            <div class="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 mb-8 shadow-sm">
+                <div class="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+                    <span class="font-bold text-slate-800 flex items-center gap-2">
+                        <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                        <span data-lang-key="quick_scan_title">Destaques para Recrutamento (Quick-Scan):</span>
+                    </span>
+                    <div class="flex flex-wrap gap-2 justify-center">
+                        <span class="bg-blue-50 text-blue-700 font-semibold px-2.5 py-1 rounded-md border border-blue-200/60">Google Workspace Admin</span>
+                        <span class="bg-indigo-50 text-indigo-700 font-semibold px-2.5 py-1 rounded-md border border-indigo-200/60">Windows Server & AD</span>
+                        <span class="bg-sky-50 text-sky-700 font-semibold px-2.5 py-1 rounded-md border border-sky-200/60">Redes TCP/IP & VPN</span>
+                        <span class="bg-amber-50 text-amber-800 font-semibold px-2.5 py-1 rounded-md border border-amber-200/60">Firewalls & Segurança</span>
+                        <span class="bg-emerald-50 text-emerald-700 font-semibold px-2.5 py-1 rounded-md border border-emerald-200/60">Suporte N1/N2/N3</span>
+                        <span class="bg-purple-50 text-purple-700 font-semibold px-2.5 py-1 rounded-md border border-purple-200/60">macOS & Hardware</span>
+                        <span class="bg-rose-50 text-rose-700 font-semibold px-2.5 py-1 rounded-md border border-rose-200/60">LGPD & Compliance</span>
+                    </div>
+                </div>
             </div>
-            <div id="tags" class="hidden">
-                <ul>
-                    <!-- Skills will be populated by JS -->
-                </ul>
+
+            <!-- Category Filter Tabs & Instant Search -->
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4 mb-8 no-print">
+                <!-- Filter Tabs -->
+                <div id="skill-filter-tabs" class="flex flex-wrap gap-2 justify-center">
+                    <button class="skill-tab-btn active px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all bg-blue-600 text-white shadow-sm" data-category="all">
+                        <span data-lang-key="tab_all">Todas</span> (<span id="count-all">0</span>)
+                    </button>
+                    <button class="skill-tab-btn px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all bg-white text-slate-600 hover:bg-slate-100 border border-slate-200" data-category="cloud">
+                        <span data-lang-key="tab_cloud">Cloud & SaaS</span> (<span id="count-cloud">0</span>)
+                    </button>
+                    <button class="skill-tab-btn px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all bg-white text-slate-600 hover:bg-slate-100 border border-slate-200" data-category="infra">
+                        <span data-lang-key="tab_infra">Infra & Redes</span> (<span id="count-infra">0</span>)
+                    </button>
+                    <button class="skill-tab-btn px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all bg-white text-slate-600 hover:bg-slate-100 border border-slate-200" data-category="support">
+                        <span data-lang-key="tab_support">Suporte & Hardware</span> (<span id="count-support">0</span>)
+                    </button>
+                    <button class="skill-tab-btn px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all bg-white text-slate-600 hover:bg-slate-100 border border-slate-200" data-category="security">
+                        <span data-lang-key="tab_security">Segurança & LGPD</span> (<span id="count-security">0</span>)
+                    </button>
+                    <button class="skill-tab-btn px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all bg-white text-slate-600 hover:bg-slate-100 border border-slate-200" data-category="systems">
+                        <span data-lang-key="tab_systems">Sistemas & Automação</span> (<span id="count-systems">0</span>)
+                    </button>
+                </div>
+
+                <!-- Instant Search Input -->
+                <div id="skill-search-container" class="relative w-full md:w-64">
+                    <input type="text" id="skill-search" placeholder="Filtrar competência..." data-lang-placeholder="search_placeholder" class="w-full bg-white border border-slate-200 rounded-lg pl-9 pr-3 py-1.5 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                    <svg class="w-4 h-4 text-slate-400 absolute left-2.5 top-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Skills Grid -->
+            <div id="skills-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                <!-- Populated dynamically by JS -->
             </div>
         </section>
 
-        <section id="terminal" class="py-16 md:py-24" style="padding-top: 2rem;padding-bottom: 5rem;">
-            <div class="text-center mb-12 anim-section-title">
-                <h3 class="text-3xl font-bold text-[#3D405B]" data-lang-key="terminal_title">Terminal Interativo</h3>
-                <p class="text-md text-gray-600 mt-2" data-lang-key="terminal_subtitle">Explore meu currículo de uma forma diferente.<br>Digite 'ajuda' no terminal abaixo e pressione Enter para começar.</p>
+        <!-- Interactive Terminal Section -->
+        <section id="terminal" class="py-12 md:py-20 border-t border-slate-200">
+            <div class="text-center mb-8 anim-section-title">
+                <span class="text-xs font-bold uppercase tracking-wider text-emerald-600" data-lang-key="terminal_eyebrow">Interface de Linha de Comando</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-1" data-lang-key="terminal_title">Terminal Interativo</h2>
+                <p class="text-sm sm:text-base text-slate-600 mt-2 max-w-2xl mx-auto" data-lang-key="terminal_subtitle">
+                    Explore meu perfil através de comandos de console. Digite os comandos ou clique nos atalhos rápidos abaixo.
+                </p>
             </div>
-            <div id="terminal-window" class="terminal max-w-4xl mx-auto bg-[#282C34] rounded-lg shadow-2xl h-80 md:h-96 p-4 overflow-y-auto text-white text-sm" onclick="document.getElementById('terminal-input').focus()">
-                <div id="terminal-output"></div>
-                <div class="flex items-center">
-                    <span class="text-green-400">lucas@resume:~$</span>
-                    <input type="text" id="terminal-input" class="terminal-input ml-2" autocomplete="off">
+
+            <div class="max-w-4xl mx-auto">
+                <!-- Terminal Window -->
+                <div class="terminal-container rounded-2xl overflow-hidden shadow-2xl">
+                    <!-- Title Bar -->
+                    <div class="bg-slate-900 px-4 py-3 flex items-center justify-between border-b border-slate-800">
+                        <div class="flex items-center space-x-2">
+                            <span class="w-3 h-3 rounded-full bg-rose-500 inline-block"></span>
+                            <span class="w-3 h-3 rounded-full bg-amber-500 inline-block"></span>
+                            <span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span>
+                            <span class="text-xs font-mono text-slate-400 ml-2">lucas@it-infrastructure:~</span>
+                        </div>
+                        <span class="text-[10px] font-mono text-slate-500 uppercase tracking-widest">bash v5.2</span>
+                    </div>
+
+                    <!-- Terminal Output Window -->
+                    <div id="terminal-window" class="p-5 font-mono text-xs sm:text-sm h-80 sm:h-96 overflow-y-auto leading-relaxed cursor-text" onclick="document.getElementById('terminal-input').focus()">
+                        <div id="terminal-output" class="text-slate-300 space-y-2">
+                            <p class="text-slate-400" data-lang-key="terminal_welcome">
+                                [Sistema Inicializado] Bem-vindo ao Terminal de TI de Lucas Loes.<br>
+                                Digite <span class="text-emerald-400 font-semibold">'ajuda'</span> ou clique nos comandos sugeridos abaixo para interagir.
+                            </p>
+                        </div>
+                        <div class="flex items-center mt-3 pt-2 border-t border-slate-800/80">
+                            <span class="text-emerald-400 font-semibold mr-2 whitespace-nowrap">lucas@resume:~$</span>
+                            <input type="text" id="terminal-input" class="terminal-input font-mono text-xs sm:text-sm" autocomplete="off" spellcheck="false">
+                        </div>
+                    </div>
+
+                    <!-- Quick Command Chips -->
+                    <div class="bg-slate-950 px-4 py-2.5 border-t border-slate-800 flex flex-wrap items-center gap-2 text-xs">
+                        <span class="text-slate-400 font-mono text-[11px]" data-lang-key="terminal_chips_label">Atalhos rápidos:</span>
+                        <button class="term-chip font-mono bg-slate-800 hover:bg-slate-700 text-emerald-400 px-2.5 py-1 rounded text-xs transition-colors" data-cmd="ajuda">ajuda</button>
+                        <button class="term-chip font-mono bg-slate-800 hover:bg-slate-700 text-sky-300 px-2.5 py-1 rounded text-xs transition-colors" data-cmd="wh1">wh1</button>
+                        <button class="term-chip font-mono bg-slate-800 hover:bg-slate-700 text-sky-300 px-2.5 py-1 rounded text-xs transition-colors" data-cmd="google">google</button>
+                        <button class="term-chip font-mono bg-slate-800 hover:bg-slate-700 text-sky-300 px-2.5 py-1 rounded text-xs transition-colors" data-cmd="skills">skills</button>
+                        <button class="term-chip font-mono bg-slate-800 hover:bg-slate-700 text-sky-300 px-2.5 py-1 rounded text-xs transition-colors" data-cmd="experiencia">experiencia</button>
+                        <button class="term-chip font-mono bg-slate-800 hover:bg-slate-700 text-sky-300 px-2.5 py-1 rounded text-xs transition-colors" data-cmd="contato">contato</button>
+                        <button class="term-chip font-mono bg-slate-800 hover:bg-slate-700 text-slate-400 px-2.5 py-1 rounded text-xs transition-colors" data-cmd="limpar">limpar</button>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="destaques" class="py-16 md:py-24" style="padding-top: 2rem;padding-bottom: 5rem;">
-             <div class="text-center mb-12 anim-section-title">
-                <h3 class="text-3xl font-bold text-[#3D405B]" data-lang-key="highlights_title">Conquistas em Números</h3>
-                <p class="text-md text-gray-600 mt-2" data-lang-key="highlights_subtitle">Resultados quantitativos que demonstram o impacto do meu trabalho ao longo da minha carreira.</p>
+        <!-- Key Achievements / Stat Cards -->
+        <section id="destaques" class="py-12 md:py-20 border-t border-slate-200">
+            <div class="text-center mb-12 anim-section-title">
+                <span class="text-xs font-bold uppercase tracking-wider text-blue-600" data-lang-key="highlights_eyebrow">Impacto Mensurável</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-1" data-lang-key="highlights_title">Conquistas em Números</h2>
+                <p class="text-sm sm:text-base text-slate-600 mt-2 max-w-2xl mx-auto" data-lang-key="highlights_subtitle">
+                    Métricas concretas que comprovam a robustez técnica, volume de entregas e longevidade de parcerias ao longo de mais de duas décadas.
+                </p>
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="bg-white p-8 rounded-xl shadow-lg text-center card-effect anim-stat-card">
-                    <span data-target="1000" data-suffix-key="stat_assembled_suffix" class="stat-number text-5xl font-extrabold text-[#3A86FF]">0</span>
-                    <p class="mt-2 text-gray-600 font-medium" data-lang-key="stat_assembled">Computadores montados</p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="card-modern p-6 rounded-2xl text-center anim-stat-card">
+                    <div class="w-12 h-12 mx-auto mb-4 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <span data-target="1000" data-suffix-key="stat_assembled_suffix" class="stat-number text-4xl sm:text-5xl font-extrabold text-blue-600 tracking-tight">0</span>
+                    <p class="mt-2 text-sm font-semibold text-slate-800" data-lang-key="stat_assembled">Computadores Montados</p>
+                    <p class="text-xs text-slate-500 mt-1" data-lang-key="stat_assembled_desc">Em larga escala e produção em massa</p>
                 </div>
-                <div class="bg-white p-8 rounded-xl shadow-lg text-center card-effect anim-stat-card">
-                    <span data-target="800" data-suffix-key="stat_repaired_suffix" class="stat-number text-5xl font-extrabold text-[#3A86FF]">0</span>
-                    <p class="mt-2 text-gray-600 font-medium" data-lang-key="stat_repaired">Equipamentos reparados</p>
+
+                <div class="card-modern p-6 rounded-2xl text-center anim-stat-card">
+                    <div class="w-12 h-12 mx-auto mb-4 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                    </div>
+                    <span data-target="800" data-suffix-key="stat_repaired_suffix" class="stat-number text-4xl sm:text-5xl font-extrabold text-indigo-600 tracking-tight">0</span>
+                    <p class="mt-2 text-sm font-semibold text-slate-800" data-lang-key="stat_repaired">Equipamentos Reparados</p>
+                    <p class="text-xs text-slate-500 mt-1" data-lang-key="stat_repaired_desc">Diagnósticos e consertos complexos</p>
                 </div>
-                <div class="bg-white p-8 rounded-xl shadow-lg text-center card-effect anim-stat-card">
-                    <span data-target="10" data-suffix-key="stat_growth_suffix" class="stat-number text-5xl font-extrabold text-[#3A86FF]">0</span>
-                    <p class="mt-2 text-gray-600 font-medium" data-lang-key="stat_growth">Crescimento de clientes</p>
+
+                <div class="card-modern p-6 rounded-2xl text-center anim-stat-card">
+                    <div class="w-12 h-12 mx-auto mb-4 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                        </svg>
+                    </div>
+                    <span data-target="10" data-suffix-key="stat_growth_suffix" class="stat-number text-4xl sm:text-5xl font-extrabold text-emerald-600 tracking-tight">0</span>
+                    <p class="mt-2 text-sm font-semibold text-slate-800" data-lang-key="stat_growth">Expansão de Clientes</p>
+                    <p class="text-xs text-slate-500 mt-1" data-lang-key="stat_growth_desc">Crescimento de carteiras atendidas</p>
                 </div>
-                <div class="bg-white p-8 rounded-xl shadow-lg text-center card-effect anim-stat-card">
-                    <span data-target="14" data-suffix-key="stat_years_suffix" class="stat-number text-5xl font-extrabold text-[#3A86FF]">0</span>
-                    <p class="mt-2 text-gray-600 font-medium" data-lang-key="stat_years">Atuando com a mesma equipe</p>
+
+                <div class="card-modern p-6 rounded-2xl text-center anim-stat-card">
+                    <div class="w-12 h-12 mx-auto mb-4 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                        </svg>
+                    </div>
+                    <span data-target="14" data-suffix-key="stat_years_suffix" class="stat-number text-4xl sm:text-5xl font-extrabold text-sky-600 tracking-tight">0</span>
+                    <p class="mt-2 text-sm font-semibold text-slate-800" data-lang-key="stat_years">Liderança na Mesma Empresa</p>
+                    <p class="text-xs text-slate-500 mt-1" data-lang-key="stat_years_desc">Comprometimento e lealdade profissional</p>
                 </div>
             </div>
         </section>
 
-        <section id="formacao" class="py-16 md:py-24" style="padding-top: 2rem;padding-bottom: 2rem;">
+        <!-- Education & Certifications Section -->
+        <section id="formacao" class="py-12 md:py-20 border-t border-slate-200">
             <div class="text-center mb-12 anim-section-title">
-                <h3 class="text-3xl font-bold text-[#3D405B]" data-lang-key="education_title">Formação e Certificações</h3>
-                <p class="text-md text-gray-600 mt-2" data-lang-key="education_subtitle">Minha base educacional e compromisso com o aprendizado contínuo na área de tecnologia.</p>
+                <span class="text-xs font-bold uppercase tracking-wider text-blue-600" data-lang-key="education_eyebrow">Aprendizado Contínuo</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-1" data-lang-key="education_title">Formação e Certificações</h2>
+                <p class="text-sm sm:text-base text-slate-600 mt-2 max-w-2xl mx-auto" data-lang-key="education_subtitle">
+                    Certificações reconhecidas globalmente pelo Google Cloud e graduação tecnológica que sustentam minha atuação.
+                </p>
             </div>
-            <div id="education-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <div id="education-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Populated dynamically by JS -->
             </div>
         </section>
 
     </main>
 
-    <footer class="bg-white border-t mt-16 transition-all duration-300">
-        <div class="container mx-auto px-6 py-8 text-center text-gray-600">
-            <p class="font-bold text-lg text-[#3D405B] mb-2">Lucas Ladeira Loes</p>
-            <p>Belo Horizonte, MG</p>
-            <div class="my-2 flex flex-col md:flex-row md:justify-center md:space-x-2">
-                <a href="mailto:lucasladeiraloes@gmail.com" class="hover:text-[#3A86FF] transition-colors">lucasladeiraloes@gmail.com</a>
-                <span class="hidden md:inline">|</span>
-                <a href="tel:+5531991643134" class="hover:text-[#3A86FF] transition-colors">(31) 99164-3134</a>
+    <!-- Modern Footer -->
+    <footer class="bg-white border-t border-slate-200 mt-12 py-10">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
+                <div>
+                    <h3 class="font-bold text-slate-900 text-lg">Lucas Ladeira Loes</h3>
+                    <p class="text-xs text-slate-500">Analista de TI Sênior &bull; Administrador Google Workspace &bull; Belo Horizonte, MG</p>
+                </div>
+
+                <div class="flex flex-wrap items-center justify-center gap-4 text-xs text-slate-600 font-medium">
+                    <a href="mailto:lucasladeiraloes@gmail.com" class="hover:text-blue-600 transition-colors flex items-center gap-1.5">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        lucasladeiraloes@gmail.com
+                    </a>
+                    <span>&bull;</span>
+                    <a href="tel:+5531991643134" class="hover:text-blue-600 transition-colors flex items-center gap-1.5">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                        (31) 99164-3134
+                    </a>
+                    <span>&bull;</span>
+                    <a href="https://github.com/LucasLoes/interactive-resume" target="_blank" class="hover:text-blue-600 transition-colors">GitHub Repository</a>
+                </div>
             </div>
-            <p class="text-sm mt-4" data-lang-key="footer_text">&copy; 2025 - Currículo interativo.</p>
+
+            <div class="mt-8 pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-2">
+                <p data-lang-key="footer_copy">&copy; 2026 Lucas Ladeira Loes. Todos os direitos reservados.</p>
+                <p class="flex items-center gap-1">
+                    <span data-lang-key="footer_built">Desenvolvido com foco em alta performance e design moderno</span>
+                </p>
+            </div>
         </div>
     </footer>
 
-    <!-- Image Modal -->
-    <div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4 transition-opacity duration-300">
-        <div class="bg-white p-2 sm:p-4 rounded-lg shadow-2xl max-w-4xl w-full relative">
-            <button id="close-modal-btn" class="absolute -top-3 -right-3 text-white bg-gray-800 rounded-full h-10 w-10 flex items-center justify-center text-2xl font-bold hover:bg-gray-600 transition-colors z-20">&times;</button>
-            <img id="modal-image" src="" alt="Diploma" class="w-full h-auto object-contain max-h-[85vh] rounded">
+    <!-- Image Modal for Diplomas -->
+    <div id="image-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center z-50 p-4 transition-opacity duration-300">
+        <div class="bg-white p-3 sm:p-5 rounded-2xl shadow-2xl max-w-4xl w-full relative">
+            <button id="close-modal-btn" class="absolute -top-3 -right-3 text-white bg-slate-900 hover:bg-slate-800 rounded-full h-9 w-9 flex items-center justify-center text-xl font-bold shadow-lg transition-colors z-20">&times;</button>
+            <img id="modal-image" src="" alt="Diploma" class="w-full h-auto object-contain max-h-[85vh] rounded-xl border border-slate-200">
         </div>
     </div>
     
-    <!-- Carousel Modal -->
-    <div id="carousel-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50 p-4 transition-opacity duration-300">
-        <div class="bg-white p-2 sm:p-4 rounded-lg shadow-2xl max-w-4xl w-full relative">
-            <button id="close-carousel-btn" class="absolute -top-3 -right-3 text-white bg-gray-800 rounded-full h-10 w-10 flex items-center justify-center text-2xl font-bold hover:bg-gray-600 transition-colors z-20">&times;</button>
+    <!-- Carousel Modal for Certificates -->
+    <div id="carousel-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center z-50 p-4 transition-opacity duration-300">
+        <div class="bg-white p-3 sm:p-5 rounded-2xl shadow-2xl max-w-4xl w-full relative">
+            <button id="close-carousel-btn" class="absolute -top-3 -right-3 text-white bg-slate-900 hover:bg-slate-800 rounded-full h-9 w-9 flex items-center justify-center text-xl font-bold shadow-lg transition-colors z-20">&times;</button>
             <div class="relative">
-                <img id="carousel-image" src="" alt="Certificado" class="w-full h-auto object-contain max-h-[85vh] rounded">
-                <button id="prev-carousel-btn" class="carousel-btn left-2 sm:left-4">&#10094;</button>
-                <button id="next-carousel-btn" class="carousel-btn right-2 sm:right-4">&#10095;</button>
+                <img id="carousel-image" src="" alt="Certificado" class="w-full h-auto object-contain max-h-[85vh] rounded-xl border border-slate-200">
+                <button id="prev-carousel-btn" class="carousel-btn left-3 sm:left-4" aria-label="Anterior">&#10094;</button>
+                <button id="next-carousel-btn" class="carousel-btn right-3 sm:right-4" aria-label="Próximo">&#10095;</button>
             </div>
         </div>
     </div>
 
-
+    <!-- Application Script -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             
+            // Comprehensive Translation and Data Store
             const translations = {
                 pt: {
-                    nav_about: "Sobre", nav_career: "Carreira", nav_skills: "Competências", nav_terminal: "Terminal", nav_education: "Formação", contact_btn: "Contato", hero_title: "Analista de TI Sênior", hero_subtitle: "Profissional com mais de 20 anos de experiência, especialista em infraestrutura, redes, segurança e suporte avançado. Com uma carreira sólida, liderando a TI em um ambiente dinâmico, busco aplicar minha expertise para impulsionar a eficiência e a inovação tecnológica.", phone_btn: "Whatsapp", career_title: "Jornada Profissional", career_subtitle: "Explore minha trajetória de carreira. Clique em uma função para ver os detalhes e as conquistas.", career_placeholder: "Selecione um cargo na linha do tempo para ver os detalhes.", skills_title: "Principais Competências", skills_subtitle: "Uma visão geral das minhas habilidades técnicas.<br>Clique e segure ou toque e segure na nuvem de habilidades para interagir com ela.", skills_fallback: "Seu navegador não suporta o canvas para a nuvem de palavras.", terminal_title: "Terminal Interativo", terminal_subtitle: "Explore meu currículo de uma forma diferente.<br>Digite 'ajuda' no terminal abaixo e pressione Enter para começar.", highlights_title: "Conquistas em Números", highlights_subtitle: "Resultados quantitativos que demonstram o impacto do meu trabalho ao longo da minha carreira.", stat_assembled: "Computadores montados", stat_repaired: "Equipamentos reparados", stat_growth: "Crescimento de clientes", stat_years: "Atuando com a mesma equipe", stat_assembled_suffix: "+", stat_repaired_suffix: "+", stat_growth_suffix: "x", stat_years_suffix: " anos", education_title: "Formação e Certificações", education_subtitle: "Minha base educacional e compromisso com o aprendizado contínuo na área de tecnologia.", view_certificate: "Ver certificado", view_certificates: "Ver certificados", view_diploma: "Ver diploma", footer_text: "&copy; 2025 - Currículo interativo.",
-                    skills: [
-                        { text: 'Infraestrutura e Redes', weight: 20, target: '#carreira' }, { text: 'Suporte Técnico N1/N2/N3', weight: 20, target: '#carreira' }, { text: 'Windows Server', weight: 18, target: '#carreira' }, { text: 'Sistemas e Software', weight: 18, target: '#carreira' }, { text: 'macOS', weight: 16, target: '#carreira' }, { text: 'Segurança e Conformidade', weight: 16, target: '#formacao' }, { text: 'Firewalls', weight: 15, target: '#carreira' }, { text: 'Gestão de Ativos de TI', weight: 14, target: '#carreira' }, { text: 'ERP Publi Manager', weight: 14, target: '#carreira' }, { text: 'CLI & Automação', weight: 15, target: '#terminal' }
-                    ],
+                    nav_role_tag: "Analista de TI & Google Workspace",
+                    nav_about: "Sobre",
+                    nav_career: "Carreira",
+                    nav_skills: "Competências",
+                    nav_terminal: "Terminal",
+                    nav_education: "Formação",
+                    print_cv: "PDF / Imprimir",
+                    hero_badge: "Certificado Google Cloud & 20+ Anos em Tecnologia",
+                    hero_title_prefix: "Analista de TI Sênior &",
+                    hero_title_highlight: "Administrador Google Workspace",
+                    hero_subtitle: "Profissional com mais de 20 anos de experiência sólida em infraestrutura corporativa, redes, segurança da informação, suporte avançado N1/N2/N3 e administração do ecossistema Google Workspace. Histórico comprovado de liderança técnica, implementação de projetos críticos, governança e conformidade tecnológica.",
+                    whatsapp_btn: "WhatsApp",
+                    email_btn: "E-mail",
+                    download_cv_btn: "Salvar / Imprimir PDF",
+                    career_eyebrow: "Trajetória e Impacto",
+                    career_title: "Jornada Profissional",
+                    career_subtitle: "Evolução contínua de carreira técnica e executiva. Clique em uma posição para inspecionar os detalhes e entregas estratégicas.",
+                    career_placeholder: "Selecione um cargo na linha do tempo para ver os detalhes.",
+                    skills_eyebrow: "Domínio Técnico & Ferramentas",
+                    skills_title: "Matriz de Competências",
+                    skills_subtitle: "Estrutura organizada de conhecimentos técnicos, categorizados por área de atuação com indicação de proficiência e contexto prático.",
+                    quick_scan_title: "Destaques para Recrutamento (Quick-Scan):",
+                    tab_all: "Todas",
+                    tab_cloud: "Cloud & SaaS",
+                    tab_infra: "Infra & Redes",
+                    tab_support: "Suporte & Hardware",
+                    tab_security: "Segurança & LGPD",
+                    tab_systems: "Sistemas & Automação",
+                    search_placeholder: "Filtrar competência...",
+                    terminal_eyebrow: "Interface de Linha de Comando",
+                    terminal_title: "Terminal Interativo",
+                    terminal_subtitle: "Explore meu perfil através de comandos de console. Digite os comandos ou clique nos atalhos rápidos abaixo.",
+                    terminal_welcome: "[Sistema Inicializado] Bem-vindo ao Terminal de TI de Lucas Loes.<br>Digite <span class=\"text-emerald-400 font-semibold\">'ajuda'</span> ou clique nos comandos sugeridos abaixo para interagir.",
+                    terminal_chips_label: "Atalhos rápidos:",
+                    highlights_eyebrow: "Impacto Mensurável",
+                    highlights_title: "Conquistas em Números",
+                    highlights_subtitle: "Métricas concretas que comprovam a robustez técnica, volume de entregas e longevidade de parcerias ao longo de mais de duas décadas.",
+                    stat_assembled: "Computadores Montados",
+                    stat_assembled_desc: "Em larga escala e produção em massa",
+                    stat_repaired: "Equipamentos Reparados",
+                    stat_repaired_desc: "Diagnósticos e consertos complexos",
+                    stat_growth: "Expansão de Clientes",
+                    stat_growth_desc: "Crescimento de carteiras atendidas",
+                    stat_years: "Liderança na Mesma Empresa",
+                    stat_years_desc: "Comprometimento e lealdade profissional",
+                    stat_assembled_suffix: "+",
+                    stat_repaired_suffix: "+",
+                    stat_growth_suffix: "x",
+                    stat_years_suffix: " anos",
+                    education_eyebrow: "Aprendizado Contínuo",
+                    education_title: "Formação e Certificações",
+                    education_subtitle: "Certificações reconhecidas globalmente pelo Google Cloud e graduação tecnológica que sustentam minha atuação.",
+                    view_certificate: "Ver Certificado",
+                    view_certificates: "Ver Certificados",
+                    view_diploma: "Ver Diploma",
+                    view_credential: "Ver Credencial Oficial",
+                    footer_copy: "&copy; 2026 Lucas Ladeira Loes. Todos os direitos reservados.",
+                    footer_built: "Desenvolvido com foco em alta performance e design moderno",
+
                     experienceData: [
-                        { id: 'lapis_raro', role: 'Analista de TI Sênior', company: 'Lápis Raro Agência de Comunicação', period: '2010 – 2024', description: 'Responsável pela gestão completa da infraestrutura de TI, liderando projetos estratégicos e garantindo a segurança e estabilidade dos sistemas para mais de 100 usuários.', achievements: [ 'Gerenciei de forma autônoma toda a infraestrutura de TI (rede, servidores, estações de trabalho).', 'Liderei projetos de migração e implantação de sistemas críticos (ERP, E-mail, Servidores Virtuais, Firewall).', 'Conduzi o processo de adequação da empresa à LGPD em colaboração com consultorias externa.', 'Prestei suporte técnico especializado em níveis 1, 2 e 3.', 'Responsável pelo ciclo completo de vida dos ativos de TI (compra, gestão e descarte).' ] },
-                        { id: 'autonomo', role: 'Técnico em Informática', company: 'Profissional Autônomo', period: '2004 – 2008', description: 'Atuação como profissional liberal, construindo uma carteira de clientes sólida e oferecendo um leque completo de serviços de TI para pequenas empresas e usuários domésticos.', achievements: [ 'Construí e mantive uma carteira com 25 clientes fixos e mais de 100 avulsos.', 'Projetei e implementei redes de pequeno porte para residências e escritórios.', 'Ofereci suporte técnico presencial e remoto, com alta taxa de resolução.', 'Especializado em suporte a Windows (95 a 7) e macOS (10.4 a 10.7).' ] },
-                        { id: 'inforlab', role: 'Técnico em Informática', company: 'Inforlab Consultoria e Assessoria', period: '2003 – 2004', description: 'Peça fundamental no crescimento da empresa, contribuindo para a expansão da base de clientes e assumindo responsabilidades de gestão.', achievements: [ 'Contribuí para dobrar o número de clientes da empresa, de 200 para 400.', 'Gerenciei o setor de manutenção durante o período de alta demanda de fim de ano.', 'Realizei manutenções preventivas e corretivas em hardware e software.' ] },
-                        { id: 'bhlink', role: 'Montador', company: 'B.H. Link', period: '2000 – 2001', description: 'Início da carreira na área de hardware, com foco em montagem e reparo de computadores em larga escala.', achievements: [ 'Montei e configurei mais de 1000 computadores novos.', 'Diagnostiquei e consertei mais de 800 equipamentos com defeito.', 'Desenvolvi alta proficiência em diagnóstico de problemas de hardware.' ] }
+                        {
+                            id: 'wh1_cloud',
+                            role: 'Analista de TI',
+                            roleSub: 'Suporte e Administração Google Workspace',
+                            company: 'Wh1 Cloud',
+                            period: 'Outubro de 2025 – Setembro de 2026',
+                            isCurrent: true,
+                            badge: 'Mais Recente',
+                            tags: ['Google Workspace', 'Google Cloud', 'Suporte N2/N3', 'Segurança & MFA', 'DNS & Mensageria'],
+                            description: 'Prestação de serviços especializada em suporte corporativo avançado e administração completa do ecossistema Google Workspace, governança de dados, conformidade e segurança da informação.',
+                            achievements: [
+                                'Administração avançada de instâncias corporativas do Google Workspace: gestão de usuários, grupos, unidades organizacionais (OUs), permissões e políticas de segurança.',
+                                'Atendimento consultivo e resolução de chamados de suporte N2/N3 com alto SLA e satisfação de usuários corporativos.',
+                                'Conquista da certificação oficial Google Cloud: Associate Google Workspace Administrator Certification.',
+                                'Implementação de melhores práticas de segurança: autenticação multifator (MFA/2FA), políticas de acesso condicional, auditoria de logs e proteção contra vazamento de dados.',
+                                'Configuração e monitoramento de registros de mensageria corporativa (DNS, MX, SPF, DKIM e DMARC) garantindo máxima entregabilidade e mitigação de spoofing/phishing.'
+                            ]
+                        },
+                        {
+                            id: 'lapis_raro',
+                            role: 'Analista de TI Sênior',
+                            roleSub: 'Gestão de Infraestrutura & Operações',
+                            company: 'Lápis Raro Agência de Comunicação',
+                            period: '2010 – 2024',
+                            isCurrent: false,
+                            badge: '14 Anos',
+                            tags: ['Windows Server', 'Active Directory', 'Firewalls', 'macOS', 'LGPD', 'ERP Publi Manager'],
+                            description: 'Responsável pela gestão completa e autônoma da infraestrutura de tecnologia, liderando projetos estratégicos de modernização e assegurando estabilidade contínua para mais de 100 usuários em ambiente híbrido (Windows e macOS).',
+                            achievements: [
+                                'Gerenciei de ponta a ponta a infraestrutura de TI (servidores físicos e virtuais, rede cabeada/Wi-Fi, estações de trabalho e telefonia).',
+                                'Liderei projetos de migração e implantação de sistemas críticos (ERP Publi Manager, Servidores Virtuais, Firewall perimetral e e-mail).',
+                                'Conduzi o processo institucional de adequação da empresa à LGPD em cooperação com consultorias jurídicas e técnicas externas.',
+                                'Prestei suporte técnico especializado em níveis 1, 2 e 3 para equipes criativas e administrativas.',
+                                'Responsável pelo ciclo completo de vida dos ativos de TI (planejamento, aquisição, inventário, manutenção e descarte seguro).'
+                            ]
+                        },
+                        {
+                            id: 'autonomo',
+                            role: 'Técnico em Informática & Consultor',
+                            roleSub: 'Serviços Especializados de TI',
+                            company: 'Profissional Autônomo',
+                            period: '2004 – 2008',
+                            isCurrent: false,
+                            badge: 'Empreendedor',
+                            tags: ['Redes Locais', 'Suporte Remoto', 'Windows & macOS', 'Consultoria de TI'],
+                            description: 'Atuação como consultor independente, construindo carteira sólida de clientes corporativos e residenciais com soluções completas de infraestrutura e suporte.',
+                            achievements: [
+                                'Construí e gerenciei carteira ativa com 25 clientes corporativos fixos e mais de 100 clientes sob demanda.',
+                                'Projetei e implementei redes estruturadas de pequeno e médio porte para escritórios e consultórios.',
+                                'Prestei suporte presencial e remoto com resolução ágil e alto índice de fidelização.',
+                                'Especialista em manutenção de ecossistemas mistos Windows (95 a 7) e macOS (10.4 a 10.7).'
+                            ]
+                        },
+                        {
+                            id: 'inforlab',
+                            role: 'Técnico em Informática',
+                            roleSub: 'Manutenção & Gestão de Laboratório',
+                            company: 'Inforlab Consultoria e Assessoria',
+                            period: '2003 – 2004',
+                            isCurrent: false,
+                            badge: '',
+                            tags: ['Hardware', 'Manutenção Corretiva', 'Gestão de Equipe'],
+                            description: 'Atuação estratégica no crescimento da empresa, gerenciando o setor de manutenção técnica e expansão da base de atendimento.',
+                            achievements: [
+                                'Contribuição direta na duplicação da carteira de clientes atendidos pela empresa, evoluindo de 200 para 400 clientes.',
+                                'Gerenciei a operação da oficina de manutenção durante períodos sazonais de alta criticidade.',
+                                'Execução de reparos eletrônicos preventivos e corretivos em hardware e software corporativo.'
+                            ]
+                        },
+                        {
+                            id: 'bhlink',
+                            role: 'Montador & Técnico de Hardware',
+                            roleSub: 'Produção em Escala',
+                            company: 'B.H. Link',
+                            period: '2000 – 2001',
+                            isCurrent: false,
+                            badge: 'Início',
+                            tags: ['Montagem de PCs', 'Testes de Estresse', 'Bancada'],
+                            description: 'Início da trajetória profissional em bancada industrial, com foco em montagem, configuração e testes de conformidade de hardware.',
+                            achievements: [
+                                'Montei e homologuei mais de 1.000 computadores novos com controle de qualidade rigoroso.',
+                                'Diagnostiquei e recuperei mais de 800 equipamentos com falhas eletrônicas e de componentes.',
+                                'Desenvolvimento de sólida base prática em arquitetura de computadores e diagnóstico avançado.'
+                            ]
+                        }
                     ],
+
+                    skillsData: [
+                        {
+                            name: 'Google Workspace Administration',
+                            category: 'cloud',
+                            level: 'Certificado / Especialista',
+                            levelClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                            icon: 'google',
+                            desc: 'Administração de domínios corporativos, gestão de usuários, grupos, OUs, políticas de segurança, controle de acesso e auditoria de logs.',
+                            context: 'Wh1 Cloud & Certificação Oficial'
+                        },
+                        {
+                            name: 'Infraestrutura Windows Server & AD',
+                            category: 'infra',
+                            level: 'Especialista (14+ anos)',
+                            levelClass: 'bg-blue-50 text-blue-700 border-blue-200',
+                            icon: 'server',
+                            desc: 'Implementação e administração de Active Directory, DNS, DHCP, permissões NTFS, Group Policies (GPO) e servidores de arquivos.',
+                            context: 'Lápis Raro & Autônomo'
+                        },
+                        {
+                            name: 'Redes TCP/IP, Roteamento & VPN',
+                            category: 'infra',
+                            level: 'Avançado',
+                            levelClass: 'bg-blue-50 text-blue-700 border-blue-200',
+                            icon: 'network',
+                            desc: 'Topologias de rede, roteadores, switches gerenciáveis, estruturação de sub-redes, VPNs seguras e monitoramento de conectividade.',
+                            context: 'Lápis Raro & Consultoria'
+                        },
+                        {
+                            name: 'Segurança de Borda & Firewalls',
+                            category: 'security',
+                            level: 'Avançado',
+                            levelClass: 'bg-rose-50 text-rose-700 border-rose-200',
+                            icon: 'shield',
+                            desc: 'Implementação de firewalls perimetrais, regras de tráfego, mitigação de ameaças, segmentação de redes e controle de acesso.',
+                            context: 'Lápis Raro'
+                        },
+                        {
+                            name: 'Suporte Técnico N1, N2 e N3',
+                            category: 'support',
+                            level: 'Especialista (20+ anos)',
+                            levelClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                            icon: 'support',
+                            desc: 'Atendimento consultivo, diagnóstico ágil e resolução de chamados de alta complexidade em hardware, software e conectividade.',
+                            context: 'Wh1 Cloud & Lápis Raro'
+                        },
+                        {
+                            name: 'Ecossistema Apple / macOS',
+                            category: 'support',
+                            level: 'Especialista',
+                            levelClass: 'bg-slate-100 text-slate-800 border-slate-300',
+                            icon: 'apple',
+                            desc: 'Suporte avançado, configuração, otimização e integração de estações Mac em redes corporativas com servidores Windows.',
+                            context: 'Lápis Raro'
+                        },
+                        {
+                            name: 'Adequação à LGPD & Governança',
+                            category: 'security',
+                            level: 'Avançado',
+                            levelClass: 'bg-rose-50 text-rose-700 border-rose-200',
+                            icon: 'compliance',
+                            desc: 'Condução de processos de conformidade com a LGPD, controle de acessos, criptografia, conscientização e governança de dados.',
+                            context: 'Lápis Raro & Wh1 Cloud'
+                        },
+                        {
+                            name: 'Gestão de Ativos de TI (Lifecycle)',
+                            category: 'support',
+                            level: 'Especialista',
+                            levelClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                            icon: 'inventory',
+                            desc: 'Gestão completa do ciclo de vida: especificação técnica, compras, homologação, inventário e descarte ecológico/seguro.',
+                            context: 'Lápis Raro'
+                        },
+                        {
+                            name: 'Mensageria DNS, SPF, DKIM & DMARC',
+                            category: 'cloud',
+                            level: 'Especialista',
+                            levelClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                            icon: 'mail',
+                            desc: 'Configuração rigorosa de registros MX, SPF, chaves DKIM e políticas DMARC para máxima entregabilidade e proteção anti-spoofing.',
+                            context: 'Wh1 Cloud'
+                        },
+                        {
+                            name: 'Sistemas ERP (Publi Manager)',
+                            category: 'systems',
+                            level: 'Avançado',
+                            levelClass: 'bg-amber-50 text-amber-800 border-amber-200',
+                            icon: 'database',
+                            desc: 'Administração de banco de dados, gestão de permissões, implantação de módulos e suporte contínuo a usuários de ERP.',
+                            context: 'Lápis Raro'
+                        },
+                        {
+                            name: 'CLI, Automação & Scripting',
+                            category: 'systems',
+                            level: 'Proficiente',
+                            levelClass: 'bg-amber-50 text-amber-800 border-amber-200',
+                            icon: 'terminal',
+                            desc: 'Utilização de terminais Bash/PowerShell, comandos administrativos, automação de rotinas de suporte e diagnósticos.',
+                            context: 'Terminal Interativo & Rotinas'
+                        },
+                        {
+                            name: 'Montagem & Manutenção de Hardware',
+                            category: 'support',
+                            level: 'Master (+1.800 PCs)',
+                            levelClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                            icon: 'cpu',
+                            desc: 'Profundo conhecimento prático de arquitetura de hardware, solda, testes de estresse e reparos eletrônicos em componentes.',
+                            context: 'B.H. Link & Inforlab'
+                        }
+                    ],
+
                     educationData: [
-                        { title: 'Associate Google Workspace Administrator Certification', institution: 'Google Cloud', year: '2025', link: 'https://www.credly.com/badges/5d2f3c5b-4768-4a91-b62c-32acc298e63a/public_url' },
-                        { title: 'Imersão em Criação de Vídeos com IA', institution: 'Hotmart', year: '2025', link: 'https://hotmart.com/pt-br/club/imersao-de-videos-com-ia/product/5622926/certificate/d7d749e2-e7f8-4671-8d61-671d5be145d5-1770293308/validate' },
-                        { title: 'Certificado Profissional de Suporte em TI', institution: 'Google (Coursera)', year: '2024', link: 'https://www.coursera.org/account/accomplishments/professional-cert/E3U0KEGBQMXO' },
-                        { title: 'Superior de Tecnologia em Produção Multimídia', institution: 'UNIBH', year: '2011', diplomaUrl: 'imagens/diploma_unibh.png' },
-                        { title: 'Macromedia Flash MX Media Design', institution: 'IPEC', year: '2005', carouselImages: ['imagens/ipec1.jpg', 'imagens/ipec2.jpg'] },
-                        { title: 'WEB DESIGN', institution: 'FUNDEP/DCC - UFMG', year: '2004', diplomaUrl: 'imagens/diploma_ufmg.jpg' },
-                        { title: 'Técnico em Informática, de nível Médio, da área de Informática', institution: 'COTEMIG', year: '2003', diplomaUrl: 'imagens/diploma_web.jpg' }
+                        {
+                            title: 'Associate Google Workspace Administrator Certification',
+                            institution: 'Google Cloud',
+                            year: '2025',
+                            badgeHighlight: 'Certificação Oficial',
+                            link: 'https://www.credly.com/badges/5d2f3c5b-4768-4a91-b62c-32acc298e63a/public_url'
+                        },
+                        {
+                            title: 'Imersão em Criação de Vídeos com IA',
+                            institution: 'Hotmart',
+                            year: '2025',
+                            badgeHighlight: 'Inteligência Artificial',
+                            link: 'https://hotmart.com/pt-br/club/imersao-de-videos-com-ia/product/5622926/certificate/d7d749e2-e7f8-4671-8d61-671d5be145d5-1770293308/validate'
+                        },
+                        {
+                            title: 'Certificado Profissional de Suporte em TI',
+                            institution: 'Google (Coursera)',
+                            year: '2024',
+                            badgeHighlight: 'Suporte Profissional',
+                            link: 'https://www.coursera.org/account/accomplishments/professional-cert/E3U0KEGBQMXO'
+                        },
+                        {
+                            title: 'Superior de Tecnologia em Produção Multimídia',
+                            institution: 'UNIBH',
+                            year: '2011',
+                            badgeHighlight: 'Graduação Superior',
+                            diplomaUrl: 'imagens/diploma_unibh.png'
+                        },
+                        {
+                            title: 'Macromedia Flash MX Media Design',
+                            institution: 'IPEC',
+                            year: '2005',
+                            badgeHighlight: 'Design Digital',
+                            carouselImages: ['imagens/ipec1.jpg', 'imagens/ipec2.jpg']
+                        },
+                        {
+                            title: 'WEB DESIGN',
+                            institution: 'FUNDEP / DCC - UFMG',
+                            year: '2004',
+                            badgeHighlight: 'Extensão Universitária',
+                            diplomaUrl: 'imagens/diploma_ufmg.jpg'
+                        },
+                        {
+                            title: 'Técnico em Informática de Nível Médio',
+                            institution: 'COTEMIG',
+                            year: '2003',
+                            badgeHighlight: 'Ensino Técnico',
+                            diplomaUrl: 'imagens/diploma_web.jpg'
+                        }
                     ]
                 },
+
                 en: {
-                    nav_about: "About", nav_career: "Career", nav_skills: "Skills", nav_terminal: "Terminal", nav_education: "Education", contact_btn: "Contact", hero_title: "Senior IT Analyst", hero_subtitle: "A professional with over 20 years of experience, specializing in infrastructure, networks, security, and advanced support. With a solid career, leading IT in a dynamic environment, I aim to apply my expertise to drive efficiency and technological innovation.", phone_btn: "Whatsapp", career_title: "Professional Journey", career_subtitle: "Explore my career path. Click on a role to see details and achievements.", career_placeholder: "Select a role from the timeline to see the details.", skills_title: "Key Skills", skills_subtitle: "An overview of my technical skills.<br>Click and hold the left mouse button to interact with the skill cloud.", skills_fallback: "Your browser does not support the canvas element for the word cloud.", terminal_title: "Interactive Terminal", terminal_subtitle: "Explore my resume in a different way.<br>Type 'help' in the terminal below and press Enter to get started.", highlights_title: "Achievements in Numbers", highlights_subtitle: "Quantitative results that demonstrate the impact of my work throughout my career.", stat_assembled: "Computers assembled", stat_repaired: "Equipment repaired", stat_growth: "Client growth", stat_years: "Working with the same team", stat_assembled_suffix: "+", stat_repaired_suffix: "+", stat_growth_suffix: "x", stat_years_suffix: " years", education_title: "Education & Certifications", education_subtitle: "My educational background and commitment to continuous learning in the technology field.", view_certificate: "View certificate", view_certificates: "View certificates", view_diploma: "View diploma", footer_text: "&copy; 2025 - Interactive Resume.",
-                    skills: [
-                        { text: 'Infrastructure & Networks', weight: 20, target: '#carreira' }, { text: 'Technical Support L1/L2/L3', weight: 20, target: '#carreira' }, { text: 'Windows Server', weight: 18, target: '#carreira' }, { text: 'Systems & Software', weight: 18, target: '#carreira' }, { text: 'macOS', weight: 16, target: '#carreira' }, { text: 'Security & Compliance', weight: 16, target: '#formacao' }, { text: 'Firewalls', weight: 15, target: '#carreira' }, { text: 'IT Asset Management', weight: 14, target: '#carreira' }, { text: 'ERP Publi Manager', weight: 14, target: '#carreira' }, { text: 'CLI & Automation', weight: 15, target: '#terminal' }
-                    ],
+                    nav_role_tag: "IT Analyst & Google Workspace",
+                    nav_about: "About",
+                    nav_career: "Career",
+                    nav_skills: "Skills",
+                    nav_terminal: "Terminal",
+                    nav_education: "Education",
+                    print_cv: "PDF / Print",
+                    hero_badge: "Google Cloud Certified & 20+ Years in Tech",
+                    hero_title_prefix: "Senior IT Analyst &",
+                    hero_title_highlight: "Google Workspace Administrator",
+                    hero_subtitle: "Professional with over 20 years of solid experience in enterprise infrastructure, networks, information security, L1/L2/L3 support, and the Google Workspace ecosystem. Proven track record of technical leadership, critical project implementation, governance, and technology compliance.",
+                    whatsapp_btn: "WhatsApp",
+                    email_btn: "Email",
+                    download_cv_btn: "Save / Print PDF",
+                    career_eyebrow: "Trajectory & Impact",
+                    career_title: "Professional Journey",
+                    career_subtitle: "Continuous career evolution across technical and leadership roles. Click on a position to inspect strategic achievements and deliverables.",
+                    career_placeholder: "Select a role from the timeline to see details.",
+                    skills_eyebrow: "Technical Mastery & Tools",
+                    skills_title: "Skills Matrix",
+                    skills_subtitle: "Organized technical skillset categorized by domain, indicating proficiency levels and real-world career context.",
+                    quick_scan_title: "Recruiter Quick-Scan Highlights:",
+                    tab_all: "All",
+                    tab_cloud: "Cloud & SaaS",
+                    tab_infra: "Infra & Networks",
+                    tab_support: "Support & Hardware",
+                    tab_security: "Security & LGPD",
+                    tab_systems: "Systems & Automation",
+                    search_placeholder: "Filter skills...",
+                    terminal_eyebrow: "Command Line Interface",
+                    terminal_title: "Interactive Terminal",
+                    terminal_subtitle: "Explore my profile through console commands. Type commands or click the quick shortcuts below.",
+                    terminal_welcome: "[System Initialized] Welcome to Lucas Loes' IT Terminal.<br>Type <span class=\"text-emerald-400 font-semibold\">'help'</span> or click the suggested commands below to interact.",
+                    terminal_chips_label: "Quick shortcuts:",
+                    highlights_eyebrow: "Measurable Impact",
+                    highlights_title: "Achievements in Numbers",
+                    highlights_subtitle: "Tangible metrics demonstrating technical robustness, high delivery volume, and long-term partnerships over two decades.",
+                    stat_assembled: "Computers Assembled",
+                    stat_assembled_desc: "Large scale mass production",
+                    stat_repaired: "Devices Repaired",
+                    stat_repaired_desc: "Complex hardware diagnosis & fixes",
+                    stat_growth: "Client Base Growth",
+                    stat_growth_desc: "Expanded customer portfolios",
+                    stat_years: "Leadership at Same Company",
+                    stat_years_desc: "Professional dedication & loyalty",
+                    stat_assembled_suffix: "+",
+                    stat_repaired_suffix: "+",
+                    stat_growth_suffix: "x",
+                    stat_years_suffix: " years",
+                    education_eyebrow: "Continuous Learning",
+                    education_title: "Education & Certifications",
+                    education_subtitle: "Globally recognized Google Cloud certifications and technological degree backing my experience.",
+                    view_certificate: "View Certificate",
+                    view_certificates: "View Certificates",
+                    view_diploma: "View Diploma",
+                    view_credential: "View Official Credential",
+                    footer_copy: "&copy; 2026 Lucas Ladeira Loes. All rights reserved.",
+                    footer_built: "Built with high performance and modern web design standards",
+
                     experienceData: [
-                        { id: 'lapis_raro', role: 'Senior IT Analyst', company: 'Lápis Raro Communication Agency', period: '2010 – 2024', description: 'Responsible for the complete management of the IT infrastructure, leading strategic projects and ensuring the security and stability of systems for over 100 users.', achievements: [ 'Autonomously managed the entire IT infrastructure (network, servers, workstations).', 'Led migration and implementation projects for critical systems (ERP, Email, Virtual Servers, Firewall).', 'Conducted the company’s adaptation process to LGPD (Brazilian GDPR) in collaboration with external consultants.', 'Provided specialized technical support at levels 1, 2, and 3.', 'Responsible for the complete lifecycle of IT assets (purchasing, management, and disposal).' ] },
-                        { id: 'autonomo', role: 'IT Technician', company: 'Freelancer', period: '2004 – 2008', description: 'Worked as a freelance professional, building a solid client base and offering a full range of IT services for small businesses and home users.', achievements: [ 'Built and maintained a portfolio of 25 regular clients and over 100 one-time clients.', 'Designed and implemented small-scale networks for homes and small offices.', 'Provided on-site and remote technical support with a high resolution rate.', 'Specialized in supporting a wide range of OS, including Windows (95 to 7) and macOS (10.4 to 10.7).' ] },
-                        { id: 'inforlab', role: 'IT Technician', company: 'Inforlab Consulting and Advisory', period: '2003 – 2004', description: 'A key player in the company’s growth, contributing to the expansion of the client base and taking on management responsibilities.', achievements: [ 'Contributed to doubling the company’s client base from 200 to 400.', 'Managed the maintenance department during the high-demand year-end period.', 'Performed preventive and corrective maintenance on hardware and software.' ] },
-                        { id: 'bhlink', role: 'Assembler', company: 'B.H. Link', period: '2000 – 2001', description: 'Began my career in hardware, focusing on large-scale computer assembly and repair.', achievements: [ 'Assembled and configured over 1,000 new computers.', 'Diagnosed and repaired over 800 faulty devices.', 'Developed high proficiency in hardware problem diagnosis.' ] }
+                        {
+                            id: 'wh1_cloud',
+                            role: 'IT Analyst',
+                            roleSub: 'Google Workspace Administration & Support',
+                            company: 'Wh1 Cloud',
+                            period: 'October 2025 – September 2026',
+                            isCurrent: true,
+                            badge: 'Most Recent',
+                            tags: ['Google Workspace', 'Google Cloud', 'L2/L3 Support', 'Security & MFA', 'DNS & Email Deliverability'],
+                            description: 'Specialized enterprise IT support and comprehensive administration of the Google Workspace cloud ecosystem, data governance, compliance, and information security.',
+                            achievements: [
+                                'Advanced enterprise administration of Google Workspace: lifecycle management of users, groups, Organizational Units (OUs), access permissions, and security policies.',
+                                'Provided consultative L2/L3 technical support resolving critical incidents with high SLA compliance and customer satisfaction.',
+                                'Earned official Google Cloud certification: Associate Google Workspace Administrator Certification.',
+                                'Enforced security best practices: multi-factor authentication (MFA/2FA), conditional access rules, audit logging, and data loss prevention.',
+                                'Configured and audited enterprise email authentication and deliverability records (DNS, MX, SPF, DKIM, and DMARC) preventing spoofing and phishing.'
+                            ]
+                        },
+                        {
+                            id: 'lapis_raro',
+                            role: 'Senior IT Analyst',
+                            roleSub: 'Infrastructure & Operations Management',
+                            company: 'Lápis Raro Communication Agency',
+                            period: '2010 – 2024',
+                            isCurrent: false,
+                            badge: '14 Years',
+                            tags: ['Windows Server', 'Active Directory', 'Firewalls', 'macOS', 'LGPD', 'ERP Publi Manager'],
+                            description: 'Led end-to-end IT infrastructure operations, driving modernization projects and ensuring high availability for 100+ users across a hybrid Windows and macOS environment.',
+                            achievements: [
+                                'Autonomously managed complete IT infrastructure (physical and virtual servers, wired/Wi-Fi networks, workstations, and telephony).',
+                                'Spearheaded critical migration and implementation projects (ERP Publi Manager, Virtual Servers, Perimeter Firewall, and enterprise email).',
+                                'Led corporate alignment with LGPD (Brazilian GDPR) in collaboration with external legal and technical consultancies.',
+                                'Delivered specialized L1, L2, and L3 support to creative and executive teams.',
+                                'Governed complete IT asset lifecycle (budgeting, procurement, inventory tracking, maintenance, and certified disposal).'
+                            ]
+                        },
+                        {
+                            id: 'autonomo',
+                            role: 'IT Consultant & Technician',
+                            roleSub: 'Specialized IT Services',
+                            company: 'Freelance Professional',
+                            period: '2004 – 2008',
+                            isCurrent: false,
+                            badge: 'Entrepreneur',
+                            tags: ['Local Networks', 'Remote Support', 'Windows & macOS', 'IT Consulting'],
+                            description: 'Independent consultant building a reliable client portfolio, delivering turnkey networking and support solutions for SMEs and residential clients.',
+                            achievements: [
+                                'Built and retained a portfolio of 25 corporate retainers and over 100 on-demand clients.',
+                                'Designed and deployed structured local networks for clinics, offices, and small enterprises.',
+                                'Provided responsive on-site and remote technical support with excellent first-contact resolution.',
+                                'Specialized in mixed environments spanning Windows (95 to 7) and macOS (10.4 to 10.7).'
+                            ]
+                        },
+                        {
+                            id: 'inforlab',
+                            role: 'IT Technician',
+                            roleSub: 'Hardware Lab & Maintenance',
+                            company: 'Inforlab Consulting & Advisory',
+                            period: '2003 – 2004',
+                            isCurrent: false,
+                            badge: '',
+                            tags: ['Hardware', 'Corrective Maintenance', 'Team Management'],
+                            description: 'Key contributor to operational scaling, overseeing hardware maintenance workflows and service center throughput.',
+                            achievements: [
+                                'Directly supported doubling the company customer base from 200 to 400 active accounts.',
+                                'Managed maintenance workshop operations during peak seasonal demand periods.',
+                                'Performed preventive and corrective electronic repairs on corporate hardware and operating systems.'
+                            ]
+                        },
+                        {
+                            id: 'bhlink',
+                            role: 'Hardware Assembler & Technician',
+                            roleSub: 'High-Volume Production',
+                            company: 'B.H. Link',
+                            period: '2000 – 2001',
+                            isCurrent: false,
+                            badge: 'Early Career',
+                            tags: ['PC Assembly', 'Stress Testing', 'Bench Work'],
+                            description: 'Foundational hardware bench technician focused on large-scale PC assembly, configuration, and compliance testing.',
+                            achievements: [
+                                'Assembled and benchmarked over 1,000 new computer systems under strict quality standards.',
+                                'Diagnosed and fixed over 800 faulty electronic components and motherboards.',
+                                'Developed deep practical knowledge of computer architecture and rapid component-level troubleshooting.'
+                            ]
+                        }
                     ],
+
+                    skillsData: [
+                        {
+                            name: 'Google Workspace Administration',
+                            category: 'cloud',
+                            level: 'Certified / Specialist',
+                            levelClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                            icon: 'google',
+                            desc: 'Enterprise domain management, user and group lifecycle, OUs, security policies, conditional access, and audit log analysis.',
+                            context: 'Wh1 Cloud & Official Certification'
+                        },
+                        {
+                            name: 'Windows Server & Active Directory',
+                            category: 'infra',
+                            level: 'Specialist (14+ yrs)',
+                            levelClass: 'bg-blue-50 text-blue-700 border-blue-200',
+                            icon: 'server',
+                            desc: 'Deployment and maintenance of Active Directory, DNS, DHCP, NTFS file permissions, Group Policies (GPO), and file servers.',
+                            context: 'Lápis Raro & Freelance'
+                        },
+                        {
+                            name: 'TCP/IP Networks, Routing & VPN',
+                            category: 'infra',
+                            level: 'Advanced',
+                            levelClass: 'bg-blue-50 text-blue-700 border-blue-200',
+                            icon: 'network',
+                            desc: 'Network topologies, managed switches, routers, VLAN subnetting, secure VPN tunnels, and connectivity monitoring.',
+                            context: 'Lápis Raro & Consulting'
+                        },
+                        {
+                            name: 'Perimeter Security & Firewalls',
+                            category: 'security',
+                            level: 'Advanced',
+                            levelClass: 'bg-rose-50 text-rose-700 border-rose-200',
+                            icon: 'shield',
+                            desc: 'Firewall appliance deployment, traffic filtering rules, threat prevention, network segmentation, and access controls.',
+                            context: 'Lápis Raro'
+                        },
+                        {
+                            name: 'Technical Support L1, L2 & L3',
+                            category: 'support',
+                            level: 'Specialist (20+ yrs)',
+                            levelClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                            icon: 'support',
+                            desc: 'Consultative troubleshooting, rapid diagnosis, and high-complexity resolution across hardware, OS, and network issues.',
+                            context: 'Wh1 Cloud & Lápis Raro'
+                        },
+                        {
+                            name: 'Apple / macOS Ecosystem',
+                            category: 'support',
+                            level: 'Specialist',
+                            levelClass: 'bg-slate-100 text-slate-800 border-slate-300',
+                            icon: 'apple',
+                            desc: 'Advanced configuration, tuning, troubleshooting, and enterprise integration of Mac workstations with Windows server infrastructure.',
+                            context: 'Lápis Raro'
+                        },
+                        {
+                            name: 'LGPD & Compliance Governance',
+                            category: 'security',
+                            level: 'Advanced',
+                            levelClass: 'bg-rose-50 text-rose-700 border-rose-200',
+                            icon: 'compliance',
+                            desc: 'Guided corporate alignment with LGPD data privacy frameworks, encryption standards, access logs, and data governance.',
+                            context: 'Lápis Raro & Wh1 Cloud'
+                        },
+                        {
+                            name: 'IT Asset Lifecycle Management',
+                            category: 'support',
+                            level: 'Specialist',
+                            levelClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                            icon: 'inventory',
+                            desc: 'Complete asset lifecycle: technical specification, vendor negotiation, procurement, inventory tracking, and certified decommissioning.',
+                            context: 'Lápis Raro'
+                        },
+                        {
+                            name: 'DNS Messaging, SPF, DKIM & DMARC',
+                            category: 'cloud',
+                            level: 'Specialist',
+                            levelClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                            icon: 'mail',
+                            desc: 'Strict configuration of MX records, SPF syntax, 2048-bit DKIM keys, and DMARC enforcement for email deliverability and anti-spoofing.',
+                            context: 'Wh1 Cloud'
+                        },
+                        {
+                            name: 'ERP Systems (Publi Manager)',
+                            category: 'systems',
+                            level: 'Advanced',
+                            levelClass: 'bg-amber-50 text-amber-800 border-amber-200',
+                            icon: 'database',
+                            desc: 'Database backup administration, user access governance, module rollout, and ongoing application support for ERP users.',
+                            context: 'Lápis Raro'
+                        },
+                        {
+                            name: 'CLI, Automation & Scripting',
+                            category: 'systems',
+                            level: 'Proficient',
+                            levelClass: 'bg-amber-50 text-amber-800 border-amber-200',
+                            icon: 'terminal',
+                            desc: 'Proficient with Bash/PowerShell CLI tools, routine automation scripts, system diagnostics, and administration.',
+                            context: 'Interactive Terminal & Automations'
+                        },
+                        {
+                            name: 'Hardware Assembly & Bench Repair',
+                            category: 'support',
+                            level: 'Master (+1,800 PCs)',
+                            levelClass: 'bg-indigo-50 text-indigo-700 border-indigo-200',
+                            icon: 'cpu',
+                            desc: 'Deep practical grounding in motherboard diagnosis, soldering, component replacement, and high-volume PC production.',
+                            context: 'B.H. Link & Inforlab'
+                        }
+                    ],
+
                     educationData: [
-                        { title: 'Associate Google Workspace Administrator Certification', institution: 'Google Cloud', year: '2025', link: 'https://www.credly.com/badges/5d2f3c5b-4768-4a91-b62c-32acc298e63a/public_url' },
-                        { title: 'AI Video Creation Immersion', institution: 'Hotmart', year: '2025', link: 'https://hotmart.com/pt-br/club/imersao-de-videos-com-ia/product/5622926/certificate/d7d749e2-e7f8-4671-8d61-671d5be145d5-1770293308/validate' },
-                        { title: 'Google IT Support Professional Certificate', institution: 'Google (Coursera)', year: '2024', link: 'https://www.coursera.org/account/accomplishments/professional-cert/E3U0KEGBQMXO' },
-                        { title: 'Higher Education in Multimedia Production Technology', institution: 'UNIBH', year: '2011', diplomaUrl: 'imagens/diploma_unibh.png' },
-                        { title: 'Macromedia Flash MX Media Design', institution: 'IPEC', year: '2005', carouselImages: ['imagens/ipec1.jpg', 'imagens/ipec2.jpg'] },
-                        { title: 'WEB DESIGN', institution: 'FUNDEP/DCC - UFMG', year: '2004', diplomaUrl: 'imagens/diploma_ufmg.jpg' },
-                        { title: 'IT Technician Certificate, High School Level, in the IT field', institution: 'COTEMIG', year: '2003', diplomaUrl: 'imagens/diploma_web.jpg' }
+                        {
+                            title: 'Associate Google Workspace Administrator Certification',
+                            institution: 'Google Cloud',
+                            year: '2025',
+                            badgeHighlight: 'Official Certification',
+                            link: 'https://www.credly.com/badges/5d2f3c5b-4768-4a91-b62c-32acc298e63a/public_url'
+                        },
+                        {
+                            title: 'AI Video Creation Immersion',
+                            institution: 'Hotmart',
+                            year: '2025',
+                            badgeHighlight: 'Artificial Intelligence',
+                            link: 'https://hotmart.com/pt-br/club/imersao-de-videos-com-ia/product/5622926/certificate/d7d749e2-e7f8-4671-8d61-671d5be145d5-1770293308/validate'
+                        },
+                        {
+                            title: 'Google IT Support Professional Certificate',
+                            institution: 'Google (Coursera)',
+                            year: '2024',
+                            badgeHighlight: 'Professional Support',
+                            link: 'https://www.coursera.org/account/accomplishments/professional-cert/E3U0KEGBQMXO'
+                        },
+                        {
+                            title: 'Higher Education in Multimedia Production Technology',
+                            institution: 'UNIBH',
+                            year: '2011',
+                            badgeHighlight: 'Higher Degree',
+                            diplomaUrl: 'imagens/diploma_unibh.png'
+                        },
+                        {
+                            title: 'Macromedia Flash MX Media Design',
+                            institution: 'IPEC',
+                            year: '2005',
+                            badgeHighlight: 'Digital Design',
+                            carouselImages: ['imagens/ipec1.jpg', 'imagens/ipec2.jpg']
+                        },
+                        {
+                            title: 'WEB DESIGN',
+                            institution: 'FUNDEP / DCC - UFMG',
+                            year: '2004',
+                            badgeHighlight: 'University Extension',
+                            diplomaUrl: 'imagens/diploma_ufmg.jpg'
+                        },
+                        {
+                            title: 'IT Technician Certificate (High School Level)',
+                            institution: 'COTEMIG',
+                            year: '2003',
+                            badgeHighlight: 'Technical High School',
+                            diplomaUrl: 'imagens/diploma_web.jpg'
+                        }
                     ]
                 }
             };
 
+            // SVG Icon Mapper
+            const iconMap = {
+                google: `<svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 00-9.78 2.096A4.001 4.001 0 003 15z"></path></svg>`,
+                server: `<svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"></path></svg>`,
+                network: `<svg class="w-5 h-5 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path></svg>`,
+                shield: `<svg class="w-5 h-5 text-rose-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>`,
+                support: `<svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>`,
+                apple: `<svg class="w-5 h-5 text-slate-800" fill="currentColor" viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.62-.75 1.04-1.8 0.92-2.87-.9.04-1.99.6-2.63 1.35-.57.65-1.07 1.72-.94 2.76 1 .08 2.03-.49 2.65-1.24z"/></svg>`,
+                compliance: `<svg class="w-5 h-5 text-rose-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>`,
+                inventory: `<svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>`,
+                mail: `<svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>`,
+                database: `<svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path></svg>`,
+                terminal: `<svg class="w-5 h-5 text-slate-800" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>`,
+                cpu: `<svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path></svg>`
+            };
+
             let currentLang = localStorage.getItem('language') || 'pt';
+            let currentCategory = 'all';
             let carouselImages = [];
             let currentCarouselIndex = 0;
 
+            // DOM Selectors
             const timelineContainer = document.getElementById('timeline-container');
             const detailsContainer = document.getElementById('experience-details');
+            const skillsGrid = document.getElementById('skills-grid');
             const educationContainer = document.getElementById('education-container');
             const langPtBtn = document.getElementById('lang-pt');
             const langEnBtn = document.getElementById('lang-en');
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
-            
+            const skillSearch = document.getElementById('skill-search');
+
             const imageModal = document.getElementById('image-modal');
             const modalImage = document.getElementById('modal-image');
             const closeModalBtn = document.getElementById('close-modal-btn');
@@ -371,6 +1280,213 @@
             const terminalOutput = document.getElementById('terminal-output');
             const terminalInput = document.getElementById('terminal-input');
 
+            // Render Timeline
+            function renderTimeline(lang) {
+                timelineContainer.innerHTML = '';
+                const experiences = translations[lang].experienceData;
+
+                experiences.forEach((item, index) => {
+                    const div = document.createElement('div');
+                    const isLast = index === experiences.length - 1;
+                    div.className = `timeline-node relative cursor-pointer pb-8 ${isLast ? 'pb-0' : ''}`;
+                    div.dataset.id = item.id;
+
+                    const activeBadge = item.isCurrent 
+                        ? `<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-200 ml-2 animate-pulse">${item.badge}</span>` 
+                        : (item.badge ? `<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-slate-100 text-slate-600 border border-slate-200 ml-2">${item.badge}</span>` : '');
+
+                    const tagsHtml = item.tags ? item.tags.slice(0, 3).map(tag => `<span class="text-[10px] font-mono bg-slate-100 text-slate-600 px-2 py-0.5 rounded">${tag}</span>`).join('') : '';
+
+                    div.innerHTML = `
+                        <div class="summary bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:border-blue-300 transition-all">
+                            <div class="flex items-center justify-between flex-wrap gap-1">
+                                <h3 class="font-bold text-base text-slate-900 leading-snug">${item.role}</h3>
+                                ${activeBadge}
+                            </div>
+                            <p class="text-sm font-medium text-blue-600 mt-0.5">${item.company}</p>
+                            <p class="text-xs text-slate-400 font-mono mt-1">${item.period}</p>
+                            <div class="flex flex-wrap gap-1 mt-2.5">
+                                ${tagsHtml}
+                            </div>
+                        </div>
+                        <div class="mobile-details-content mt-3"></div>
+                    `;
+                    timelineContainer.appendChild(div);
+                });
+            }
+
+            // Update Experience Details
+            function updateDetails(id, lang) {
+                const item = translations[lang].experienceData.find(exp => exp.id === id);
+                if (!item) return;
+
+                const achievementsHTML = item.achievements.map(ach => `
+                    <li class="flex items-start text-xs sm:text-sm text-slate-600">
+                        <span class="text-emerald-500 mr-2 mt-0.5 font-bold">&#10003;</span>
+                        <span>${ach}</span>
+                    </li>
+                `).join('');
+
+                const tagsHTML = item.tags.map(t => `
+                    <span class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-mono font-medium bg-slate-100 text-slate-700 border border-slate-200">
+                        ${t}
+                    </span>
+                `).join('');
+
+                const detailsHTML = `
+                    <div class="border-b border-slate-100 pb-5 mb-5">
+                        <div class="flex items-center justify-between flex-wrap gap-2 mb-2">
+                            <span class="badge-pill bg-blue-50 text-blue-700 border border-blue-200">${item.period}</span>
+                            ${item.isCurrent ? '<span class="badge-pill bg-emerald-50 text-emerald-700 border border-emerald-200">Cargo Recente</span>' : ''}
+                        </div>
+                        <h3 class="text-xl sm:text-2xl font-extrabold text-slate-900">${item.role}</h3>
+                        <p class="text-base font-semibold text-blue-600">${item.company}</p>
+                        ${item.roleSub ? `<p class="text-xs text-slate-500 mt-0.5">${item.roleSub}</p>` : ''}
+                    </div>
+
+                    <div class="mb-5">
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Resumo da Atuação</h4>
+                        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">${item.description}</p>
+                    </div>
+
+                    <div class="mb-6">
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2.5">Principais Entregas & Conquistas</h4>
+                        <ul class="space-y-2.5">${achievementsHTML}</ul>
+                    </div>
+
+                    <div>
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Tecnologias & Domínios Aplicados</h4>
+                        <div class="flex flex-wrap gap-1.5">${tagsHTML}</div>
+                    </div>
+                `;
+
+                // Handle Mobile Accordion vs Desktop Sticky Card
+                if (window.innerWidth < 768) {
+                    const allDetails = document.querySelectorAll('.mobile-details-content');
+                    allDetails.forEach(detail => {
+                        detail.style.maxHeight = null;
+                        detail.innerHTML = '';
+                    });
+
+                    const targetItem = document.querySelector(`.timeline-node[data-id="${id}"]`);
+                    if (targetItem) {
+                        const content = targetItem.querySelector('.mobile-details-content');
+                        content.innerHTML = `<div class="bg-white p-4 rounded-xl border border-blue-200 shadow-md text-left">${detailsHTML}</div>`;
+                        content.style.maxHeight = content.scrollHeight + "px";
+                    }
+                } else {
+                    detailsContainer.innerHTML = detailsHTML;
+                }
+            }
+
+            // Render Skills Matrix (Replaces Word Cloud)
+            function renderSkills(lang, filterCategory = 'all', searchQuery = '') {
+                skillsGrid.innerHTML = '';
+                const skills = translations[lang].skillsData;
+
+                // Update category counts
+                document.getElementById('count-all').innerText = skills.length;
+                ['cloud', 'infra', 'support', 'security', 'systems'].forEach(cat => {
+                    const el = document.getElementById(`count-${cat}`);
+                    if (el) el.innerText = skills.filter(s => s.category === cat).length;
+                });
+
+                const filtered = skills.filter(item => {
+                    const matchCategory = filterCategory === 'all' || item.category === filterCategory;
+                    const matchSearch = searchQuery === '' || 
+                        item.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                        item.desc.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                        item.context.toLowerCase().includes(searchQuery.toLowerCase());
+                    return matchCategory && matchSearch;
+                });
+
+                if (filtered.length === 0) {
+                    skillsGrid.innerHTML = `
+                        <div class="col-span-full py-12 text-center text-slate-400">
+                            <p class="text-base font-semibold">Nenhuma competência encontrada para os filtros atuais.</p>
+                            <p class="text-xs mt-1">Tente remover o filtro de busca ou alternar a categoria.</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                filtered.forEach(skill => {
+                    const card = document.createElement('div');
+                    card.className = 'card-modern p-5 rounded-2xl flex flex-col justify-between hover:border-blue-300 transition-all';
+                    
+                    const iconSvg = iconMap[skill.icon] || iconMap.support;
+
+                    card.innerHTML = `
+                        <div>
+                            <div class="flex items-start justify-between gap-3 mb-3">
+                                <div class="w-10 h-10 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center shrink-0">
+                                    ${iconSvg}
+                                </div>
+                                <span class="badge-pill border ${skill.levelClass} text-[11px]">
+                                    ${skill.level}
+                                </span>
+                            </div>
+
+                            <h3 class="font-bold text-slate-900 text-sm sm:text-base leading-snug mb-2">${skill.name}</h3>
+                            <p class="text-xs sm:text-sm text-slate-500 leading-relaxed mb-4">${skill.desc}</p>
+                        </div>
+
+                        <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400">
+                            <span class="font-mono text-[11px] truncate flex items-center gap-1">
+                                <svg class="w-3 h-3 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                                </svg>
+                                ${skill.context}
+                            </span>
+                        </div>
+                    `;
+                    skillsGrid.appendChild(card);
+                });
+            }
+
+            // Render Education & Certifications
+            function renderEducation(lang) {
+                educationContainer.innerHTML = '';
+                translations[lang].educationData.forEach(item => {
+                    const div = document.createElement('div');
+                    div.className = 'card-modern p-6 rounded-2xl flex flex-col justify-between anim-education-card';
+
+                    let actionBtn = '';
+                    if (item.diplomaUrl) {
+                        const btnLabel = item.title.toLowerCase().includes('técnico') ? translations[lang].view_diploma : translations[lang].view_diploma;
+                        actionBtn = `<button data-diploma-url="${item.diplomaUrl}" class="diploma-btn mt-5 inline-flex items-center justify-center w-full bg-slate-100 hover:bg-blue-600 hover:text-white text-slate-700 text-xs font-bold py-2.5 px-4 rounded-xl transition-all">${btnLabel}</button>`;
+                    } else if (item.carouselImages) {
+                        actionBtn = `<button data-carousel-images='${JSON.stringify(item.carouselImages)}' class="carousel-btn-trigger mt-5 inline-flex items-center justify-center w-full bg-slate-100 hover:bg-blue-600 hover:text-white text-slate-700 text-xs font-bold py-2.5 px-4 rounded-xl transition-all">${translations[lang].view_certificates}</button>`;
+                    } else if (item.link) {
+                        const isCredly = item.link.includes('credly');
+                        actionBtn = `
+                            <a href="${item.link}" target="_blank" class="mt-5 inline-flex items-center justify-center gap-1.5 w-full ${isCredly ? 'bg-blue-600 text-white hover:bg-blue-700 shadow-md shadow-blue-500/20' : 'bg-slate-100 text-slate-700 hover:bg-blue-600 hover:text-white'} text-xs font-bold py-2.5 px-4 rounded-xl transition-all">
+                                <span>${isCredly ? translations[lang].view_credential : translations[lang].view_certificate}</span>
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                </svg>
+                            </a>
+                        `;
+                    }
+
+                    div.innerHTML = `
+                        <div>
+                            <div class="flex items-center justify-between gap-2 mb-3">
+                                <span class="badge-pill bg-blue-50 text-blue-700 border border-blue-200 text-[11px]">${item.badgeHighlight || item.year}</span>
+                                <span class="text-xs font-mono text-slate-400">${item.year}</span>
+                            </div>
+                            <h3 class="font-bold text-base text-slate-900 leading-snug mb-1">${item.title}</h3>
+                            <p class="text-xs sm:text-sm font-medium text-slate-500">${item.institution}</p>
+                        </div>
+                        ${actionBtn}
+                    `;
+                    educationContainer.appendChild(div);
+                });
+
+                attachEducationButtonListeners();
+            }
+
+            // Modal Handlers
             function openModal(imageUrl) {
                 modalImage.src = imageUrl;
                 imageModal.classList.remove('hidden');
@@ -406,145 +1522,23 @@
             function attachEducationButtonListeners() {
                 document.querySelectorAll('.diploma-btn').forEach(button => {
                     button.addEventListener('click', () => {
-                        const imageUrl = button.dataset.diplomaUrl;
-                        openModal(imageUrl);
+                        openModal(button.dataset.diplomaUrl);
                     });
                 });
                 document.querySelectorAll('.carousel-btn-trigger').forEach(button => {
                     button.addEventListener('click', () => {
-                        const images = JSON.parse(button.dataset.carouselImages);
-                        openCarousel(images);
+                        openCarousel(JSON.parse(button.dataset.carouselImages));
                     });
                 });
             }
 
-            function renderTimeline(lang) {
-                timelineContainer.innerHTML = '';
-                translations[lang].experienceData.forEach((item, index) => {
-                    const div = document.createElement('div');
-                    const isMobile = window.innerWidth < 768;
-                    const paddingClass = index === translations[lang].experienceData.length - 1 ? '' : 'pb-4';
-                    div.className = `timeline-item relative cursor-pointer ${paddingClass}`;
-                    div.dataset.id = item.id;
-                    div.innerHTML = `
-                        <div class="summary">
-                            <h4 class="font-bold text-lg">${item.role}</h4>
-                            <p class="text-gray-600">${item.company}</p>
-                            <p class="text-sm text-gray-500">${item.period}</p>
-                        </div>
-                        <div class="mobile-details-content mt-4 pr-4"></div>
-                    `;
-                    timelineContainer.appendChild(div);
-                });
-            }
-
-            function updateDetails(id, lang) {
-                const item = translations[lang].experienceData.find(exp => exp.id === id);
-                if (item) {
-                    let achievementsHTML = item.achievements.map(ach => `<li class="flex items-start"><span class="text-blue-500 mr-2 mt-1">&#10003;</span><span>${ach}</span></li>`).join('');
-                    const detailsHTML = `
-                        <p class="text-gray-600 mb-6">${item.description}</p>
-                        <ul class="space-y-2 text-gray-600">${achievementsHTML}</ul>
-                    `;
-                    
-                    if (window.innerWidth < 768) {
-                        const allDetails = document.querySelectorAll('.mobile-details-content');
-                        allDetails.forEach(detail => {
-                            detail.style.maxHeight = null;
-                            detail.innerHTML = '';
-                            detail.parentElement.classList.remove('pb-12');
-                            if(!detail.parentElement.nextElementSibling) {
-                                detail.parentElement.classList.remove('pb-4');
-                            } else {
-                                detail.parentElement.classList.add('pb-4');
-                            }
-                        });
-
-                        const targetItem = document.querySelector(`.timeline-item[data-id="${id}"]`);
-                        const content = targetItem.querySelector('.mobile-details-content');
-                        
-                        content.innerHTML = detailsHTML;
-                        content.style.maxHeight = content.scrollHeight + "px";
-                        targetItem.classList.remove('pb-4');
-                        targetItem.classList.add('pb-12');
-
-                    } else {
-                        detailsContainer.innerHTML = `<h4 class="text-2xl font-bold text-[#3D405B]">${item.role}</h4><p class="text-lg font-medium text-gray-700">${item.company}</p><p class="text-md text-gray-500 mb-4">${item.period}</p>${detailsHTML}`;
-                    }
-                }
-            }
-            
-            function renderEducation(lang) {
-                educationContainer.innerHTML = '';
-                translations[lang].educationData.forEach(item => {
-                    const div = document.createElement('div');
-                    div.className = 'bg-white p-6 rounded-xl shadow-lg flex flex-col card-effect anim-education-card';
-                    let linkHTML = '';
-                    if (item.diplomaUrl) {
-                        const buttonText = item.title.toLowerCase().includes('técnico') ? translations[lang].view_diploma : translations[lang].view_certificate;
-                        linkHTML = `<button data-diploma-url="${item.diplomaUrl}" class="diploma-btn mt-auto block w-full max-w-[200px] mx-auto bg-[#3A86FF] text-white text-center font-bold py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors">${buttonText}</button>`;
-                    } else if (item.carouselImages) {
-                        linkHTML = `<button data-carousel-images='${JSON.stringify(item.carouselImages)}' class="carousel-btn-trigger mt-auto block w-full max-w-[200px] mx-auto bg-[#3A86FF] text-white text-center font-bold py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors">${translations[lang].view_certificates}</button>`;
-                    } else if (item.link) {
-                        linkHTML = `<a href="${item.link}" target="_blank" class="mt-auto block w-full max-w-[200px] mx-auto bg-[#3A86FF] text-white text-center font-bold py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors">${translations[lang].view_certificate}</a>`;
-                    } else {
-                        linkHTML = `<div class="mt-auto pt-10"></div>`;
-                    }
-                    div.innerHTML = `<div><p class="font-bold text-lg text-[#3D405B]">${item.title}</p><p class="text-gray-600">${item.institution}</p><p class="text-sm text-gray-500 mb-4">${item.year}</p></div>${linkHTML}`;
-                    educationContainer.appendChild(div);
-                });
-                attachEducationButtonListeners();
-            }
-
-            function startSkillCloud(lang) {
-                const skills = translations[lang].skills;
-                const tagsUl = document.querySelector('#tags ul');
-                tagsUl.innerHTML = ''; // Clear previous tags
-                skills.forEach(skill => {
-                    const li = document.createElement('li');
-                    const a = document.createElement('a');
-                    a.href = skill.target;
-                    a.innerText = skill.text;
-                    a.style.fontSize = `${skill.weight}px`;
-                    li.appendChild(a);
-                    tagsUl.appendChild(li);
-                });
-
-                try {
-                    if (TagCanvas.running) {
-                        TagCanvas.Reload('skillCanvas');
-                    } else {
-                        TagCanvas.Start('skillCanvas', 'tags', {
-                            textColour: '#3A86FF',
-                            outlineColour: 'transparent',
-                            reverse: true,
-                            depth: 0.8,
-                            maxSpeed: 0.05,
-                            initial: [0.05, 0.05],
-                            textFont: "'Source Code Pro', monospace",
-                            fontWeight: '500',
-                            weight: true,
-                            weightMode: 'size',
-                            weightSizeMin: 16,
-                            weightSizeMax: 45,
-                            dragControl: true,
-                            freezeActive: false,
-                            decel: 0.98,
-                            noMouse: false,
-                            activeCursor: 'pointer',
-                            zoom: 1.1,
-                        });
-                    }
-                } catch(e) {
-                    document.getElementById('skill-cloud-container').style.display = 'none';
-                }
-            }
-            
+            // Switch Language
             function switchLanguage(lang) {
                 currentLang = lang;
                 localStorage.setItem('language', lang);
                 document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
 
+                // Update text elements with data-lang-key
                 document.querySelectorAll('[data-lang-key]').forEach(el => {
                     const key = el.getAttribute('data-lang-key');
                     if (translations[lang][key]) {
@@ -552,42 +1546,69 @@
                     }
                 });
 
-                renderTimeline(lang);
-                renderEducation(lang);
-                const activeTimelineItem = document.querySelector('.timeline-item.active');
-                const activeId = activeTimelineItem ? activeTimelineItem.dataset.id : translations[lang].experienceData[0].id;
-                updateDetails(activeId, lang);
-                
-                TagCanvas.Delete('skillCanvas');
-                startSkillCloud(lang);
+                // Update input placeholders
+                document.querySelectorAll('[data-lang-placeholder]').forEach(el => {
+                    const key = el.getAttribute('data-lang-placeholder');
+                    if (translations[lang][key]) {
+                        el.setAttribute('placeholder', translations[lang][key]);
+                    }
+                });
 
-                langPtBtn.classList.toggle('active', lang === 'pt');
-                langEnBtn.classList.toggle('active', lang === 'en');
+                // Rerender dynamic components
+                renderTimeline(lang);
+                renderSkills(lang, currentCategory, skillSearch.value.trim());
+                renderEducation(lang);
+
+                // Set active timeline item
+                const activeTimelineItem = document.querySelector('.timeline-node.active');
+                const activeId = activeTimelineItem ? activeTimelineItem.dataset.id : translations[lang].experienceData[0].id;
+                
+                const firstNode = document.querySelector(`.timeline-node[data-id="${activeId}"]`);
+                if (firstNode) firstNode.classList.add('active');
+                updateDetails(activeId, lang);
+
+                // Update lang buttons
+                langPtBtn.classList.toggle('bg-blue-600', lang === 'pt');
+                langPtBtn.classList.toggle('text-white', lang === 'pt');
+                langEnBtn.classList.toggle('bg-blue-600', lang === 'en');
+                langEnBtn.classList.toggle('text-white', lang === 'en');
             }
 
+            // Timeline Click Interaction
             timelineContainer.addEventListener('click', (e) => {
-                const itemElement = e.target.closest('.timeline-item');
-                if (itemElement) {
-                    const id = itemElement.dataset.id;
-                    
-                    if (window.innerWidth < 768) {
-                        const wasActive = itemElement.classList.contains('active');
-                        document.querySelectorAll('.timeline-item').forEach(el => el.classList.remove('active'));
-                        if (!wasActive) {
-                            itemElement.classList.add('active');
-                        }
-                    } else {
-                        document.querySelectorAll('.timeline-item').forEach(el => el.classList.remove('active'));
-                        itemElement.classList.add('active');
-                    }
-                    
+                const node = e.target.closest('.timeline-node');
+                if (node) {
+                    const id = node.dataset.id;
+                    document.querySelectorAll('.timeline-node').forEach(el => el.classList.remove('active'));
+                    node.classList.add('active');
                     updateDetails(id, currentLang);
                 }
             });
 
+            // Skill Tab Click
+            document.querySelectorAll('.skill-tab-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.skill-tab-btn').forEach(b => {
+                        b.classList.remove('active', 'bg-blue-600', 'text-white');
+                        b.classList.add('bg-white', 'text-slate-600');
+                    });
+                    btn.classList.add('active', 'bg-blue-600', 'text-white');
+                    btn.classList.remove('bg-white', 'text-slate-600');
+                    currentCategory = btn.dataset.category;
+                    renderSkills(currentLang, currentCategory, skillSearch.value.trim());
+                });
+            });
+
+            // Skill Realtime Search
+            skillSearch.addEventListener('input', (e) => {
+                renderSkills(currentLang, currentCategory, e.target.value.trim());
+            });
+
+            // Language Toggle Handlers
             langPtBtn.addEventListener('click', () => switchLanguage('pt'));
             langEnBtn.addEventListener('click', () => switchLanguage('en'));
-            
+
+            // Mobile Menu
             mobileMenuButton.addEventListener('click', () => {
                 mobileMenu.classList.toggle('hidden');
             });
@@ -598,6 +1619,7 @@
                 });
             });
 
+            // Modal Close Events
             closeModalBtn.addEventListener('click', closeModal);
             imageModal.addEventListener('click', (e) => { if (e.target === imageModal) closeModal(); });
 
@@ -612,16 +1634,15 @@
                 showCarouselImage(currentCarouselIndex);
             });
 
-            // Wait for fonts to be ready before starting TagCanvas
-            document.fonts.ready.then(function () {
-                switchLanguage(currentLang);
-                const firstTimelineItem = document.querySelector('.timeline-item');
-                if(firstTimelineItem) {
-                    firstTimelineItem.classList.add('active');
-                    updateDetails(firstTimelineItem.dataset.id, currentLang);
+            // Escape key closes modals
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    closeModal();
+                    closeCarousel();
                 }
             });
-            
+
+            // Active Navbar Highlight on Scroll
             const navLinks = document.querySelectorAll('.nav-link');
             const sections = document.querySelectorAll('main section');
 
@@ -629,7 +1650,7 @@
                 let current = '';
                 sections.forEach(section => {
                     const sectionTop = section.offsetTop;
-                    if (pageYOffset >= sectionTop - 100) {
+                    if (window.pageYOffset >= sectionTop - 150) {
                         current = section.getAttribute('id');
                     }
                 });
@@ -640,29 +1661,143 @@
 
                 navLinks.forEach(link => {
                     link.classList.remove('active');
-                    if (link.getAttribute('href').includes(current)) {
+                    if (link.getAttribute('href') === `#${current}`) {
                         link.classList.add('active');
                     }
                 });
             });
 
-            // GSAP Animations
-            gsap.registerPlugin(ScrollTrigger);
-            
-            gsap.from(".anim-hero", { duration: 0.7, y: 30, opacity: 0, stagger: 0.2, ease: "power2.out" });
+            // Terminal Interactive System
+            const terminalCommands = {
+                pt: {
+                    ajuda: () => `Comandos disponíveis no terminal:<br>
+                        &bull; <span class="text-emerald-400 font-semibold">wh1</span> - Detalhes da atuação na Wh1 Cloud (Google Workspace).<br>
+                        &bull; <span class="text-emerald-400 font-semibold">google</span> - Resumo da certificação Associate Google Workspace Administrator.<br>
+                        &bull; <span class="text-emerald-400 font-semibold">sobre</span> - Resumo da carreira e perfil profissional.<br>
+                        &bull; <span class="text-emerald-400 font-semibold">skills</span> - Relação das principais competências técnicas.<br>
+                        &bull; <span class="text-emerald-400 font-semibold">experiencia</span> - Linha do tempo profissional completa.<br>
+                        &bull; <span class="text-emerald-400 font-semibold">formacao</span> - Histórico acadêmico e certificações.<br>
+                        &bull; <span class="text-emerald-400 font-semibold">contato</span> - Links diretos de WhatsApp, LinkedIn e E-mail.<br>
+                        &bull; <span class="text-emerald-400 font-semibold">limpar</span> - Limpa a tela do console.`,
+                    wh1: () => `<span class="text-sky-300 font-bold">Wh1 Cloud (Outubro/2025 – Setembro/2026)</span><br>
+                        Cargo: Analista de TI (Suporte e Administração Google Workspace)<br>
+                        &bull; Administração completa de instâncias corporativas do Google Workspace.<br>
+                        &bull; Suporte técnico avançado N2/N3 e cumprimento rigoroso de SLAs.<br>
+                        &bull; Certificado: Associate Google Workspace Administrator Certification (Google Cloud).<br>
+                        &bull; Configurações de segurança: 2FA/MFA, auditoria de logs e proteção contra vazamento.<br>
+                        &bull; Mensageria DNS: MX, SPF, DKIM e DMARC.`,
+                    google: () => `<span class="text-emerald-400 font-bold">Associate Google Workspace Administrator Certification</span><br>
+                        Emissor: Google Cloud (2025)<br>
+                        Validada via Credly: <a href="https://www.credly.com/badges/5d2f3c5b-4768-4a91-b62c-32acc298e63a/public_url" target="_blank" class="text-blue-400 underline">Acessar Badge Oficial Credly</a>`,
+                    sobre: () => translations.pt.hero_subtitle,
+                    skills: () => translations.pt.skillsData.map(s => `&bull; <span class="text-cyan-300">${s.name}</span> (${s.level})`).join('<br>'),
+                    experiencia: () => translations.pt.experienceData.map(exp => `&bull; <span class="text-amber-400">${exp.role}</span> @ ${exp.company} <span class="text-slate-400">(${exp.period})</span>`).join('<br>'),
+                    formacao: () => translations.pt.educationData.map(edu => `&bull; <span class="text-sky-300">${edu.title}</span> - ${edu.institution} <span class="text-slate-400">(${edu.year})</span>`).join('<br>'),
+                    contato: () => `E-mail: <a href="mailto:lucasladeiraloes@gmail.com" class="text-blue-400">lucasladeiraloes@gmail.com</a><br>WhatsApp: (31) 99164-3134<br>LinkedIn: linkedin.com/in/lucas-ladeira-loes/`,
+                    limpar: () => { terminalOutput.innerHTML = ''; return ''; }
+                },
+                en: {
+                    help: () => `Available commands:<br>
+                        &bull; <span class="text-emerald-400 font-semibold">wh1</span> - Wh1 Cloud role details (Google Workspace).<br>
+                        &bull; <span class="text-emerald-400 font-semibold">google</span> - Associate Google Workspace Administrator credential info.<br>
+                        &bull; <span class="text-emerald-400 font-semibold">about</span> - Professional career overview.<br>
+                        &bull; <span class="text-emerald-400 font-semibold">skills</span> - Key technical skillsets and domains.<br>
+                        &bull; <span class="text-emerald-400 font-semibold">experience</span> - Full professional timeline.<br>
+                        &bull; <span class="text-emerald-400 font-semibold">education</span> - Academic background and certifications.<br>
+                        &bull; <span class="text-emerald-400 font-semibold">contact</span> - WhatsApp, LinkedIn and email details.<br>
+                        &bull; <span class="text-emerald-400 font-semibold">clear</span> - Clears the terminal screen.`,
+                    wh1: () => `<span class="text-sky-300 font-bold">Wh1 Cloud (October 2025 – September 2026)</span><br>
+                        Role: IT Analyst (Google Workspace Administration & Support)<br>
+                        &bull; Complete enterprise administration of Google Workspace instances.<br>
+                        &bull; Advanced L2/L3 support with strict SLA compliance.<br>
+                        &bull; Certified: Associate Google Workspace Administrator Certification (Google Cloud).<br>
+                        &bull; Security hardening: 2FA/MFA, access audits, DLP policies.<br>
+                        &bull; DNS messaging deliverability: MX, SPF, DKIM, and DMARC.`,
+                    google: () => `<span class="text-emerald-400 font-bold">Associate Google Workspace Administrator Certification</span><br>
+                        Issuer: Google Cloud (2025)<br>
+                        Verified on Credly: <a href="https://www.credly.com/badges/5d2f3c5b-4768-4a91-b62c-32acc298e63a/public_url" target="_blank" class="text-blue-400 underline">View Official Credly Badge</a>`,
+                    about: () => translations.en.hero_subtitle,
+                    skills: () => translations.en.skillsData.map(s => `&bull; <span class="text-cyan-300">${s.name}</span> (${s.level})`).join('<br>'),
+                    experience: () => translations.en.experienceData.map(exp => `&bull; <span class="text-amber-400">${exp.role}</span> @ ${exp.company} <span class="text-slate-400">(${exp.period})</span>`).join('<br>'),
+                    education: () => translations.en.educationData.map(edu => `&bull; <span class="text-sky-300">${edu.title}</span> - ${edu.institution} <span class="text-slate-400">(${edu.year})</span>`).join('<br>'),
+                    contact: () => `Email: lucasladeiraloes@gmail.com<br>Phone: +55 (31) 99164-3134<br>LinkedIn: linkedin.com/in/lucas-ladeira-loes/`,
+                    clear: () => { terminalOutput.innerHTML = ''; return ''; }
+                }
+            };
 
-            gsap.utils.toArray('.anim-section-title').forEach(title => {
-                gsap.from(title, { duration: 0.8, y: 50, opacity: 0, scrollTrigger: { trigger: title, start: "top 85%", toggleActions: "play none none none" } });
+            function executeCommand(command) {
+                const trimmed = command.trim().toLowerCase();
+                if (!trimmed) return;
+
+                const outputLine = document.createElement('div');
+                outputLine.innerHTML = `<span class="text-emerald-400 font-semibold">lucas@resume:~$</span> <span class="text-white">${trimmed}</span>`;
+                terminalOutput.appendChild(outputLine);
+
+                const responseLine = document.createElement('div');
+                responseLine.classList.add('mb-3', 'text-slate-300', 'leading-relaxed');
+
+                const availableCommands = currentLang === 'pt' 
+                    ? { ...terminalCommands.pt, help: terminalCommands.pt.ajuda, clear: terminalCommands.pt.limpar } 
+                    : { ...terminalCommands.en, ajuda: terminalCommands.en.help, limpar: terminalCommands.en.clear, ...terminalCommands.pt };
+
+                if (availableCommands[trimmed]) {
+                    responseLine.innerHTML = availableCommands[trimmed]();
+                } else {
+                    responseLine.innerHTML = currentLang === 'pt' 
+                        ? `<span class="text-rose-400">Comando não reconhecido: '${trimmed}'. Digite <span class="text-emerald-400 font-semibold">'ajuda'</span> para ver a lista de comandos.</span>`
+                        : `<span class="text-rose-400">Command not found: '${trimmed}'. Type <span class="text-emerald-400 font-semibold">'help'</span> for available commands.</span>`;
+                }
+
+                if (responseLine.innerHTML) {
+                    terminalOutput.appendChild(responseLine);
+                }
+
+                terminalInput.value = '';
+                terminalWindow.scrollTop = terminalWindow.scrollHeight;
+            }
+
+            terminalInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    executeCommand(terminalInput.value);
+                }
             });
 
-            gsap.from(".timeline-item", { scrollTrigger: { trigger: "#timeline-container", start: "top 80%", toggleActions: "play none none none" }, duration: 0.5, x: -30, opacity: 0, stagger: 0.2, ease: "power2.out" });
+            // Quick terminal chips
+            document.querySelectorAll('.term-chip').forEach(chip => {
+                chip.addEventListener('click', () => {
+                    executeCommand(chip.dataset.cmd);
+                    terminalInput.focus();
+                });
+            });
 
-            gsap.from(".anim-chart", { scrollTrigger: { trigger: ".anim-chart", start: "top 80%", toggleActions: "play none none none" }, duration: 1, scale: 0.9, opacity: 0, ease: "power3.out" });
+            // GSAP Animations Setup
+            gsap.registerPlugin(ScrollTrigger);
 
+            gsap.from(".anim-hero", { 
+                duration: 0.8, 
+                y: 25, 
+                opacity: 0, 
+                stagger: 0.15, 
+                ease: "power2.out" 
+            });
+
+            gsap.utils.toArray('.anim-section-title').forEach(title => {
+                gsap.from(title, { 
+                    duration: 0.7, 
+                    y: 30, 
+                    opacity: 0, 
+                    scrollTrigger: { 
+                        trigger: title, 
+                        start: "top 85%", 
+                        toggleActions: "play none none none" 
+                    } 
+                });
+            });
+
+            // Animated Numerical Counters
             gsap.utils.toArray('.anim-stat-card .stat-number').forEach(span => {
                 const targetNum = parseInt(span.dataset.target);
                 const suffixKey = span.dataset.suffixKey;
-                
                 let counter = { value: 0 };
 
                 gsap.to(counter, {
@@ -680,75 +1815,10 @@
                     },
                 });
             });
-            
-            gsap.from(".anim-education-card", { scrollTrigger: { trigger: "#education-container", start: "top 85%", toggleActions: "play none none none" }, duration: 0.6, y: 50, opacity: 0, stagger: 0.15, ease: "power2.out" });
 
-            // Terminal Logic
-            const terminalCommands = {
-                pt: {
-                    ajuda: () => `Comandos disponíveis:<br>
-                        <span class="text-cyan-400">sobre</span> - Exibe meu resumo profissional.<br>
-                        <span class="text-cyan-400">skills</span> - Lista minhas principais competências.<br>
-                        <span class="text-cyan-400">experiencia</span> - Mostra meu histórico profissional.<br>
-                        <span class="text-cyan-400">formacao</span> - Detalha minha formação acadêmica.<br>
-                        <span class="text-cyan-400">contato</span> - Exibe minhas informações de contato.<br>
-                        <span class="text-cyan-400">limpar</span> - Limpa a tela do terminal.`,
-                    sobre: () => translations.pt.hero_subtitle,
-                    skills: () => translations.pt.skills.map(s => s.text).join('<br>'),
-                    experiencia: () => translations.pt.experienceData.map(exp => `<span class="text-yellow-400">${exp.role}</span> @ ${exp.company} (${exp.period})`).join('<br>'),
-                    formacao: () => translations.pt.educationData.map(edu => `<span class="text-yellow-400">${edu.title}</span> - ${edu.institution} (${edu.year})`).join('<br>'),
-                    contato: () => `Email: lucasladeiraloes@gmail.com<br>Telefone: (31) 99164-3134`,
-                    limpar: () => { terminalOutput.innerHTML = ''; return ''; }
-                },
-                en: {
-                    help: () => `Available commands:<br>
-                        <span class="text-cyan-400">about</span> - Displays my professional summary.<br>
-                        <span class="text-cyan-400">skills</span> - Lists my key skills.<br>
-                        <span class="text-cyan-400">experience</span> - Shows my professional history.<br>
-                        <span class="text-cyan-400">education</span> - Details my academic background.<br>
-                        <span class="text-cyan-400">contact</span> - Shows my contact information.<br>
-                        <span class="text-cyan-400">clear</span> - Clears the terminal screen.`,
-                    about: () => translations.en.hero_subtitle,
-                    skills: () => translations.en.skills.map(s => s.text).join('<br>'),
-                    experience: () => translations.en.experienceData.map(exp => `<span class="text-yellow-400">${exp.role}</span> @ ${exp.company} (${exp.period})`).join('<br>'),
-                    education: () => translations.en.educationData.map(edu => `<span class="text-yellow-400">${edu.title}</span> - ${edu.institution} (${edu.year})`).join('<br>'),
-                    contact: () => `Email: lucasladeiraloes@gmail.com<br>Phone: (31) 99164-3134`,
-                    clear: () => { terminalOutput.innerHTML = ''; return ''; }
-                }
-            };
-
-            function executeCommand(command) {
-                const outputLine = document.createElement('div');
-                outputLine.innerHTML = `<span class="text-green-400">lucas@resume:~$</span> <span class="text-white">${command}</span>`;
-                terminalOutput.appendChild(outputLine);
-
-                const responseLine = document.createElement('div');
-                responseLine.classList.add('mb-2');
-                const commands = currentLang === 'pt' ? terminalCommands.pt : { ...terminalCommands.en, ...terminalCommands.pt }; // Allow PT commands in EN
-                
-                if (commands[command]) {
-                    responseLine.innerHTML = commands[command]();
-                } else {
-                    responseLine.innerHTML = currentLang === 'pt' ? `Comando não encontrado: ${command}. Digite 'ajuda'.` : `Command not found: ${command}. Type 'help'.`;
-                }
-                
-                if(responseLine.innerHTML) {
-                    terminalOutput.appendChild(responseLine);
-                }
-                
-                terminalInput.value = '';
-                terminalWindow.scrollTop = terminalWindow.scrollHeight;
-            }
-
-            terminalInput.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter') {
-                    executeCommand(e.target.value.trim().toLowerCase());
-                }
-            });
-
+            // Initialize Application
+            switchLanguage(currentLang);
         });
     </script>
 </body>
 </html>
-
-
