@@ -25,13 +25,14 @@ Currículo web interativo de alto impacto visual para **Analista de TI Sênior &
 
 | Recurso | Descrição |
 |---|---|
-| 🗂️ **Matriz de Competências** | Grid categorizado por área (*Cloud & SaaS*, *Infra & Redes*, *Suporte & Hardware*, *Segurança & LGPD*, *Sistemas & Automação*) com filtros por aba, busca em tempo real e badges de nível de proficiência |
+| 🗂️ **Matriz de Competências & Recruiter Match** | Grid categorizado por área (*Cloud & SaaS*, *Infra & Redes*, *Suporte & Hardware*, *Segurança & LGPD*, *Sistemas & Automação*) com **Filtro Rápido por Perfil de Vaga (Recruiter Match)**, busca em tempo real e badges de proficiência |
+| 🎓 **Hub de Certificações & Especialização Google** | Visualizador modal para diplomas, carrossel de certificados e **Hub Interativo do Certificado de Especialização Suporte em TI Google (Coursera)** detalhando os 5 cursos integrados, datas, links verificáveis e 12 habilidades oficiais |
 | 🕐 **Linha do Tempo Interativa** | Trajetória completa de 20+ anos com painel fixo de detalhes (desktop) e acordeão responsivo (mobile), exibindo conquistas, descrição do cargo e tecnologias utilizadas em cada empresa |
-| 💻 **Terminal CLI Interativo** | Console simulado no estilo Unix/Bash, suporte a comandos em PT e EN (`ajuda`, `skills`, `experiencia`, `contato`, `wh1`, `google`, `limpar`), atalhos rápidos por clique e scroll automático — totalmente otimizado para mobile |
+| 💻 **Terminal CLI Interativo** | Console simulado no estilo Unix/Bash, suporte a comandos em PT e EN (`ajuda`, `skills`, `experiencia`, `contato`, `wh1`, `google`, `coursera`, `limpar`), chips de atalho rápido e auto-scroll |
 | 🏆 **Conquistas em Números** | Cards com contadores animados por scroll (GSAP) exibindo métricas reais de carreira |
-| 🎓 **Formação & Certificações** | Visualizador modal para diplomas, carrossel de certificados e links diretos para credenciais verificáveis (Credly) |
+| ⚡ **Ações Rápidas para Recrutadores** | Cópia de e-mail com 1-clique (notificação Toast flutuante) e download direto do PDF oficial do currículo |
 | 🌐 **Bilíngue Nativo (PT / EN)** | Alternância instantânea sem recarregar a página; idioma salvo no `localStorage` |
-| 🖨️ **Exportação PDF Profissional** | Layout de impressão dedicado que renderiza **todos os cargos** com conquistas, tecnologias e contatos — seção interativa substituída por versão estática otimizada para papel |
+| 🖨️ **Exportação PDF Profissional** | Layout de impressão dedicado que renderiza **todos os cargos**, formação completa (incluindo os 5 cursos Google) e contatos — otimizado para papel |
 | 📱 **100% Responsivo** | Design adaptado para desktop, tablet e mobile; navegação por menu hambúrguer em telas pequenas |
 | ♿ **Acessibilidade** | Uso de `aria-label`, `role`, semântica HTML5 e contraste adequado |
 
@@ -54,13 +55,14 @@ A high-impact interactive web resume for a **Senior IT Analyst & Google Workspac
 
 | Feature | Description |
 |---|---|
-| 🗂️ **Skills Matrix** | Categorized grid by domain (*Cloud & SaaS*, *Infra & Networks*, *Support & Hardware*, *Security & LGPD*, *Systems & Automation*) with tab filters, real-time search, and proficiency level badges |
+| 🗂️ **Skills Matrix & Recruiter Match** | Categorized grid by domain (*Cloud & SaaS*, *Infra & Networks*, *Support & Hardware*, *Security & LGPD*, *Systems & Automation*) with **Recruiter Quick-Match (Filter by Job Role)**, real-time search, and proficiency badges |
+| 🎓 **Certifications Hub & Google IT Specialization** | Modal viewer for diplomas, certificate carousel, and **Interactive Google IT Support Professional Specialization Hub (Coursera)** detailing all 5 integrated courses, dates, verified links, and 12 official skills |
 | 🕐 **Interactive Career Timeline** | 20+ year full career history with a sticky detail panel (desktop) and responsive accordion (mobile), displaying achievements, role descriptions, and technologies per company |
-| 💻 **Interactive CLI Terminal** | Unix/Bash-style simulated console, bilingual commands in PT and EN (`help`, `skills`, `experience`, `contact`, `wh1`, `google`, `clear`), click shortcuts and auto-scroll — fully optimized for mobile |
+| 💻 **Interactive CLI Terminal** | Unix/Bash-style simulated console, bilingual commands in PT and EN (`help`, `skills`, `experience`, `contact`, `wh1`, `google`, `coursera`, `clear`), click shortcuts, and auto-scroll |
 | 🏆 **Achievements in Numbers** | Animated scroll-triggered counters (GSAP) displaying real career metrics |
-| 🎓 **Education & Certifications** | Modal viewer for diplomas, certificate carousel, and direct links to verifiable credentials (Credly) |
+| ⚡ **Fast Recruiter Actions** | 1-click email copy with floating toast notification and direct download of the official resume PDF file |
 | 🌐 **Native Bilingual (PT / EN)** | Instant language switch without page reload; preference saved in `localStorage` |
-| 🖨️ **Professional PDF Export** | Dedicated print layout that renders **all career entries** with achievements, technologies, and contact info — interactive section replaced by a paper-optimized static version |
+| 🖨️ **Professional PDF Export** | Dedicated print layout that renders **all career entries**, comprehensive education (including the 5 Google courses), and contacts — paper-optimized |
 | 📱 **Fully Responsive** | Desktop, tablet, and mobile-ready; hamburger navigation menu on small screens |
 | ♿ **Accessibility** | Proper `aria-label`, `role` attributes, semantic HTML5, and accessible color contrast |
 
