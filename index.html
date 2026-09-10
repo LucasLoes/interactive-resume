@@ -174,20 +174,20 @@
         /* Print Styles for clean, professional PDF export */
         @media print {
             /* Hide web navigation, terminal, modals and interactive UI */
-            header, footer, #terminal, .no-print, #skill-filter-tabs, #skill-search-container, .carousel-btn, #image-modal, #carousel-modal {
+            header, footer, #terminal, .no-print, #skill-filter-tabs, #skill-search-container, .carousel-btn, #image-modal, #carousel-modal, #carreira {
                 display: none !important;
             }
 
             @page {
                 size: A4;
-                margin: 10mm 12mm 10mm 12mm;
+                margin: 12mm 14mm 12mm 14mm;
             }
 
             html, body {
                 background: #FFFFFF !important;
                 color: #0F172A !important;
                 font-size: 9pt !important;
-                line-height: 1.35 !important;
+                line-height: 1.4 !important;
                 overflow: visible !important;
                 overflow-x: visible !important;
                 height: auto !important;
@@ -199,15 +199,15 @@
                 max-width: 100% !important;
             }
 
-            /* Show print-only header */
-            .print-header {
+            /* Show print-only elements */
+            .print-header, .print-career-section {
                 display: block !important;
             }
 
-            /* Compact section paddings to eliminate huge blank spaces */
+            /* Compact section paddings */
             section {
                 padding-top: 10px !important;
-                padding-bottom: 12px !important;
+                padding-bottom: 10px !important;
                 margin: 0 !important;
                 border-top: 1px solid #E2E8F0 !important;
             }
@@ -221,24 +221,29 @@
             #sobre .anim-hero {
                 opacity: 1 !important;
                 transform: none !important;
-                margin-bottom: 6px !important;
+                margin-bottom: 4px !important;
+            }
+
+            /* Hide hero action buttons in print */
+            #sobre .no-print {
+                display: none !important;
             }
 
             #sobre h1 {
-                font-size: 18pt !important;
-                margin-bottom: 6px !important;
-                line-height: 1.2 !important;
+                font-size: 19pt !important;
+                margin-bottom: 4px !important;
+                line-height: 1.15 !important;
             }
 
             #sobre p {
                 font-size: 8.5pt !important;
-                line-height: 1.35 !important;
-                margin-bottom: 6px !important;
+                line-height: 1.4 !important;
+                margin-bottom: 4px !important;
             }
 
             /* Section headers */
             .anim-section-title {
-                margin-bottom: 10px !important;
+                margin-bottom: 8px !important;
                 opacity: 1 !important;
                 transform: none !important;
                 break-inside: avoid;
@@ -246,21 +251,21 @@
             }
 
             .anim-section-title h2 {
-                font-size: 14pt !important;
+                font-size: 13pt !important;
                 margin-top: 2px !important;
             }
 
             .anim-section-title p {
                 font-size: 8pt !important;
-                margin-top: 2px !important;
+                margin-top: 1px !important;
                 max-width: 100% !important;
             }
 
             /* Quick Scan Recruiter Box */
             .bg-white.border.border-slate-200.rounded-2xl.p-4,
-            .bg-white.border.border-slate-200.rounded-2xl.p-4\.sm\:p-5 {
+            .bg-white.border.border-slate-200.rounded-2xl {
                 padding: 6px 10px !important;
-                margin-bottom: 10px !important;
+                margin-bottom: 8px !important;
                 break-inside: avoid;
                 page-break-inside: avoid;
             }
@@ -273,97 +278,153 @@
             #skills-grid {
                 display: grid !important;
                 grid-template-columns: repeat(2, 1fr) !important;
-                gap: 8px !important;
+                gap: 6px !important;
                 page-break-inside: auto !important;
             }
 
             #skills-grid .card-modern {
                 break-inside: avoid !important;
                 page-break-inside: avoid !important;
-                padding: 8px 10px !important;
+                padding: 6px 8px !important;
                 margin: 0 !important;
                 border: 1px solid #CBD5E1 !important;
                 box-shadow: none !important;
-                border-radius: 8px !important;
+                border-radius: 6px !important;
                 background: #FFFFFF !important;
+                transform: none !important;
             }
 
             #skills-grid .card-modern h3 {
-                font-size: 9.5pt !important;
+                font-size: 9pt !important;
                 font-weight: 700 !important;
                 margin-bottom: 2px !important;
             }
 
             #skills-grid .card-modern p {
                 font-size: 7.5pt !important;
-                line-height: 1.25 !important;
-                margin-bottom: 4px !important;
+                line-height: 1.3 !important;
+                margin-bottom: 3px !important;
                 color: #475569 !important;
             }
 
             #skills-grid .card-modern .badge-pill {
-                font-size: 7pt !important;
+                font-size: 6.5pt !important;
                 padding: 1px 5px !important;
             }
 
             #skills-grid .card-modern svg {
-                width: 13px !important;
-                height: 13px !important;
+                width: 12px !important;
+                height: 12px !important;
             }
 
-            /* Career Section in Print */
-            #carreira {
-                page-break-inside: auto;
+            /* Print-only Career Section */
+            .print-career-section {
+                page-break-before: auto;
             }
 
-            .timeline-node {
+            .print-career-entry {
                 break-inside: avoid !important;
                 page-break-inside: avoid !important;
-                padding-bottom: 6px !important;
-            }
-
-            .timeline-node::before {
-                display: none !important;
-            }
-
-            .timeline-node .summary {
-                padding: 6px 8px !important;
-                box-shadow: none !important;
+                margin-bottom: 10px !important;
+                padding: 8px 10px !important;
                 border: 1px solid #CBD5E1 !important;
-                border-radius: 8px !important;
+                border-left: 3px solid #2563EB !important;
+                border-radius: 6px !important;
+                background: #FFFFFF !important;
             }
 
-            .timeline-node .summary h3 {
-                font-size: 9.5pt !important;
+            .print-career-entry-header {
+                display: flex;
+                align-items: flex-start;
+                justify-content: space-between;
+                margin-bottom: 4px;
+                gap: 8px;
             }
 
-            .timeline-node .summary p {
+            .print-career-entry-header h3 {
+                font-size: 10pt !important;
+                font-weight: 800 !important;
+                color: #0F172A !important;
+                margin: 0;
+                line-height: 1.2;
+            }
+
+            .print-career-entry-header .period {
+                font-size: 7.5pt !important;
+                color: #64748B !important;
+                font-family: monospace;
+                white-space: nowrap;
+            }
+
+            .print-career-entry .company {
+                font-size: 9pt !important;
+                font-weight: 600 !important;
+                color: #2563EB !important;
+                margin-bottom: 2px;
+            }
+
+            .print-career-entry .role-sub {
+                font-size: 7.5pt !important;
+                color: #64748B !important;
+                margin-bottom: 5px;
+            }
+
+            .print-career-entry .description {
                 font-size: 8pt !important;
+                color: #334155 !important;
+                line-height: 1.35 !important;
+                margin-bottom: 5px !important;
+                font-style: italic;
             }
 
-            #experience-details {
-                position: static !important;
-                border: 1px solid #CBD5E1 !important;
-                box-shadow: none !important;
-                padding: 10px 12px !important;
-                break-inside: avoid;
-                page-break-inside: avoid;
+            .print-career-entry .achievements-list {
+                margin: 0;
+                padding: 0;
+                list-style: none;
             }
 
-            #experience-details h3 {
-                font-size: 13pt !important;
+            .print-career-entry .achievements-list li {
+                font-size: 7.5pt !important;
+                line-height: 1.35 !important;
+                color: #334155 !important;
+                padding-left: 10px;
+                position: relative;
+                margin-bottom: 2px;
             }
 
-            #experience-details p, #experience-details li {
-                font-size: 8pt !important;
-                line-height: 1.3 !important;
+            .print-career-entry .achievements-list li::before {
+                content: '✓';
+                position: absolute;
+                left: 0;
+                color: #10B981;
+                font-weight: bold;
+                font-size: 7pt;
+            }
+
+            .print-career-entry .tags-row {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 3px;
+                margin-top: 5px;
+                padding-top: 4px;
+                border-top: 1px solid #E2E8F0;
+            }
+
+            .print-career-entry .tags-row span {
+                font-size: 6.5pt !important;
+                padding: 1px 5px !important;
+                background: #F1F5F9;
+                color: #475569;
+                border: 1px solid #E2E8F0;
+                border-radius: 4px;
+                font-family: monospace;
             }
 
             /* Stats / Highlights in Print */
             #destaques .grid {
                 display: grid !important;
                 grid-template-columns: repeat(4, 1fr) !important;
-                gap: 6px !important;
+                gap: 5px !important;
             }
 
             .anim-stat-card {
@@ -381,11 +442,11 @@
             }
 
             .anim-stat-card .stat-number {
-                font-size: 15pt !important;
+                font-size: 14pt !important;
             }
 
             .anim-stat-card p {
-                font-size: 7.5pt !important;
+                font-size: 7pt !important;
                 margin-top: 1px !important;
             }
 
@@ -397,13 +458,13 @@
             #education-container {
                 display: grid !important;
                 grid-template-columns: repeat(2, 1fr) !important;
-                gap: 6px !important;
+                gap: 5px !important;
             }
 
             #education-container .card-modern {
                 break-inside: avoid !important;
                 page-break-inside: avoid !important;
-                padding: 6px 8px !important;
+                padding: 5px 8px !important;
                 box-shadow: none !important;
                 border: 1px solid #CBD5E1 !important;
                 opacity: 1 !important;
@@ -513,19 +574,23 @@
     <main class="container mx-auto px-4 sm:px-6 py-6 md:py-10 max-w-6xl">
         
         <!-- Print-only Executive Header -->
-        <div class="print-header hidden mb-3 pb-2 border-b-2 border-blue-600 text-left">
+        <div class="print-header hidden mb-4 pb-3 text-left" style="border-bottom: 3px solid #2563EB;">
             <div class="flex items-center justify-between">
                 <div>
                     <h1 class="text-xl font-extrabold text-slate-900 tracking-tight leading-tight">Lucas Ladeira Loes</h1>
-                    <p class="text-xs font-bold text-blue-600" data-lang-key="print_title">Analista de TI Sênior &bull; Administrador Google Workspace</p>
+                    <p class="text-xs font-bold text-blue-600 mt-0.5" data-lang-key="print_title">Analista de TI Sênior &bull; Administrador Google Workspace</p>
+                    <p class="text-[7.5pt] text-slate-500 mt-0.5">20+ Anos de Experiência &bull; Certificado Google Cloud &bull; Belo Horizonte, MG</p>
                 </div>
-                <div class="text-right text-[8.5pt] text-slate-600 leading-tight">
-                    <p data-lang-key="print_location">Belo Horizonte, MG &bull; Brasil</p>
-                    <p>WhatsApp / Tel: (31) 99164-3134</p>
-                    <p>lucasladeiraloes@gmail.com &bull; linkedin.com/in/lucas-ladeira-loes</p>
+                <div class="text-right text-[8pt] text-slate-600 leading-snug">
+                    <p class="font-medium">WhatsApp / Tel: (31) 99164-3134</p>
+                    <p>lucasladeiraloes@gmail.com</p>
+                    <p class="text-blue-600">linkedin.com/in/lucas-ladeira-loes</p>
                 </div>
             </div>
         </div>
+
+        <!-- Print-only Career Section (shows ALL entries with achievements) -->
+        <div class="print-career-section hidden" id="print-career-section"></div>
 
         <!-- Hero Section -->
         <section id="sobre" class="py-12 md:py-20 text-center relative">
@@ -540,7 +605,7 @@
             </h1>
 
             <p class="max-w-3xl mx-auto text-base sm:text-lg text-slate-600 mb-8 leading-relaxed anim-hero" data-lang-key="hero_subtitle">
-                Profissional com mais de 20 anos de experiência sólida em infraestrutura corporativa, redes, segurança da informação, suporte avançado N1/N2/N3 e administração do ecossistema Google Workspace. Histórico comprovado de liderança técnica, implementação de projetos críticos, governança e conformidade tecnológica.
+                Profissional com mais de 20 anos de experiência sólida em infraestrutura corporativa, redes, segurança da informação, suporte avançado N1/N2/N3 e administração do ecossistema Google Workspace. Histórico comprovado de liderança técnica, entrega de projetos críticos, governança de dados e conformidade tecnológica — com foco em resultados mensuráveis e continuidade operacional.
             </p>
 
             <!-- Action Buttons -->
@@ -699,7 +764,7 @@
                     </div>
 
                     <!-- Terminal Output Window -->
-                    <div id="terminal-window" class="p-5 font-mono text-xs sm:text-sm h-80 sm:h-96 overflow-y-auto leading-relaxed cursor-text" onclick="document.getElementById('terminal-input').focus()">
+                    <div id="terminal-window" class="p-5 font-mono text-xs sm:text-sm h-80 sm:h-96 overflow-y-auto leading-relaxed cursor-text" onclick="document.getElementById('terminal-input').focus()" role="log" aria-label="Terminal interativo">
                         <div id="terminal-output" class="text-slate-300 space-y-2">
                             <p class="text-slate-400" data-lang-key="terminal_welcome">
                                 [Sistema Inicializado] Bem-vindo ao Terminal de TI de Lucas Loes.<br>
@@ -708,12 +773,12 @@
                         </div>
                         <div class="flex items-center mt-3 pt-2 border-t border-slate-800/80">
                             <span class="text-emerald-400 font-semibold mr-2 whitespace-nowrap">lucas@resume:~$</span>
-                            <input type="text" id="terminal-input" class="terminal-input font-mono text-xs sm:text-sm" autocomplete="off" spellcheck="false">
+                            <input type="text" id="terminal-input" class="terminal-input font-mono text-xs sm:text-sm" autocomplete="off" spellcheck="false" inputmode="text" enterkeyhint="send" aria-label="Comando do terminal">
                         </div>
                     </div>
 
                     <!-- Quick Command Chips -->
-                    <div class="bg-slate-950 px-4 py-2.5 border-t border-slate-800 flex flex-wrap items-center gap-2 text-xs">
+                    <div class="bg-slate-950 px-4 py-3 border-t border-slate-800 flex flex-wrap items-center gap-2 text-xs">
                         <span class="text-slate-400 font-mono text-[11px]" data-lang-key="terminal_chips_label">Atalhos rápidos:</span>
                         <div id="terminal-chips-list" class="flex flex-wrap items-center gap-2"></div>
                     </div>
@@ -865,7 +930,7 @@
                     hero_badge: "Certificado Google Workspace Administrator & 20+ Anos em Tecnologia",
                     hero_title_prefix: "Analista de TI Sênior &",
                     hero_title_highlight: "Administrador Google Workspace",
-                    hero_subtitle: "Profissional com mais de 20 anos de experiência sólida em infraestrutura corporativa, redes, segurança da informação, suporte avançado N1/N2/N3 e administração do ecossistema Google Workspace. Histórico comprovado de liderança técnica, implementação de projetos críticos, governança e conformidade tecnológica.",
+                    hero_subtitle: "Profissional com mais de 20 anos de experiência sólida em infraestrutura corporativa, redes, segurança da informação, suporte avançado N1/N2/N3 e administração do ecossistema Google Workspace. Histórico comprovado de liderança técnica, entrega de projetos críticos, governança de dados e conformidade tecnológica — com foco em resultados mensuráveis e continuidade operacional.",
                     whatsapp_btn: "WhatsApp",
                     email_btn: "E-mail",
                     download_cv_btn: "Salvar / Imprimir PDF",
@@ -937,10 +1002,10 @@
                             tags: ['Google Workspace', 'Google Cloud', 'Suporte N2/N3', 'Segurança & MFA', 'DNS & Mensageria'],
                             description: 'Prestação de serviços especializada em suporte corporativo avançado e administração completa do ecossistema Google Workspace, governança de dados, conformidade e segurança da informação.',
                             achievements: [
-                                'Administração avançada de instâncias corporativas do Google Workspace: gestão de usuários, grupos, unidades organizacionais (OUs), permissões e políticas de segurança.',
-                                'Atendimento consultivo e resolução de chamados de suporte N2/N3 com alto SLA e satisfação de usuários corporativos.',
-                                'Conquista da certificação oficial Google Cloud: Associate Google Workspace Administrator Certification.',
-                                'Implementação de melhores práticas de segurança: autenticação multifator (MFA/2FA), políticas de acesso condicional, auditoria de logs e proteção contra vazamento de dados.',
+                                'Administração avançada de instâncias corporativas do Google Workspace: gerenciamento de usuários, grupos, unidades organizacionais (OUs), permissões e políticas de segurança.',
+                                'Prestação de atendimento consultivo e resolução de chamados de suporte N2/N3 com alto SLA e elevada satisfação dos usuários corporativos.',
+                                'Conquista da certificação oficial Google Cloud: Associate Google Workspace Administrator Certification — validando excelência técnica no ecossistema.',
+                                'Implementação de melhores práticas de segurança: autenticação multifator (MFA/2FA), políticas de acesso condicional, auditoria de logs e proteção contra vazamento de dados (DLP).',
                                 'Configuração e monitoramento de registros de mensageria corporativa (DNS, MX, SPF, DKIM e DMARC) garantindo máxima entregabilidade e mitigação de spoofing/phishing.'
                             ]
                         },
@@ -955,11 +1020,11 @@
                             tags: ['Windows Server', 'Active Directory', 'Firewalls', 'macOS', 'LGPD', 'ERP Publi Manager'],
                             description: 'Responsável pela gestão completa e autônoma da infraestrutura de tecnologia, liderando projetos estratégicos de modernização e assegurando estabilidade contínua para mais de 100 usuários em ambiente híbrido (Windows e macOS).',
                             achievements: [
-                                'Gerenciei de ponta a ponta a infraestrutura de TI (servidores físicos e virtuais, rede cabeada/Wi-Fi, estações de trabalho e telefonia).',
-                                'Liderei projetos de migração e implantação de sistemas críticos (ERP Publi Manager, Servidores Virtuais, Firewall perimetral e e-mail).',
-                                'Conduzi o processo institucional de adequação da empresa à LGPD em cooperação com consultorias jurídicas e técnicas externas.',
-                                'Prestei suporte técnico especializado em níveis 1, 2 e 3 para equipes criativas e administrativas.',
-                                'Responsável pelo ciclo completo de vida dos ativos de TI (planejamento, aquisição, inventário, manutenção e descarte seguro).'
+                                'Gerenciamento de ponta a ponta da infraestrutura de TI: servidores físicos e virtuais, redes cabeadas e Wi-Fi, estações de trabalho, periféricos e telefonia IP corporativa.',
+                                'Liderança de projetos de migração e implantação de sistemas críticos: ERP Publi Manager, servidores virtuais, firewall perimetral e plataforma de e-mail corporativo.',
+                                'Condução do processo institucional de adequação à LGPD em cooperação com consultorias jurídicas e técnicas especializadas, garantindo conformidade regulatória.',
+                                'Prestação de suporte técnico especializado nos níveis N1, N2 e N3 para equipes criativas, administrativas e executivas com elevado índice de resolução no primeiro contato.',
+                                'Gestão completa do ciclo de vida dos ativos de TI: planejamento, especificação, aquisição, inventário ativo, manutenção preventiva/corretiva e descarte ecológico seguro.'
                             ]
                         },
                         {
@@ -973,10 +1038,10 @@
                             tags: ['Redes Locais', 'Suporte Remoto', 'Windows & macOS', 'Consultoria de TI'],
                             description: 'Atuação como consultor independente, construindo carteira sólida de clientes corporativos e residenciais com soluções completas de infraestrutura e suporte.',
                             achievements: [
-                                'Construí e gerenciei carteira ativa com 25 clientes corporativos fixos e mais de 100 clientes sob demanda.',
-                                'Projetei e implementei redes estruturadas de pequeno e médio porte para escritórios e consultórios.',
-                                'Prestei suporte presencial e remoto com resolução ágil e alto índice de fidelização.',
-                                'Especialista em manutenção de ecossistemas mistos Windows (95 a 7) e macOS (10.4 a 10.7).'
+                                'Construção e gerenciamento de carteira ativa com 25 clientes corporativos fixos e mais de 100 clientes sob demanda, com alto índice de retenção e fidelização.',
+                                'Projeto e implementação de redes estruturadas de pequeno e médio porte para escritórios, consultórios e pequenas empresas.',
+                                'Prestação de suporte técnico presencial e remoto com resolução ágil, SLA cumprido e elevado índice de satisfação e fidelização.',
+                                'Especialização em ecossistemas mistos Windows (95 a 7) e macOS (10.4 a 10.7) — garantindo compatibilidade e estabilidade em ambientes heterogêneos.'
                             ]
                         },
                         {
@@ -990,9 +1055,9 @@
                             tags: ['Hardware', 'Manutenção Corretiva', 'Gestão de Equipe'],
                             description: 'Atuação estratégica no crescimento da empresa, gerenciando o setor de manutenção técnica e expansão da base de atendimento.',
                             achievements: [
-                                'Contribuição direta na duplicação da carteira de clientes atendidos pela empresa, evoluindo de 200 para 400 clientes.',
-                                'Gerenciei a operação da oficina de manutenção durante períodos sazonais de alta criticidade.',
-                                'Execução de reparos eletrônicos preventivos e corretivos em hardware e software corporativo.'
+                                'Contribuição direta na duplicação da carteira de clientes atendidos pela empresa, evoluindo de 200 para 400 clientes ativos no período.',
+                                'Gerenciamento da operação da oficina de manutenção durante períodos sazonais de alta criticidade, assegurando continuidade e qualidade do atendimento.',
+                                'Execução de reparos eletrônicos preventivos e corretivos em hardware e software corporativo com rastreamento de chamados e controle de qualidade.'
                             ]
                         },
                         {
@@ -1006,9 +1071,9 @@
                             tags: ['Montagem de PCs', 'Testes de Estresse', 'Bancada'],
                             description: 'Início da trajetória profissional em bancada industrial, com foco em montagem, configuração e testes de conformidade de hardware.',
                             achievements: [
-                                'Montei e homologuei mais de 1.000 computadores novos com controle de qualidade rigoroso.',
-                                'Diagnostiquei e recuperei mais de 800 equipamentos com falhas eletrônicas e de componentes.',
-                                'Desenvolvimento de sólida base prática em arquitetura de computadores e diagnóstico avançado.'
+                                'Montagem e homologação de mais de 1.000 computadores novos em linha de produção, com controle de qualidade rigoroso e testes de estresse.',
+                                'Diagnóstico e recuperação de mais de 800 equipamentos com falhas eletrônicas, de componentes e de software — índice de recuperação superior a 90%.',
+                                'Desenvolvimento de sólida base prática em arquitetura de computadores, diagnóstico avançado de hardware e resolução de falhas em componentes de bancada.'
                             ]
                         }
                     ],
@@ -2026,7 +2091,7 @@
                 if (!chipsContainer) return;
                 const chips = chipDefinitions[lang] || chipDefinitions.pt;
                 chipsContainer.innerHTML = chips.map(c => `
-                    <button class="term-chip font-mono bg-slate-800 hover:bg-slate-700 ${c.color} px-2.5 py-1 rounded text-xs transition-colors" data-cmd="${c.cmd}">${c.label}</button>
+                    <button class="term-chip font-mono bg-slate-800 hover:bg-slate-700 active:bg-slate-600 ${c.color} px-3 py-1.5 rounded text-xs transition-colors touch-manipulation select-none" data-cmd="${c.cmd}" style="-webkit-tap-highlight-color: transparent;">${c.label}</button>
                 `).join('');
             }
 
@@ -2072,7 +2137,11 @@
                 }
 
                 terminalInput.value = '';
-                terminalWindow.scrollTop = terminalWindow.scrollHeight;
+                // Scroll to bottom — works on both desktop and mobile
+                requestAnimationFrame(() => {
+                    terminalWindow.scrollTop = terminalWindow.scrollHeight;
+                    terminalWindow.scrollTo({ top: terminalWindow.scrollHeight, behavior: 'smooth' });
+                });
             }
 
             terminalInput.addEventListener('keydown', (e) => {
@@ -2081,13 +2150,42 @@
                 }
             });
 
-            // Quick terminal chips click delegation
+            // Mobile: submit on 'go'/'search' keyboard buttons
+            terminalInput.addEventListener('keyup', (e) => {
+                if (e.key === 'Enter') {
+                    terminalInput.blur(); // dismiss mobile keyboard after submit
+                }
+            });
+
+            // Quick terminal chips click delegation — supports both click and touch
             const chipsList = document.getElementById('terminal-chips-list');
             if (chipsList) {
                 chipsList.addEventListener('click', (e) => {
                     const chip = e.target.closest('.term-chip');
                     if (chip) {
                         executeCommand(chip.dataset.cmd);
+                        // On mobile, don't re-focus input (avoid keyboard popping up unexpectedly)
+                        if (window.innerWidth >= 768) {
+                            terminalInput.focus();
+                        }
+                    }
+                });
+
+                // Touch events for better mobile responsiveness
+                chipsList.addEventListener('touchend', (e) => {
+                    const chip = e.target.closest('.term-chip');
+                    if (chip) {
+                        e.preventDefault();
+                        executeCommand(chip.dataset.cmd);
+                    }
+                }, { passive: false });
+            }
+
+            // Allow tapping the terminal window to focus input on mobile
+            if (terminalWindow) {
+                terminalWindow.addEventListener('touchend', (e) => {
+                    // Only focus if tapping on the output area (not on chips)
+                    if (!e.target.closest('.term-chip') && !e.target.closest('a')) {
                         terminalInput.focus();
                     }
                 });
@@ -2143,6 +2241,41 @@
             let prePrintCategory = 'all';
             let prePrintSearch = '';
 
+            function renderPrintCareerSection(lang) {
+                const printSection = document.getElementById('print-career-section');
+                if (!printSection) return;
+                const experiences = translations[lang].experienceData;
+                const t = translations[lang];
+
+                printSection.innerHTML = `
+                    <section style="padding-top:10px; padding-bottom:10px; border-top: 1px solid #E2E8F0; margin: 0;">
+                        <div style="margin-bottom:10px;">
+                            <span style="font-size:7pt; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:#2563EB;">${t.career_eyebrow || 'Trajetória e Impacto'}</span>
+                            <h2 style="font-size:13pt; font-weight:800; color:#0F172A; margin:2px 0 0 0;">${t.career_title || 'Jornada Profissional'}</h2>
+                        </div>
+                        <div>
+                            ${experiences.map(exp => `
+                                <div class="print-career-entry">
+                                    <div class="print-career-entry-header">
+                                        <h3>${exp.role}</h3>
+                                        <span class="period">${exp.period}</span>
+                                    </div>
+                                    <p class="company">${exp.company}</p>
+                                    ${exp.roleSub ? `<p class="role-sub">${exp.roleSub}</p>` : ''}
+                                    <p class="description">${exp.description}</p>
+                                    <ul class="achievements-list">
+                                        ${exp.achievements.map(a => `<li>${a}</li>`).join('')}
+                                    </ul>
+                                    <div class="tags-row">
+                                        ${exp.tags.map(tag => `<span>${tag}</span>`).join('')}
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </section>
+                `;
+            }
+
             function preparePrint() {
                 // 1. Save user's current interactive filter and search
                 prePrintCategory = currentCategory;
@@ -2151,7 +2284,10 @@
                 // 2. Render ALL 12 skills for print
                 renderSkills(currentLang, 'all', '');
 
-                // 3. Fill in stat counters with their final numbers so they don't print as 0
+                // 3. Render all career entries in the print-only section
+                renderPrintCareerSection(currentLang);
+
+                // 4. Fill in stat counters with their final numbers so they don't print as 0
                 document.querySelectorAll('.anim-stat-card .stat-number').forEach(span => {
                     const target = span.dataset.target || '';
                     const suffixKey = span.dataset.suffixKey;
@@ -2159,7 +2295,7 @@
                     span.innerText = target + suffix;
                 });
 
-                // 4. Force GSAP animated elements to be fully visible with no offset
+                // 5. Force GSAP animated elements to be fully visible with no offset
                 document.querySelectorAll('.anim-hero, .anim-section-title, .anim-stat-card, .anim-education-card').forEach(el => {
                     el.style.opacity = '1';
                     el.style.transform = 'none';
@@ -2169,6 +2305,9 @@
             function restoreAfterPrint() {
                 // Restore the user's category filter and search
                 renderSkills(currentLang, prePrintCategory, prePrintSearch);
+                // Clear the print-only career section
+                const printSection = document.getElementById('print-career-section');
+                if (printSection) printSection.innerHTML = '';
             }
 
             function triggerPrint() {
