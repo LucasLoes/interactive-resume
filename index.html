@@ -751,53 +751,6 @@
                 </p>
             </div>
 
-            <!-- Top Recruiter Quick-Scan Badges -->
-            <div class="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 mb-8 shadow-sm">
-                <div class="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
-                    <span class="font-bold text-slate-800 flex items-center gap-2">
-                        <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                        </svg>
-                        <span data-lang-key="quick_scan_title">Destaques para Recrutamento (Quick-Scan):</span>
-                    </span>
-                    <div class="flex flex-wrap gap-2 justify-center">
-                        <span data-lang-key="badge_gw" class="bg-blue-50 text-blue-700 font-semibold px-2.5 py-1 rounded-md border border-blue-200/60">Google Workspace Admin</span>
-                        <span data-lang-key="badge_google_it" class="bg-cyan-50 text-cyan-800 font-semibold px-2.5 py-1 rounded-md border border-cyan-200/60">Suporte TI Google</span>
-                        <span data-lang-key="badge_ws" class="bg-indigo-50 text-indigo-700 font-semibold px-2.5 py-1 rounded-md border border-indigo-200/60">Windows Server & AD</span>
-                        <span data-lang-key="badge_net" class="bg-sky-50 text-sky-700 font-semibold px-2.5 py-1 rounded-md border border-sky-200/60">Redes TCP/IP & VPN</span>
-                        <span data-lang-key="badge_sec" class="bg-amber-50 text-amber-800 font-semibold px-2.5 py-1 rounded-md border border-amber-200/60">Firewalls & Segurança</span>
-                        <span data-lang-key="badge_sup" class="bg-emerald-50 text-emerald-700 font-semibold px-2.5 py-1 rounded-md border border-emerald-200/60">Suporte N1/N2/N3</span>
-                        <span data-lang-key="badge_mac" class="bg-purple-50 text-purple-700 font-semibold px-2.5 py-1 rounded-md border border-purple-200/60">macOS & Hardware</span>
-                        <span data-lang-key="badge_lgpd" class="bg-rose-50 text-rose-700 font-semibold px-2.5 py-1 rounded-md border border-rose-200/60">LGPD & Compliance</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Recruiter Quick-Match (Filter by Job Role) -->
-            <div class="bg-gradient-to-r from-blue-50/80 via-slate-50 to-indigo-50/80 border border-blue-100 rounded-2xl p-4 mb-6 shadow-xs flex flex-col lg:flex-row items-center justify-between gap-3 text-xs no-print">
-                <div class="flex items-center gap-2 font-bold text-slate-800 shrink-0">
-                    <span class="inline-flex items-center justify-center w-6 h-6 rounded-lg bg-blue-600 text-white text-[11px] shadow-sm">🎯</span>
-                    <span data-lang-key="recruiter_match_title">Filtrar por Perfil de Vaga (Recruiter Match):</span>
-                </div>
-                <div class="flex flex-wrap gap-2 justify-center" id="recruiter-match-group">
-                    <button class="recruiter-match-btn active px-3 py-1.5 rounded-lg font-semibold border border-blue-300 bg-blue-600 text-white transition-all shadow-xs" data-match="all">
-                        <span data-lang-key="match_all">Todas</span>
-                    </button>
-                    <button class="recruiter-match-btn px-3 py-1.5 rounded-lg font-medium border border-slate-200 bg-white hover:border-blue-400 hover:text-blue-600 transition-all text-slate-700" data-match="support">
-                        🛠️ <span data-lang-key="match_support">Suporte N2/N3 & Helpdesk</span>
-                    </button>
-                    <button class="recruiter-match-btn px-3 py-1.5 rounded-lg font-medium border border-slate-200 bg-white hover:border-blue-400 hover:text-blue-600 transition-all text-slate-700" data-match="cloud">
-                        ☁️ <span data-lang-key="match_cloud">Google Workspace & Cloud</span>
-                    </button>
-                    <button class="recruiter-match-btn px-3 py-1.5 rounded-lg font-medium border border-slate-200 bg-white hover:border-blue-400 hover:text-blue-600 transition-all text-slate-700" data-match="infra">
-                        🖥️ <span data-lang-key="match_infra">SysAdmin & Redes TCP/IP</span>
-                    </button>
-                    <button class="recruiter-match-btn px-3 py-1.5 rounded-lg font-medium border border-slate-200 bg-white hover:border-blue-400 hover:text-blue-600 transition-all text-slate-700" data-match="security">
-                        🛡️ <span data-lang-key="match_security">Segurança & LGPD</span>
-                    </button>
-                </div>
-            </div>
-
             <!-- Category Filter Tabs & Instant Search -->
             <div class="flex flex-col md:flex-row items-center justify-between gap-4 mb-8 no-print">
                 <!-- Filter Tabs -->
@@ -1041,13 +994,6 @@
                     nav_skills: "Competências",
                     nav_terminal: "Terminal",
                     nav_education: "Formação",
-                    badge_google_it: "Suporte TI Google",
-                    recruiter_match_title: "Filtro por Perfil de Vaga (Recruiter Match):",
-                    match_all: "Todas",
-                    match_support: "Suporte N2/N3 & Helpdesk",
-                    match_cloud: "Google Workspace & Cloud",
-                    match_infra: "SysAdmin & Redes TCP/IP",
-                    match_security: "Segurança & LGPD",
                     skills_empty_title: "Nenhuma competência encontrada para os filtros atuais.",
                     skills_empty_desc: "Tente remover o filtro de busca ou alternar a categoria.",
                     view_specialization_btn: "Ver 5 Certificados & Detalhes",
@@ -1087,7 +1033,6 @@
                     skills_eyebrow: "Domínio Técnico & Ferramentas",
                     skills_title: "Matriz de Competências",
                     skills_subtitle: "Estrutura organizada de conhecimentos técnicos, categorizados por área de atuação com indicação de proficiência e contexto prático.",
-                    quick_scan_title: "Destaques para Recrutamento (Quick-Scan):",
                     tab_all: "Todas",
                     tab_cloud: "Cloud & SaaS",
                     tab_infra: "Infra & Redes",
@@ -1122,13 +1067,6 @@
                     view_certificates: "Ver Certificados",
                     view_diploma: "Ver Diploma",
                     view_credential: "Ver Credencial Oficial",
-                    badge_gw: "Google Workspace Admin",
-                    badge_ws: "Windows Server & AD",
-                    badge_net: "Redes TCP/IP & VPN",
-                    badge_sec: "Firewalls & Segurança",
-                    badge_sup: "Suporte N1/N2/N3",
-                    badge_mac: "macOS & Hardware",
-                    badge_lgpd: "LGPD & Conformidade",
                     timeline_summary_title: "Resumo da Atuação",
                     timeline_achievements_title: "Principais Entregas & Conquistas",
                     timeline_tech_title: "Tecnologias & Domínios Aplicados",
@@ -1511,13 +1449,6 @@
                     nav_skills: "Skills",
                     nav_terminal: "Terminal",
                     nav_education: "Education",
-                    badge_google_it: "Google IT Support",
-                    recruiter_match_title: "Filter by Job Profile (Recruiter Match):",
-                    match_all: "All",
-                    match_support: "L2/L3 Support & Helpdesk",
-                    match_cloud: "Google Workspace & Cloud",
-                    match_infra: "SysAdmin & Networking TCP/IP",
-                    match_security: "Security & Compliance",
                     skills_empty_title: "No skills found for the current filters.",
                     skills_empty_desc: "Try clearing the search query or switching categories.",
                     view_specialization_btn: "View 5 Certificates & Details",
@@ -1557,7 +1488,6 @@
                     skills_eyebrow: "Technical Mastery & Tools",
                     skills_title: "Skills Matrix",
                     skills_subtitle: "Organized technical skillset categorized by domain, indicating proficiency levels and real-world career context.",
-                    quick_scan_title: "Recruiter Quick-Scan Highlights:",
                     tab_all: "All",
                     tab_cloud: "Cloud & SaaS",
                     tab_infra: "Infra & Networks",
@@ -1592,13 +1522,6 @@
                     view_certificates: "View Certificates",
                     view_diploma: "View Degree",
                     view_credential: "View Official Credential",
-                    badge_gw: "Google Workspace Admin",
-                    badge_ws: "Windows Server & AD",
-                    badge_net: "TCP/IP Networks & VPN",
-                    badge_sec: "Firewalls & Security",
-                    badge_sup: "L1/L2/L3 Support",
-                    badge_mac: "macOS & Hardware",
-                    badge_lgpd: "LGPD & Compliance",
                     timeline_summary_title: "Role Overview",
                     timeline_achievements_title: "Key Deliverables & Achievements",
                     timeline_tech_title: "Applied Technologies & Domains",
@@ -2603,57 +2526,6 @@
                     node.classList.add('active');
                     updateDetails(id, currentLang, true);
                 }
-            });
-
-            // Recruiter Quick-Match (Job Profile) Buttons
-            const recruiterMatchButtons = document.querySelectorAll('.recruiter-match-btn');
-            recruiterMatchButtons.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    recruiterMatchButtons.forEach(b => {
-                        b.classList.remove('active', 'bg-blue-600', 'text-white', 'border-blue-300');
-                        b.classList.add('bg-white', 'text-slate-700', 'border-slate-200');
-                    });
-                    btn.classList.add('active', 'bg-blue-600', 'text-white', 'border-blue-300');
-                    btn.classList.remove('bg-white', 'text-slate-700', 'border-slate-200');
-
-                    const matchCategory = btn.dataset.match;
-                    currentCategory = matchCategory;
-
-                    // Sync category tabs visually
-                    document.querySelectorAll('.skill-tab-btn').forEach(tBtn => {
-                        if (tBtn.dataset.category === matchCategory) {
-                            tBtn.classList.add('active', 'bg-blue-600', 'text-white');
-                            tBtn.classList.remove('bg-white', 'text-slate-600');
-                        } else {
-                            tBtn.classList.remove('active', 'bg-blue-600', 'text-white');
-                            tBtn.classList.add('bg-white', 'text-slate-600');
-                        }
-                    });
-
-                    if (skillSearch) skillSearch.value = '';
-                    renderSkills(currentLang, matchCategory, '');
-
-                    // Smoothly scroll to skills matrix
-                    const compEl = document.getElementById('competencias');
-                    if (compEl) compEl.scrollIntoView({ behavior: 'smooth' });
-
-                    // Highlight matching experience in timeline if applicable
-                    if (matchCategory !== 'all') {
-                        const matchingItem = translations[currentLang].experienceData.find(exp => {
-                            return exp.tags && exp.tags.some(tag => {
-                                const tLower = tag.toLowerCase();
-                                if (matchCategory === 'cloud') return tLower.includes('google') || tLower.includes('cloud');
-                                if (matchCategory === 'support') return tLower.includes('suporte') || tLower.includes('support') || tLower.includes('hardware');
-                                if (matchCategory === 'infra') return tLower.includes('rede') || tLower.includes('windows server') || tLower.includes('infra');
-                                if (matchCategory === 'security') return tLower.includes('segurança') || tLower.includes('lgpd') || tLower.includes('firewall');
-                                return false;
-                            });
-                        });
-                        if (matchingItem) {
-                            updateDetails(matchingItem.id, currentLang);
-                        }
-                    }
-                });
             });
 
             // Skill Tab Click
