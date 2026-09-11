@@ -234,6 +234,31 @@
             background-color: rgba(15, 23, 42, 0.95);
         }
 
+        /* Floating Action Buttons Precision Styling */
+        #floating-whatsapp-btn {
+            width: 3.25rem;
+            height: 3.25rem;
+            flex-shrink: 0;
+        }
+        @media (min-width: 640px) {
+            #floating-whatsapp-btn {
+                width: 3.5rem;
+                height: 3.5rem;
+            }
+        }
+
+        #back-to-top-btn {
+            width: 2.625rem;
+            height: 2.625rem;
+            flex-shrink: 0;
+        }
+        @media (min-width: 640px) {
+            #back-to-top-btn {
+                width: 2.75rem;
+                height: 2.75rem;
+            }
+        }
+
         /* Print Styles for clean, professional PDF export */
         @media print {
             /* Hide web navigation, interactive widgets, modals and decorative UI */
@@ -618,27 +643,6 @@
                             </span>
                         </div>
                     </a>
-
-                    <!-- Live IT Status & SLA Widget -->
-                    <div class="relative hidden xl:block">
-                        <button id="status-widget-btn" type="button" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-emerald-50 hover:bg-emerald-100/80 text-emerald-700 border border-emerald-200/80 transition-all cursor-pointer shadow-2xs" title="Clique para ver o status de disponibilidade e SLA">
-                            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                            <span data-lang-key="status_badge">Status: Disponível • SLA &lt; 2h</span>
-                        </button>
-                        <!-- Status Popover -->
-                        <div id="status-popover" class="hidden absolute top-full left-0 mt-2 w-72 bg-white rounded-2xl p-4 shadow-xl border border-slate-200 z-50 text-xs text-slate-600 transition-all">
-                            <div class="flex items-center justify-between pb-2 mb-2 border-b border-slate-100">
-                                <span class="font-bold text-slate-900" data-lang-key="status_title">Disponibilidade Operacional</span>
-                                <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-700">100% Online</span>
-                            </div>
-                            <div class="space-y-1.5 text-[11.5px]">
-                                <p><span class="font-semibold text-slate-800" data-lang-key="status_label_location">Atuação:</span> <span data-lang-key="status_location">Belo Horizonte (Presencial/Híbrido) ou Remoto</span></p>
-                                <p><span class="font-semibold text-slate-800" data-lang-key="status_label_sla">SLA de Resposta:</span> <span data-lang-key="status_sla">&lt; 2 horas em dias úteis</span></p>
-                                <p><span class="font-semibold text-slate-800" data-lang-key="status_label_channels">Canais Ativos:</span> WhatsApp, E-mail, Terminal CLI</p>
-                                <p><span class="font-semibold text-slate-800" data-lang-key="status_label_uptime">Uptime de Carreira:</span> 20+ anos ininterruptos</p>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
                 <!-- Center: Desktop Menu -->
@@ -650,20 +654,8 @@
                     <a href="#formacao" class="nav-link font-medium text-slate-600 hover:text-blue-600 py-1" data-lang-key="nav_education">Formação</a>
                 </div>
 
-                <!-- Right: Actions (Recruiter Mode, Command Palette, Language, Print & Mobile Menu) -->
+                <!-- Right: Actions (Language, Print & Mobile Menu) -->
                 <div class="flex items-center space-x-2.5 sm:space-x-3">
-                    <!-- Command Palette Trigger -->
-                    <button id="cmd-palette-trigger" type="button" class="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-semibold text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200/80 border border-slate-200 rounded-lg transition-all" title="Buscar no currículo (Ctrl+K)">
-                        <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                        <kbd class="font-mono text-[10px] bg-white px-1.5 py-0.5 rounded border border-slate-300 text-slate-500">⌘K</kbd>
-                    </button>
-
-                    <!-- Recruiter Mode Trigger -->
-                    <button id="recruiter-mode-trigger" type="button" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 rounded-lg shadow-sm shadow-blue-500/20 hover:shadow-md transition-all hover:scale-105" title="Resumo Executivo em 60s para Recrutadores">
-                        <span>⚡</span>
-                        <span class="hidden md:inline" data-lang-key="recruiter_btn">Modo Recrutador</span>
-                    </button>
-
                     <!-- Print / PDF Button -->
                     <button onclick="triggerPrint()" title="Imprimir ou Salvar em PDF" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 border border-slate-200 rounded-lg transition-colors">
                         <svg class="w-4 h-4 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -690,10 +682,6 @@
 
         <!-- Mobile Dropdown -->
         <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-200 bg-white/95 px-4 py-3 space-y-2">
-            <button id="mobile-recruiter-btn" type="button" class="w-full text-left flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-bold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 transition-all">
-                <span>⚡</span>
-                <span data-lang-key="recruiter_btn_mobile">Modo Recrutador (Resumo em 60s)</span>
-            </button>
             <a href="#sobre" class="nav-link-mobile block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-100" data-lang-key="nav_about">Sobre</a>
             <a href="#carreira" class="nav-link-mobile block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-100" data-lang-key="nav_career">Carreira</a>
             <a href="#competencias" class="nav-link-mobile block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-100" data-lang-key="nav_skills">Competências</a>
@@ -990,158 +978,79 @@
 
     </main>
 
-    <!-- Modern Diagrammed Footer -->
-    <footer class="bg-slate-950 text-slate-300 border-t border-slate-800/80 mt-16 pt-14 pb-10 no-print relative overflow-hidden">
-        <!-- Subtle gradient background glow -->
-        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-gradient-to-b from-blue-600/10 via-indigo-600/5 to-transparent blur-3xl pointer-events-none"></div>
-
-        <div class="container mx-auto px-4 sm:px-6 max-w-6xl relative z-10">
-            <!-- 4-Column Responsive Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 pb-12 border-b border-slate-800/80">
-                
-                <!-- Column 1: Identity & Credentials -->
-                <div class="space-y-4">
+    <!-- Modern Summarized Footer -->
+    <footer class="bg-slate-950 text-slate-300 border-t border-slate-800 mt-16 py-10 no-print">
+        <div class="container mx-auto px-4 sm:px-6 max-w-6xl">
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-8 border-b border-slate-850">
+                <!-- Left: Professional Identity & Contact -->
+                <div class="space-y-1.5">
                     <div class="flex items-center gap-2.5">
-                        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white font-black text-base shadow-lg shadow-blue-500/20">
+                        <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white font-bold text-sm shadow-md">
                             LL
                         </div>
                         <div>
                             <h3 class="font-bold text-white text-base leading-tight">Lucas Ladeira Loes</h3>
-                            <p class="text-[11px] text-blue-400 font-mono" data-lang-key="footer_role_tag">Analista de TI &bull; Google Workspace</p>
+                            <p class="text-xs text-blue-400 font-medium" data-lang-key="footer_subtitle">Analista de TI Sênior &bull; Administrador Google Workspace</p>
                         </div>
                     </div>
-                    <p class="text-xs text-slate-400 leading-relaxed" data-lang-key="footer_bio">
-                        Mais de 20 anos de excelência em infraestrutura, redes corporativas, administração em nuvem Google Workspace e governança de tecnologia.
-                    </p>
-                    <div class="pt-2 flex flex-col gap-2 text-xs">
-                        <a href="https://wa.me/5531991643134?text=Ol%C3%A1%2C%20Lucas!%20Analisei%20o%20seu%20curr%C3%ADculo%20e%20gostaria%20de%20saber%20" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-emerald-400 hover:text-emerald-300 font-medium transition-colors">
-                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                            <span>WhatsApp: (31) 99164-3134</span>
-                        </a>
-                        <a href="mailto:lucasladeiraloes@gmail.com" class="inline-flex items-center gap-2 text-slate-300 hover:text-white transition-colors">
-                            <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    <p class="text-xs text-slate-400 pt-1 flex flex-wrap items-center gap-x-3 gap-y-1">
+                        <a href="mailto:lucasladeiraloes@gmail.com" class="hover:text-white transition-colors flex items-center gap-1">
+                            <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                             <span>lucasladeiraloes@gmail.com</span>
                         </a>
-                        <span class="text-slate-400 text-xs flex items-center gap-1.5">
-                            <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                            Belo Horizonte, MG &bull; Brasil
-                        </span>
-                    </div>
-                </div>
-
-                <!-- Column 2: Helpful Books Ecosystem -->
-                <div class="space-y-3">
-                    <div class="flex items-center gap-2">
-                        <span class="text-xs font-bold uppercase tracking-wider text-amber-400 font-mono" data-lang-key="footer_col2_heading">Ecossistema Digital</span>
-                    </div>
-                    <h4 class="text-sm font-semibold text-white">Helpful Books</h4>
-                    <p class="text-xs text-slate-400 leading-relaxed" data-lang-key="footer_col2_desc">
-                        Plataforma de conteúdo editorial, tecnologia e difusão de conhecimento prático.
-                    </p>
-                    <ul class="space-y-2 pt-1 text-xs">
-                        <li>
-                            <a href="https://helpfulbooks.com.br/" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-slate-800/90 border border-slate-800 hover:border-amber-500/40 text-slate-300 hover:text-white transition-all">
-                                <span class="flex items-center gap-2">
-                                    <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>
-                                    <span>helpfulbooks.com.br</span>
-                                </span>
-                                <span class="text-[10px] text-amber-400/80 group-hover:translate-x-0.5 transition-transform">&rarr;</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.instagram.com/helpfulbooksbr/" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-slate-800/90 border border-slate-800 hover:border-pink-500/40 text-slate-300 hover:text-white transition-all">
-                                <span class="flex items-center gap-2">
-                                    <svg class="w-4 h-4 text-pink-400 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                                    <span>@helpfulbooksbr</span>
-                                </span>
-                                <span class="text-[10px] text-pink-400/80 group-hover:translate-x-0.5 transition-transform">&rarr;</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.youtube.com/@HelpfulBooks-u9q" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-slate-800/90 border border-slate-800 hover:border-red-500/40 text-slate-300 hover:text-white transition-all">
-                                <span class="flex items-center gap-2">
-                                    <svg class="w-4 h-4 text-red-500 fill-current" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                                    <span>YouTube HelpfulBooks</span>
-                                </span>
-                                <span class="text-[10px] text-red-400/80 group-hover:translate-x-0.5 transition-transform">&rarr;</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Column 3: Open Source & Code -->
-                <div class="space-y-3">
-                    <div class="flex items-center gap-2">
-                        <span class="text-xs font-bold uppercase tracking-wider text-sky-400 font-mono" data-lang-key="footer_col3_heading">Código & Open Source</span>
-                    </div>
-                    <h4 class="text-sm font-semibold text-white">GitHub & Repositório</h4>
-                    <p class="text-xs text-slate-400 leading-relaxed" data-lang-key="footer_col3_desc">
-                        Código-fonte aberto deste currículo interativo, histórico de versões e implementação técnica.
-                    </p>
-                    <div class="space-y-2 pt-1 text-xs">
-                        <a href="https://github.com/LucasLoes/interactive-resume" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between p-2.5 rounded-lg bg-slate-900/80 hover:bg-slate-800/90 border border-slate-800 hover:border-blue-500/40 text-slate-200 hover:text-white transition-all">
-                            <span class="flex items-center gap-2">
-                                <svg class="w-4 h-4 fill-current text-white" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-                                <span class="font-medium">interactive-resume</span>
-                            </span>
-                            <span class="inline-flex items-center text-[10px] font-mono px-1.5 py-0.5 rounded bg-blue-900/60 text-blue-300 border border-blue-700/50">main</span>
+                        <span class="text-slate-600">&bull;</span>
+                        <a href="https://wa.me/5531991643134" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-400 transition-colors flex items-center gap-1">
+                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                            <span>(31) 99164-3134</span>
                         </a>
-
-                        <a href="https://www.linkedin.com/in/lucas-ladeira-loes/" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between p-2 rounded-lg bg-slate-900/80 hover:bg-slate-800/90 border border-slate-800 hover:border-blue-500/40 text-slate-300 hover:text-white transition-all">
-                            <span class="flex items-center gap-2">
-                                <svg class="w-4 h-4 fill-current text-[#0A66C2]" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76c-.92 0-1.66-.74-1.66-1.66 0-.91.74-1.66 1.66-1.66.92 0 1.66.75 1.66 1.66 0 .92-.74 1.66-1.66 1.66m1.39 9.74v-8.37H5.07v8.37h2.78z"/></svg>
-                                <span>LinkedIn Oficial</span>
-                            </span>
-                            <span class="text-[10px] text-blue-400/80 group-hover:translate-x-0.5 transition-transform">&rarr;</span>
-                        </a>
-                    </div>
+                        <span class="text-slate-600">&bull;</span>
+                        <span>Belo Horizonte, MG</span>
+                    </p>
                 </div>
 
-                <!-- Column 4: Quick Navigation & Tools -->
-                <div class="space-y-3">
-                    <div class="flex items-center gap-2">
-                        <span class="text-xs font-bold uppercase tracking-wider text-emerald-400 font-mono" data-lang-key="footer_col4_heading">Navegação & Ferramentas</span>
-                    </div>
-                    <h4 class="text-sm font-semibold text-white" data-lang-key="footer_tools_title">Acesso Rápido</h4>
-                    <div class="grid grid-cols-2 gap-1.5 text-xs">
-                        <a href="#sobre" class="text-slate-400 hover:text-white py-1 transition-colors" data-lang-key="nav_about">Sobre</a>
-                        <a href="#carreira" class="text-slate-400 hover:text-white py-1 transition-colors" data-lang-key="nav_career">Carreira</a>
-                        <a href="#competencias" class="text-slate-400 hover:text-white py-1 transition-colors" data-lang-key="nav_skills">Competências</a>
-                        <a href="#terminal" class="text-slate-400 hover:text-white py-1 transition-colors" data-lang-key="nav_terminal">Terminal</a>
-                        <a href="#formacao" class="text-slate-400 hover:text-white py-1 transition-colors" data-lang-key="nav_education">Formação</a>
-                        <button type="button" onclick="triggerPrint()" class="text-left text-blue-400 hover:text-blue-300 py-1 transition-colors" data-lang-key="print_cv">PDF / Imprimir</button>
-                    </div>
+                <!-- Right: Compact Link Badges (GitHub, Helpful Books, Instagram, YouTube, LinkedIn) -->
+                <div class="flex flex-wrap items-center gap-2">
+                    <!-- GitHub Repo -->
+                    <a href="https://github.com/LucasLoes/interactive-resume" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white text-xs border border-slate-800 hover:border-slate-700 transition-colors" title="Código-fonte no GitHub">
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+                        <span>GitHub</span>
+                    </a>
 
-                    <!-- Shortcut triggers -->
-                    <div class="pt-2 flex flex-col gap-1.5">
-                        <button type="button" onclick="openRecruiterModal()" class="w-full text-left flex items-center justify-between px-2.5 py-1.5 rounded-lg bg-indigo-950/60 hover:bg-indigo-900/60 border border-indigo-800/60 text-indigo-300 hover:text-white text-xs transition-colors">
-                            <span class="flex items-center gap-1.5">
-                                <span>⚡</span>
-                                <span data-lang-key="footer_recruiter_link">Modo Recrutador (60s)</span>
-                            </span>
-                            <span class="text-[10px] font-mono opacity-70">ABRIR</span>
-                        </button>
-                        <button type="button" onclick="openCommandPalette()" class="w-full text-left flex items-center justify-between px-2.5 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-850 border border-slate-800 text-slate-300 hover:text-white text-xs transition-colors">
-                            <span class="flex items-center gap-1.5">
-                                <span>⌘</span>
-                                <span data-lang-key="footer_palette_link">Command Palette</span>
-                            </span>
-                            <kbd class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-slate-800 text-slate-400">Ctrl+K</kbd>
-                        </button>
-                    </div>
+                    <!-- Helpful Books Website -->
+                    <a href="https://helpfulbooks.com.br/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white text-xs border border-slate-800 hover:border-amber-500/40 transition-colors" title="Portal Helpful Books">
+                        <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>
+                        <span>Helpful Books</span>
+                    </a>
+
+                    <!-- Instagram -->
+                    <a href="https://www.instagram.com/helpfulbooksbr/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white text-xs border border-slate-800 hover:border-pink-500/40 transition-colors" title="Instagram Helpful Books">
+                        <svg class="w-4 h-4 text-pink-400 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                        <span>Instagram</span>
+                    </a>
+
+                    <!-- YouTube -->
+                    <a href="https://www.youtube.com/@HelpfulBooks-u9q" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white text-xs border border-slate-800 hover:border-red-500/40 transition-colors" title="Canal YouTube">
+                        <svg class="w-4 h-4 text-red-500 fill-current" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                        <span>YouTube</span>
+                    </a>
+
+                    <!-- LinkedIn -->
+                    <a href="https://www.linkedin.com/in/lucas-ladeira-loes/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white text-xs border border-slate-800 hover:border-blue-500/40 transition-colors" title="LinkedIn Oficial">
+                        <svg class="w-4 h-4 fill-current text-[#0A66C2]" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76c-.92 0-1.66-.74-1.66-1.66 0-.91.74-1.66 1.66-1.66.92 0 1.66.75 1.66 1.66 0 .92-.74 1.66-1.66 1.66m1.39 9.74v-8.37H5.07v8.37h2.78z"/></svg>
+                        <span>LinkedIn</span>
+                    </a>
                 </div>
-
             </div>
 
             <!-- Bottom Sub-bar: Status & Copyright -->
-            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+            <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500">
                 <div class="flex items-center gap-2">
-                    <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-950/60 border border-emerald-800/50 text-emerald-400 font-mono text-[11px]">
-                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-950/60 border border-emerald-800/50 text-emerald-400 font-mono text-[11px]">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
                         <span data-lang-key="footer_status_sla">Status Operacional: 99.9% SLA Ativo</span>
                     </span>
                     <span class="hidden md:inline text-slate-700">&bull;</span>
-                    <span class="hidden md:inline text-slate-400 text-[11px]" data-lang-key="footer_built_with">HTML5 Semântico &bull; TailwindCSS &bull; Vanilla JS</span>
+                    <span class="hidden md:inline text-slate-400 text-[11px]">Belo Horizonte, MG &bull; Brasil</span>
                 </div>
 
                 <div class="text-center sm:text-right">
@@ -1315,29 +1224,36 @@
         </div>
     </div>
 
-    <!-- Floating WhatsApp CTA Button (Tracks Scroll Bottom-Right) -->
-    <aside id="floating-whatsapp-btn" class="fixed bottom-6 right-6 z-40 flex items-center group no-print" aria-label="Fale comigo no WhatsApp">
-        <a href="https://wa.me/5531991643134?text=Ol%C3%A1%2C%20Lucas!%20Analisei%20o%20seu%20curr%C3%ADculo%20e%20gostaria%20de%20saber%20" 
-           target="_blank" 
-           rel="noopener noreferrer"
-           class="flex items-center gap-2.5 sm:gap-3 bg-emerald-500 hover:bg-emerald-600 text-white pl-3.5 sm:pl-4 pr-4 sm:pr-5 py-3 sm:py-3.5 rounded-full shadow-2xl shadow-emerald-500/40 hover:shadow-emerald-500/60 transition-all duration-300 transform hover:scale-105 active:scale-95 border-2 border-white/20">
-            <div class="relative flex items-center justify-center">
-                <span class="absolute -top-1 -right-1 w-2.5 h-2.5 bg-white rounded-full animate-ping"></span>
-                <svg class="w-5 h-5 sm:w-6 sm:h-6 fill-current text-white" viewBox="0 0 24 24">
-                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
-                </svg>
-            </div>
-            <span class="text-xs sm:text-sm font-bold tracking-tight whitespace-nowrap" data-lang-key="whatsapp_floating_label">Conversar no WhatsApp</span>
-        </a>
-    </aside>
+    <!-- Floating Action Buttons Container (Bottom-Right, Perfectly Aligned) -->
+    <div class="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-40 flex flex-col items-center gap-2.5 sm:gap-3 no-print" aria-label="Ações Rápidas">
+        <!-- Floating Back to Top Button (Aligned vertically above WhatsApp) -->
+        <button id="back-to-top-btn" 
+                type="button" 
+                class="w-10 h-10 sm:w-11 sm:h-11 bg-slate-900/90 hover:bg-slate-900 text-white rounded-full shadow-lg border border-slate-700/60 flex items-center justify-center transition-all duration-300 opacity-0 pointer-events-none hover:-translate-y-1 hover:shadow-xl focus:outline-none" 
+                aria-label="Voltar ao Topo" 
+                title="Voltar ao Topo">
+            <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+            </svg>
+        </button>
 
-    <!-- Floating Back to Top Button -->
-    <button id="back-to-top-btn" type="button" class="fixed bottom-6 right-64 z-40 hidden sm:flex items-center justify-center w-11 h-11 bg-slate-900/90 hover:bg-slate-900 text-white rounded-full shadow-lg border border-slate-700/60 transition-all duration-300 opacity-0 pointer-events-none hover:-translate-y-1 no-print" aria-label="Voltar ao Topo" title="Voltar ao Topo">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
-    </button>
+        <!-- Floating WhatsApp Button (Icon Only, Clean & Modern) -->
+        <a id="floating-whatsapp-btn" 
+           href="https://wa.me/5531991643134?text=Ol%C3%A1%2C%20Lucas!%20Analisei%20o%20seu%20curr%C3%ADculo%20e%20gostaria%20de%20saber%20" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="w-12 h-12 sm:w-14 sm:h-14 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full shadow-xl shadow-emerald-500/35 hover:shadow-emerald-500/55 flex items-center justify-center transition-all duration-300 transform hover:scale-110 active:scale-95 border-2 border-white/25 relative group" 
+           aria-label="Conversar no WhatsApp" 
+           title="Conversar no WhatsApp">
+            <span class="absolute top-1 right-1 w-2.5 h-2.5 bg-white rounded-full animate-ping pointer-events-none"></span>
+            <svg class="w-6 h-6 sm:w-7 sm:h-7 fill-current text-white" viewBox="0 0 24 24">
+                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+            </svg>
+        </a>
+    </div>
 
     <!-- Floating Toast Notification for 1-Click Copy -->
-    <div id="toast-notification" class="fixed bottom-24 right-6 z-50 transform translate-y-20 opacity-0 pointer-events-none transition-all duration-300 flex items-center gap-3 bg-slate-900 text-white px-4 py-3 rounded-2xl shadow-2xl border border-slate-700 text-xs font-semibold no-print">
+    <div id="toast-notification" class="fixed bottom-36 sm:bottom-40 right-6 z-50 transform translate-y-20 opacity-0 pointer-events-none transition-all duration-300 flex items-center gap-3 bg-slate-900 text-white px-4 py-3 rounded-2xl shadow-2xl border border-slate-700 text-xs font-semibold no-print">
         <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
         <span id="toast-message">Copiado com sucesso!</span>
     </div>
