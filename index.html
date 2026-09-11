@@ -152,6 +152,7 @@
 
         .timeline-node {
             position: relative;
+            scroll-margin-top: 5.5rem;
         }
 
         .timeline-node::before {
@@ -2059,7 +2060,7 @@
             }
 
             // Update Experience Details
-            function updateDetails(id, lang) {
+            function updateDetails(id, lang, shouldScroll = false) {
                 const item = translations[lang].experienceData.find(exp => exp.id === id);
                 if (!item) return;
 
@@ -2116,6 +2117,24 @@
                         const content = targetItem.querySelector('.mobile-details-content');
                         content.innerHTML = `<div class="bg-white p-4 rounded-xl border border-blue-200 shadow-md text-left">${detailsHTML}</div>`;
                         content.style.maxHeight = content.scrollHeight + "px";
+
+                        if (shouldScroll) {
+                            // On mobile, smoothly scroll so the beginning of the selected position
+                            // starts right below the sticky header, allowing immediate reading from the start.
+                            setTimeout(() => {
+                                const header = document.querySelector('header');
+                                const headerHeight = header ? header.getBoundingClientRect().height : 80;
+                                const spacing = 16;
+                                const nodeRect = targetItem.getBoundingClientRect();
+                                const absoluteTargetTop = window.pageYOffset + nodeRect.top;
+                                const targetScrollY = Math.max(0, absoluteTargetTop - headerHeight - spacing);
+
+                                window.scrollTo({
+                                    top: targetScrollY,
+                                    behavior: 'smooth'
+                                });
+                            }, 50);
+                        }
                     }
                 } else {
                     detailsContainer.innerHTML = detailsHTML;
@@ -2574,12 +2593,15 @@
 
             // Timeline Click Interaction
             timelineContainer.addEventListener('click', (e) => {
+                // If clicked inside the already-expanded details box, do not retrigger
+                if (e.target.closest('.mobile-details-content')) return;
+
                 const node = e.target.closest('.timeline-node');
                 if (node) {
                     const id = node.dataset.id;
                     document.querySelectorAll('.timeline-node').forEach(el => el.classList.remove('active'));
                     node.classList.add('active');
-                    updateDetails(id, currentLang);
+                    updateDetails(id, currentLang, true);
                 }
             });
 
