@@ -236,8 +236,10 @@
 
         /* Print Styles for clean, professional PDF export */
         @media print {
-            /* Hide web navigation, terminal, modals and interactive UI */
-            header, footer, #terminal, .no-print, #skill-filter-tabs, #skill-search-container, .carousel-btn, #image-modal, #carousel-modal, #carreira {
+            /* Hide web navigation, interactive widgets, modals and decorative UI */
+            header, footer, #terminal, #destaques, #sobre, #carreira, .no-print,
+            #skill-filter-tabs, #skill-search-container, .carousel-btn,
+            #image-modal, #carousel-modal, #specialization-modal {
                 display: none !important;
             }
 
@@ -249,11 +251,14 @@
             html, body {
                 background: #FFFFFF !important;
                 color: #0F172A !important;
-                font-size: 9pt !important;
-                line-height: 1.4 !important;
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+                font-size: 8.5pt !important;
+                line-height: 1.35 !important;
                 overflow: visible !important;
                 overflow-x: visible !important;
                 height: auto !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
             }
 
             main {
@@ -262,262 +267,276 @@
                 max-width: 100% !important;
             }
 
-            /* Show print-only elements */
-            .print-header, .print-career-section, .print-only {
-                display: block !important;
-            }
-
-            /* Compact section paddings */
-            section {
-                padding-top: 10px !important;
-                padding-bottom: 10px !important;
-                margin: 0 !important;
-                border-top: 1px solid #E2E8F0 !important;
-            }
-
-            #sobre {
-                border-top: none !important;
-                padding-top: 0 !important;
-                padding-bottom: 6px !important;
-                min-height: auto !important;
-                display: block !important;
-            }
-
-            #sobre .anim-hero {
-                opacity: 1 !important;
-                transform: none !important;
-                margin-bottom: 4px !important;
-            }
-
-            /* Hide hero action buttons in print */
-            #sobre .no-print {
+            /* Absolute zero icons rule in PDF */
+            svg, svg * {
                 display: none !important;
             }
 
-            #sobre h1 {
-                font-size: 19pt !important;
-                margin-bottom: 4px !important;
-                line-height: 1.15 !important;
+            /* Show print-only elements */
+            .print-header, .print-summary-section, .print-career-section, .print-only {
+                display: block !important;
             }
 
-            #sobre p {
-                font-size: 8.5pt !important;
-                line-height: 1.4 !important;
-                margin-bottom: 4px !important;
-            }
-
-            /* Section headers */
-            .anim-section-title {
-                margin-bottom: 8px !important;
-                opacity: 1 !important;
-                transform: none !important;
-                break-inside: avoid;
-                page-break-inside: avoid;
-            }
-
-            .anim-section-title h2 {
-                font-size: 13pt !important;
-                margin-top: 2px !important;
-            }
-
-            .anim-section-title p {
-                font-size: 8pt !important;
-                margin-top: 1px !important;
-                max-width: 100% !important;
-            }
-
-            /* Quick Scan Recruiter Box */
-            .bg-white.border.border-slate-200.rounded-2xl.p-4,
-            .bg-white.border.border-slate-200.rounded-2xl {
-                padding: 6px 10px !important;
-                margin-bottom: 8px !important;
-                break-inside: avoid;
-                page-break-inside: avoid;
-            }
-
-            /* Skills Matrix Grid: 2-column compact layout in print */
-            #competencias {
-                page-break-before: auto;
-            }
-
-            #skills-grid {
-                display: grid !important;
-                grid-template-columns: repeat(2, 1fr) !important;
-                gap: 6px !important;
-                page-break-inside: auto !important;
-            }
-
-            #skills-grid .card-modern {
+            /* Print Header */
+            .print-header {
+                border-bottom: 2px solid #1E3A8A !important;
+                padding-bottom: 8px !important;
+                margin-bottom: 12px !important;
                 break-inside: avoid !important;
                 page-break-inside: avoid !important;
-                padding: 6px 8px !important;
+            }
+
+            .print-header h1 {
+                font-size: 18pt !important;
+                font-weight: 800 !important;
+                color: #0F172A !important;
+                line-height: 1.15 !important;
                 margin: 0 !important;
-                border: 1px solid #CBD5E1 !important;
-                box-shadow: none !important;
-                border-radius: 6px !important;
-                background: #FFFFFF !important;
-                transform: none !important;
             }
 
-            #skills-grid .card-modern h3 {
-                font-size: 9pt !important;
+            .print-header .print-role-title {
+                font-size: 9.5pt !important;
                 font-weight: 700 !important;
-                margin-bottom: 2px !important;
+                color: #1E3A8A !important;
+                margin: 2px 0 !important;
             }
 
-            #skills-grid .card-modern p {
+            .print-header .print-meta-info {
                 font-size: 7.5pt !important;
-                line-height: 1.3 !important;
-                margin-bottom: 3px !important;
                 color: #475569 !important;
+                margin: 0 !important;
             }
 
-            #skills-grid .card-modern .badge-pill {
-                font-size: 6.5pt !important;
-                padding: 1px 5px !important;
+            .print-header .print-contacts {
+                font-size: 7.5pt !important;
+                color: #334155 !important;
+                line-height: 1.4 !important;
+                text-align: right !important;
             }
 
-            #skills-grid .card-modern svg {
-                width: 12px !important;
-                height: 12px !important;
+            /* Section Headings - Unified sober executive typography */
+            .print-section-heading,
+            .anim-section-title h2 {
+                font-size: 10pt !important;
+                font-weight: 800 !important;
+                text-transform: uppercase !important;
+                letter-spacing: 0.05em !important;
+                color: #1E3A8A !important;
+                margin: 12px 0 6px 0 !important;
+                padding-bottom: 2px !important;
+                border-bottom: 1.5px solid #CBD5E1 !important;
+                text-align: left !important;
             }
 
-            /* Print-only Career Section */
+            .anim-section-title {
+                text-align: left !important;
+                margin-bottom: 6px !important;
+                opacity: 1 !important;
+                transform: none !important;
+                break-inside: avoid !important;
+                page-break-inside: avoid !important;
+            }
+
+            .anim-section-title span,
+            .anim-section-title p {
+                display: none !important;
+            }
+
+            /* Professional Summary Section */
+            .print-summary-section {
+                margin-bottom: 10px !important;
+                break-inside: avoid !important;
+                page-break-inside: avoid !important;
+            }
+
+            .print-summary-body {
+                font-size: 8pt !important;
+                line-height: 1.4 !important;
+                color: #334155 !important;
+                margin: 0 !important;
+                text-align: justify !important;
+            }
+
+            /* Career Section & Entries */
             .print-career-section {
-                page-break-before: auto;
+                page-break-inside: auto !important;
+                margin-bottom: 10px !important;
             }
 
             .print-career-entry {
                 break-inside: avoid !important;
                 page-break-inside: avoid !important;
-                margin-bottom: 10px !important;
-                padding: 8px 10px !important;
-                border: 1px solid #CBD5E1 !important;
-                border-left: 3px solid #2563EB !important;
-                border-radius: 6px !important;
+                margin-bottom: 6px !important;
+                padding: 5px 8px !important;
+                border: 1px solid #E2E8F0 !important;
+                border-left: 3px solid #1E3A8A !important;
+                border-radius: 4px !important;
                 background: #FFFFFF !important;
+                box-shadow: none !important;
             }
 
             .print-career-entry-header {
-                display: flex;
-                align-items: flex-start;
-                justify-content: space-between;
-                margin-bottom: 4px;
-                gap: 8px;
+                display: flex !important;
+                align-items: flex-start !important;
+                justify-content: space-between !important;
+                margin-bottom: 2px !important;
+                gap: 8px !important;
             }
 
-            .print-career-entry-header h3 {
-                font-size: 10pt !important;
+            .print-entry-role {
+                font-size: 8.5pt !important;
                 font-weight: 800 !important;
                 color: #0F172A !important;
-                margin: 0;
-                line-height: 1.2;
             }
 
-            .print-career-entry-header .period {
-                font-size: 7.5pt !important;
+            .print-entry-company {
+                font-size: 8pt !important;
+                font-weight: 700 !important;
+                color: #1E3A8A !important;
+            }
+
+            .print-career-entry .period {
+                font-size: 7pt !important;
                 color: #64748B !important;
-                font-family: monospace;
-                white-space: nowrap;
-            }
-
-            .print-career-entry .company {
-                font-size: 9pt !important;
                 font-weight: 600 !important;
-                color: #2563EB !important;
-                margin-bottom: 2px;
+                white-space: nowrap !important;
             }
 
             .print-career-entry .role-sub {
-                font-size: 7.5pt !important;
+                font-size: 7pt !important;
                 color: #64748B !important;
-                margin-bottom: 5px;
+                margin-bottom: 2px !important;
             }
 
             .print-career-entry .description {
-                font-size: 8pt !important;
+                font-size: 7.5pt !important;
                 color: #334155 !important;
                 line-height: 1.35 !important;
-                margin-bottom: 5px !important;
-                font-style: italic;
+                margin-bottom: 3px !important;
             }
 
             .print-career-entry .achievements-list {
-                margin: 0;
-                padding: 0;
-                list-style: none;
+                margin: 0 !important;
+                padding: 0 !important;
+                list-style: none !important;
             }
 
             .print-career-entry .achievements-list li {
                 font-size: 7.5pt !important;
-                line-height: 1.35 !important;
+                line-height: 1.3 !important;
                 color: #334155 !important;
-                padding-left: 10px;
-                position: relative;
-                margin-bottom: 2px;
+                padding-left: 9px !important;
+                position: relative !important;
+                margin-bottom: 2px !important;
             }
 
             .print-career-entry .achievements-list li::before {
-                content: '✓';
-                position: absolute;
-                left: 0;
-                color: #10B981;
-                font-weight: bold;
-                font-size: 7pt;
+                content: '•' !important;
+                position: absolute !important;
+                left: 0 !important;
+                color: #1E3A8A !important;
+                font-weight: bold !important;
+                font-size: 8pt !important;
+                line-height: 1.2 !important;
             }
 
             .print-career-entry .tags-row {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 3px;
-                margin-top: 5px;
-                padding-top: 4px;
-                border-top: 1px solid #E2E8F0;
+                display: flex !important;
+                flex-wrap: wrap !important;
+                gap: 3px !important;
+                margin-top: 4px !important;
+                padding-top: 3px !important;
+                border-top: 1px solid #F1F5F9 !important;
             }
 
             .print-career-entry .tags-row span {
-                font-size: 6.5pt !important;
-                padding: 1px 5px !important;
-                background: #F1F5F9;
-                color: #475569;
-                border: 1px solid #E2E8F0;
-                border-radius: 4px;
-                font-family: monospace;
+                font-size: 6pt !important;
+                padding: 0.5px 4px !important;
+                background: #F8FAFC !important;
+                color: #475569 !important;
+                border: 1px solid #E2E8F0 !important;
+                border-radius: 3px !important;
             }
 
-            /* Stats / Highlights in Print */
-            #destaques .grid {
+            /* Skills Matrix in Print */
+            #competencias {
+                padding: 0 !important;
+                margin: 0 0 10px 0 !important;
+                border-top: none !important;
+                page-break-inside: auto !important;
+            }
+
+            #skills-grid {
                 display: grid !important;
-                grid-template-columns: repeat(4, 1fr) !important;
+                grid-template-columns: repeat(2, 1fr) !important;
                 gap: 5px !important;
             }
 
-            .anim-stat-card {
-                padding: 6px 8px !important;
+            #skills-grid .card-modern {
+                break-inside: avoid !important;
+                page-break-inside: avoid !important;
+                padding: 4px 7px !important;
+                margin: 0 !important;
+                border: 1px solid #E2E8F0 !important;
                 box-shadow: none !important;
-                border: 1px solid #CBD5E1 !important;
-                break-inside: avoid;
-                page-break-inside: avoid;
-                opacity: 1 !important;
+                border-radius: 4px !important;
+                background: #FFFFFF !important;
                 transform: none !important;
             }
 
-            .anim-stat-card .w-12 {
+            #skills-grid .w-10,
+            #skills-grid .h-10,
+            #skills-grid [class*="w-10"],
+            #skills-grid [class*="h-10"] {
                 display: none !important;
             }
 
-            .anim-stat-card .stat-number {
-                font-size: 14pt !important;
+            #skills-grid .card-modern .flex.items-start.justify-between {
+                display: flex !important;
+                justify-content: flex-end !important;
+                margin-bottom: 2px !important;
             }
 
-            .anim-stat-card p {
+            #skills-grid .card-modern h3 {
+                font-size: 8pt !important;
+                font-weight: 700 !important;
+                color: #0F172A !important;
+                margin-bottom: 1px !important;
+            }
+
+            #skills-grid .card-modern p {
                 font-size: 7pt !important;
-                margin-top: 1px !important;
+                line-height: 1.25 !important;
+                margin-bottom: 2px !important;
+                color: #475569 !important;
+            }
+
+            #skills-grid .card-modern .badge-pill {
+                font-size: 6pt !important;
+                padding: 0.5px 4px !important;
+                border: 1px solid #CBD5E1 !important;
+                background: #F8FAFC !important;
+                color: #1E3A8A !important;
+                border-radius: 3px !important;
+            }
+
+            #skills-grid .border-t {
+                border-top: 1px solid #F1F5F9 !important;
+                padding-top: 2px !important;
+                margin-top: 2px !important;
+            }
+
+            #skills-grid .font-mono {
+                font-size: 6.5pt !important;
+                color: #64748B !important;
             }
 
             /* Education & Certifications in Print */
             #formacao {
-                page-break-inside: auto;
+                padding: 0 !important;
+                margin: 0 !important;
+                border-top: none !important;
+                page-break-inside: auto !important;
             }
 
             #education-container {
@@ -531,34 +550,45 @@
                 page-break-inside: avoid !important;
                 padding: 5px 8px !important;
                 box-shadow: none !important;
-                border: 1px solid #CBD5E1 !important;
+                border: 1px solid #E2E8F0 !important;
+                border-radius: 4px !important;
+                background: #FFFFFF !important;
                 opacity: 1 !important;
                 transform: none !important;
             }
 
             #education-container .card-modern h3 {
-                font-size: 8.5pt !important;
-                margin-bottom: 2px !important;
+                font-size: 8pt !important;
+                font-weight: 700 !important;
+                color: #0F172A !important;
+                margin-bottom: 1px !important;
             }
 
             #education-container .card-modern p {
                 font-size: 7pt !important;
+                color: #475569 !important;
             }
 
             #education-container .card-modern .badge-pill {
-                font-size: 6.5pt !important;
-                padding: 1px 4px !important;
+                font-size: 6pt !important;
+                padding: 0.5px 4px !important;
+                border: 1px solid #CBD5E1 !important;
+                background: #F8FAFC !important;
+                color: #334155 !important;
+                border-radius: 3px !important;
             }
 
-            /* Hide buttons inside cards in print */
+            #education-container button,
+            #education-container a,
             #education-container .diploma-btn,
             #education-container .carousel-btn-trigger,
-            #education-container a[target="_blank"] {
+            #education-container .spec-btn-trigger,
+            #education-container .mt-3.flex.flex-wrap {
                 display: none !important;
             }
 
             .print-break {
-                page-break-before: always;
+                page-break-before: always !important;
             }
         }
     </style>
@@ -639,23 +669,29 @@
     <main class="container mx-auto px-4 sm:px-6 pt-0 pb-12 max-w-6xl">
         
         <!-- Print-only Executive Header -->
-        <div class="print-header hidden mb-4 pb-3 text-left" style="border-bottom: 3px solid #2563EB;">
-            <div class="flex items-center justify-between">
+        <div class="print-header hidden mb-3 pb-3 text-left">
+            <div class="flex items-start justify-between">
                 <div>
-                    <h1 class="text-xl font-extrabold text-slate-900 tracking-tight leading-tight">Lucas Ladeira Loes</h1>
-                    <p class="text-xs font-bold text-blue-600 mt-0.5" data-lang-key="print_title">Analista de TI Sênior &bull; Administrador Google Workspace</p>
-                    <p class="text-[7.5pt] text-slate-500 mt-0.5">20+ Anos de Experiência &bull; Certificado Google Cloud &bull; Belo Horizonte, MG</p>
+                    <h1 class="text-2xl font-extrabold text-slate-900 tracking-tight leading-tight">Lucas Ladeira Loes</h1>
+                    <p class="print-role-title text-xs font-bold text-blue-900 mt-0.5" data-lang-key="print_title">Analista de TI Sênior &bull; Administrador Google Workspace</p>
+                    <p class="print-meta-info text-[7.5pt] text-slate-600 mt-0.5" data-lang-key="print_meta">20+ Anos de Experiência &bull; Certificação Google Workspace &bull; Belo Horizonte, MG &bull; Brasil</p>
                 </div>
-                <div class="text-right text-[8pt] text-slate-600 leading-snug">
-                    <p class="font-medium">WhatsApp / Tel: (31) 99164-3134</p>
+                <div class="print-contacts text-right text-[7.5pt] text-slate-700 leading-snug">
+                    <p class="font-semibold text-slate-900">(31) 99164-3134</p>
                     <p>lucasladeiraloes@gmail.com</p>
-                    <p class="text-blue-600">linkedin.com/in/lucas-ladeira-loes</p>
+                    <p class="text-slate-800">linkedin.com/in/lucas-ladeira-loes</p>
                 </div>
             </div>
         </div>
 
+        <!-- Print-only Professional Summary -->
+        <div class="print-summary-section hidden mb-3" id="print-summary-section">
+            <h2 class="print-section-heading" data-lang-key="print_summary_heading">Resumo Profissional</h2>
+            <p id="print-summary-text" class="print-summary-body" data-lang-key="hero_subtitle"></p>
+        </div>
+
         <!-- Print-only Career Section (shows ALL entries with achievements) -->
-        <div class="print-career-section hidden" id="print-career-section"></div>
+        <div class="print-career-section hidden mb-3" id="print-career-section"></div>
 
         <!-- Hero Section -->
         <section id="sobre" class="text-center relative py-6 sm:py-8 md:py-10">
@@ -702,13 +738,6 @@
                     </svg>
                     <span data-lang-key="download_cv_btn">Salvar / Imprimir PDF</span>
                 </button>
-
-                <a href="Lucas Ladeira Loes _ Analista de TI Sênior & Administrador Google Workspace.pdf" download="Lucas_Ladeira_Loes_Curriculo.pdf" class="inline-flex items-center gap-2 bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 font-semibold py-3 px-4 rounded-xl shadow-sm transition-all hover:-translate-y-0.5" title="Baixar arquivo PDF original do currículo">
-                    <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
-                    </svg>
-                    <span data-lang-key="download_pdf_official">Baixar PDF</span>
-                </a>
             </div>
         </section>
 
@@ -1019,6 +1048,8 @@
                     print_cv: "PDF / Imprimir",
                     print_title: "Analista de TI Sênior &bull; Administrador Google Workspace",
                     print_location: "Belo Horizonte, MG &bull; Brasil",
+                    print_meta: "20+ Anos de Experiência &bull; Certificação Google Workspace &bull; Belo Horizonte, MG &bull; Brasil",
+                    print_summary_heading: "Resumo Profissional",
                     hero_badge: "Certificado Google Workspace Administrator & 20+ Anos em Tecnologia",
                     hero_title_prefix: "Analista de TI Sênior &",
                     hero_title_highlight: "Administrador Google Workspace",
@@ -1474,6 +1505,8 @@
                     print_cv: "PDF / Print",
                     print_title: "Senior IT Analyst &bull; Google Workspace Administrator",
                     print_location: "Belo Horizonte, MG &bull; Brazil",
+                    print_meta: "20+ Years Experience &bull; Google Workspace Certified &bull; Belo Horizonte, MG &bull; Brazil",
+                    print_summary_heading: "Professional Summary",
                     hero_badge: "Google Workspace Administrator Certified & 20+ Years in Tech",
                     hero_title_prefix: "Senior IT Analyst &",
                     hero_title_highlight: "Google Workspace Administrator",
@@ -2886,19 +2919,18 @@
                 const t = translations[lang];
 
                 printSection.innerHTML = `
-                    <section style="padding-top:10px; padding-bottom:10px; border-top: 1px solid #E2E8F0; margin: 0;">
-                        <div style="margin-bottom:10px;">
-                            <span style="font-size:7pt; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:#2563EB;">${t.career_eyebrow || 'Trajetória e Impacto'}</span>
-                            <h2 style="font-size:13pt; font-weight:800; color:#0F172A; margin:2px 0 0 0;">${t.career_title || 'Jornada Profissional'}</h2>
-                        </div>
-                        <div>
+                    <div class="print-section-wrapper">
+                        <h2 class="print-section-heading">${t.career_title || 'Jornada Profissional'}</h2>
+                        <div class="print-career-list">
                             ${experiences.map(exp => `
                                 <div class="print-career-entry">
                                     <div class="print-career-entry-header">
-                                        <h3>${exp.role}</h3>
+                                        <div>
+                                            <span class="print-entry-role">${exp.role}</span>
+                                            <span class="print-entry-company"> &bull; ${exp.company}</span>
+                                        </div>
                                         <span class="period">${exp.period}</span>
                                     </div>
-                                    <p class="company">${exp.company}</p>
                                     ${exp.roleSub ? `<p class="role-sub">${exp.roleSub}</p>` : ''}
                                     <p class="description">${exp.description}</p>
                                     <ul class="achievements-list">
@@ -2910,7 +2942,7 @@
                                 </div>
                             `).join('')}
                         </div>
-                    </section>
+                    </div>
                 `;
             }
 
@@ -2925,13 +2957,11 @@
                 // 3. Render all career entries in the print-only section
                 renderPrintCareerSection(currentLang);
 
-                // 4. Fill in stat counters with their final numbers so they don't print as 0
-                document.querySelectorAll('.anim-stat-card .stat-number').forEach(span => {
-                    const target = span.dataset.target || '';
-                    const suffixKey = span.dataset.suffixKey;
-                    const suffix = (translations[currentLang] && translations[currentLang][suffixKey]) || '';
-                    span.innerText = target + suffix;
-                });
+                // 4. Ensure print summary is populated
+                const printSummaryEl = document.getElementById('print-summary-text');
+                if (printSummaryEl && translations[currentLang]) {
+                    printSummaryEl.textContent = translations[currentLang].hero_subtitle;
+                }
 
                 // 5. Force GSAP animated elements to be fully visible with no offset
                 document.querySelectorAll('.anim-hero, .anim-section-title, .anim-stat-card, .anim-education-card').forEach(el => {
